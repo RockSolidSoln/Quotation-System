@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./quotation_system/project"
+    ]
+}

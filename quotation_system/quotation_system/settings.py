@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'project',
+    'addItem',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -66,6 +68,8 @@ TEMPLATES = [
         },
     },
 ]
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
 
 WSGI_APPLICATION = 'quotation_system.wsgi.application'
 
