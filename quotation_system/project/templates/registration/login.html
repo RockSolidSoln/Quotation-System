@@ -5,33 +5,39 @@
 <h2>{{ title }}</h2>
 <div class="row">
     <div class="col-md-8">
-        <section id="loginForm">
-            <form action="." method="post" class="form-horizontal">
-                {% csrf_token %}
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div class="form-group">
-                    <label for="id_username" class="col-md-2 control-label">User name</label>
-                    <div class="col-md-10">
-                        {{ form.username }}
+        <section id="loginForm" class="d-flex justify-content-center">
+            <div class="mx-auto" style="width: 200px;">
+                <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_lrdkqhnc.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop  autoplay></lottie-player>
+            </div>
+            <div class="w-50 p-2">
+                <form action="." method="post" class="form">
+                    {% csrf_token %}
+                    <h4>Use a local account to log in.</h4>
+                    <hr />
+                    <div class="form-group">
+                        <label for="id_username" class="col-md-2 control-label">User name</label>
+                        <div class="col-md-10">
+                            {{ form.username }}
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="id_password" class="col-md-2 control-label">Password</label>
-                    <div class="col-md-10">
-                        {{ form.password }}
+                    <div class="form-group">
+                        <label for="id_password" class="col-md-2 m-20 control-label">Password</label>
+                        <div class="col-md-10">
+                            {{ form.password }}
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="hidden" name="next" value="/menu" />
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="hidden" name="next" value="/menu" />
+                            <input type="submit" value="Log in" class="btn btn-default" />
+                        </div>
                     </div>
-                </div>
-                {% if form.errors %}
-                <p class="validation-summary-errors">Please enter a correct user name and password.</p>
-                {% endif %}
-            </form>
+                    {% if form.errors %}
+                    <p class="validation-summary-errors">Please enter a correct user name and password.</p>
+                    {% endif %}
+                </form>
+            </div>
         </section>
     </div>
     <div class="col-md-4">
@@ -44,7 +50,7 @@
 
 {% block scripts %}
 
-    {% load static %}
+{% load static %}
 <script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
-
+<link rel="stylesheet" type="text/css" href="{% static 'app/content/Login.css' %}" />
 {% endblock %}
