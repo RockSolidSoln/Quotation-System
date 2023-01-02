@@ -52,13 +52,34 @@ def about(request):
 
 @login_required
 def menu(request):
-    check_employee = request.user.groups.filter(name='employee').exists()
+    role = request.user.groups.get()
 
+    print(role)
+    
+    check_employee = request.user.groups.filter(name='Salesman').exists()
+    
     context = {
-            'title':'Main Menu',
-            'is_employee': check_employee,
+            # 'title':'Main Menu',
+            'role': check_employee,
             'year':datetime.now().year,
         }
+
+    print(context)
+
     context['user'] = request.user
 
-    return render(request,'app/menu.html',context)
+    if(request.user.groups.filter(name='Salesman').exists()):
+        return render(request,'salesman/index.html',context)
+    
+    elif(request.user.groups.filter(name='Customer').exists()):
+        return render(request,'customer/index.html',context)
+    
+    elif(request.user.groups.filter(name='Manager').exists()):
+        return render(request,'manager/index.html',context)
+    
+    elif(request.user.groups.filter(name='Finance Officer').exists()):
+        return render(request,'finance officer/index.html',context)
+        
+    else:
+        return render(request,'app/menu.html',context)
+    
