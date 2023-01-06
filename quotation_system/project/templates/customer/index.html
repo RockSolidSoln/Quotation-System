@@ -86,9 +86,36 @@
             color: #2D92E2;
             left: 15%;
         }
+        #form{
+            position: absolute;
+            margin-top: 50px;
+            left: 5%;
+        }
+        #form h2{
+            width: 51px;
+            height: 35px;
+            left: 239px;
+            top: 229px;
+            font-family: 'Inknut Antiqua';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 15px;
+            display: flex;
+            align-items: center;
+            color: #2D92E2;
+        }
+        #form h2 input{
+            height: 35px;
+            left: 273px;
+            margin-left: 20px;
+            top: 229px;
+            border: none;
+            background: #E9F6FE;
+            border-radius: 50px;
+        }
     </style>
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="JScustomer.js"></script>
 </head>
 
  <!-- HTML for the button and sidebar -->
@@ -110,6 +137,12 @@
         <h2>Profile</h2>
     </div>
     <br/>
+    <div id="form">
+        <h2>ID <input readonly type="text" label="Username" name="Username" style="width=173px"></h2>
+        <h2>Name <input readonly type="text" label="Name" name="Name"></h2>
+        <h2>Email <input readonly type="email" label="Email" name="Email"></h2>
+
+    </div>
 </div>
 
 <script>
