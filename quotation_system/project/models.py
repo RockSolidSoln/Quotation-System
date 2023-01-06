@@ -9,8 +9,8 @@ from django.contrib.auth.models import User
 #sharing entity
 class Salesman(models.Model):
     salesman_id = models.CharField(primary_key=True, max_length=10)
-    salesman_password = models.CharField(max_length=5, null=True)
-    salesman_email = models.BigIntegerField(null=True)
+    salesman_password = models.CharField(max_length=25, null=True)
+    salesman_email = models.CharField(max_length=30, null=True)
 
     def __str__(self):
         return str(self.salesman_id)
@@ -18,7 +18,7 @@ class Salesman(models.Model):
 class Customer(models.Model):
     customer_id = models.CharField(primary_key=True, max_length=10)
     customer_name = models.CharField(max_length=20, null=True)
-    customer_email = models.BigIntegerField(null=True)
+    customer_email = models.CharField(max_length=30, null=True)
 
     def __str__(self):
         return str(self.customer_id)
@@ -26,7 +26,7 @@ class Customer(models.Model):
 class Manager(models.Model):
     manager_id = models.CharField(primary_key=True, max_length=10)
     manager_name = models.CharField(max_length=20, null=True)
-    manager_email = models.BigIntegerField(null=True)
+    manager_email = models.CharField(max_length=30, null=True)
 
     def __str__(self):
         return str(self.manager_id)
@@ -34,7 +34,7 @@ class Manager(models.Model):
 class FinanceOfficer(models.Model):
     finance_officer_id = models.CharField(primary_key=True, max_length=10)
     finance_officer_name = models.CharField(max_length=20, null=True)
-    finance_officer_email = models.BigIntegerField(null=True)
+    finance_officer_email = models.CharField(max_length=30, null=True)
 
     def __str__(self):
         return str(self.finance_officer)
