@@ -24,19 +24,6 @@ def home(request):
             }
         )
 
-def contact(request):
-    """Renders the contact page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/contact.html',
-        {
-            'title':'Contact',
-            'message':'Dr. Yeoh.',
-            'year':datetime.now().year,
-        }
-    )
-
 def about(request):
     """Renders the about page."""
     assert isinstance(request, HttpRequest)

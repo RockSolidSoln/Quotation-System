@@ -20,17 +20,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand">Application name</a>
+                <a href="/" class="navbar-brand">
+                        <img src="{% static 'app/assets/Logo.png' %}" alt="Logo" width="30"
+                    height="30"></a>
             </div>
             <div class="navbar-collapse collapse" >
                 <ul class="nav navbar-nav">
-                    <li><a  href="{% url 'home' %}">Home</a></li>
-                    <li><a href="{% url 'about' %}">About</a></li>
-                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a style="color: white;" href="{% url 'home' %}">Home</a></li>
+                    <li><a style="color: white;" href="{% url 'about' %}">About</a></li>
                 </ul>
                 {% include 'registration/loginpartial.html' %}
             </div>
         </div>
+        {% if user.is_authenticated %}
+        <ul class="breadcrumb" style="padding-left: 80px;" >
+            <li><a style="color: black;" href="#">
+                <i class="fa fa-home" style="font-size:24px"></i>
+            </a></li>
+            <li><a style="color: black;" href="#">Pictures</a></li>
+          </ul>
+        {% endif %}
     </div>
 
     <div class="container body-content">

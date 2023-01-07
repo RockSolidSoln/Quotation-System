@@ -23,7 +23,6 @@ admin.autodiscover()
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^$', views.home, name='home'),
-    re_path(r'^contact$', views.contact, name='contact'),
     re_path(r'^about$', views.about, name='about'),
     re_path(r'^login/$',
         LoginView.as_view(template_name = 'registration/login.html'),
