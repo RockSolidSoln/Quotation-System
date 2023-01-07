@@ -90,22 +90,31 @@
             position: absolute;
             margin-top: 50px;
             left: 5%;
+            float: left;
+            width: 100%;
+            display: flex;
         }
-        #form h2{
-            width: 51px;
+        #form .col{
+            content: "";
+            display: table;
+            clear: both;
+            flex: 50%;
+        }
+        #form .col h2{
             height: 35px;
             left: 239px;
             top: 229px;
             font-family: 'Inknut Antiqua';
             font-style: normal;
-            font-weight: 400;
+            font-weight: 525;
             font-size: 18px;
             line-height: 15px;
             display: flex;
             align-items: center;
             color: #2D92E2;
+            margin-top: 40px;
         }
-        #form h2 input{
+        #form .col h2 input{
             height: 35px;
             left: 273px;
             margin-left: 20px;
@@ -126,7 +135,7 @@
  <div id="sidebar">
    <!-- Sidebar content goes here -->
    <a href="#">Home</a>
-   <a href="#">Add Purchase Requisition</a>
+   <a href="APR.html">Add Purchase Requisition</a>
    <a href="#">View and Sort Purchase Requisition</a>
    <a href="#">View Quotation</a>
  </div>
@@ -138,10 +147,25 @@
     </div>
     <br/>
     <div id="form">
-        <h2>ID <input readonly type="text" label="Username" name="Username" style="width=173px"></h2>
-        <h2>Name <input readonly type="text" label="Name" name="Name"></h2>
-        <h2>Email <input readonly type="email" label="Email" name="Email"></h2>
+        <div class="col">
+            
+        <h2>
+            ID <input readonly type="text" label="Username" name="Username">
+        </h2>
 
+        <h2>
+            Name <input readonly type="text" label="Name" name="Name">
+        </h2>
+
+        <h2>
+            Email <input readonly type="email" label="Email" name="Email">
+        </h2>
+
+        </div>
+        <div class="col">
+            <h2>Password <input readonly type="Password" label="Password" name="Password"></h2>
+            <h2>Account Type<input readonly type="text" label="AccType" name="AccType"></h2>
+        </div>
     </div>
 </div>
 
