@@ -118,10 +118,16 @@
             height: 35px;
             left: 273px;
             margin-left: 20px;
+            padding-left: 25px;
+            padding-right: 25px;
             top: 229px;
             border: none;
             background: #E9F6FE;
             border-radius: 50px;
+            
+        }
+        ::placeholder{
+            color: #2C9BE5;
         }
     </style>
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -154,16 +160,16 @@
         </h2>
 
         <h2>
-            Name <input readonly type="text" label="Name" name="Name">
+            Name <input readonly type="text" label="Name" name="Name" placeholder="{{ user.username }}">
         </h2>
 
         <h2>
-            Email <input readonly type="email" label="Email" name="Email">
+            Email <input readonly type="email" label="Email" name="Email" placeholder="{{ user.email }}">
         </h2>
 
         </div>
         <div class="col">
-            <h2>Password <input readonly type="Password" label="Password" name="Password"></h2>
+            <h2>Password <input readonly type="Password" label="Password" placeholder="{{ user.password }} name="Password" style="margin-left:48px;" value="FakePSW"></h2>
             <h2>Account Type<input readonly type="text" label="AccType" name="AccType"></h2>
         </div>
     </div>
