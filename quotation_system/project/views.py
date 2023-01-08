@@ -68,5 +68,17 @@ def menu(request):
         return render(request,'finance officer/index.html',context)
         
     else:
-        return render(request,'app/menu.html',context)
-    
+        return render(request,'app/menu.html',context)    
+
+"""
+Customer pages
+"""
+
+def apr(request):
+    return render(request, 'customer/APR.html')
+
+def vspr(request):
+    return render(request, 'customer/VSPR.html')
+
+def vq(request):
+    return render(request, 'customer/VQ.html')

@@ -135,9 +135,9 @@
  <div id="sidebar">
    <!-- Sidebar content goes here -->
    <a href="#">Home</a>
-   <a href="APR.html">Add Purchase Requisition</a>
-   <a href="#">View and Sort Purchase Requisition</a>
-   <a href="#">View Quotation</a>
+   <a href="{% url 'apr' %}">Add Purchase Requisition</a>
+   <a href="{% url 'vspr' %}">View and Sort Purchase Requisition</a>
+   <a href="{% url 'vq' %}">View Quotation</a>
  </div>
 
   <div id="main">
@@ -150,7 +150,7 @@
         <div class="col">
             
         <h2>
-            ID <input readonly type="text" label="Username" name="Username">
+            ID <input readonly type="text" label="Username" name="Username" style="margin-left: 40px;">
         </h2>
 
         <h2>
