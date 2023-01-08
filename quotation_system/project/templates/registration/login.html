@@ -2,14 +2,13 @@
 
 {% block content %}
 
-<h2>{{ title }}</h2>
-
-<section id="loginForm" class="row">
+<section id="loginForm" class="row" 
+    style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); margin-top: 50px;">
     <div class="column" style="background-color: #E9F6FE; 
-    float: left;
-    width: 50%;
-    padding: 10px;
-    height: 500px; " >
+    float: left; width: 50%; padding: 10px;
+    height: 500px; display: flex;
+    align-items: center;
+    justify-content: center;" >
         <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
         <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_lrdkqhnc.json"  background="transparent"  speed="1"  style="width: 450px; height: 400px;"  loop  autoplay></lottie-player>
     </div>
@@ -21,18 +20,22 @@
         <form action="." method="post" class="form" style="text-align:center; display: block;">
             {% csrf_token %}
 
-            <h3>Sign In.</h3>
+            <h3 style="color: white; font-weight: 600;">Sign In.</h3>
             <hr />
             <div class="form-group">
-                <label for="id_username" class="control-label" >User name</label>
-                <div >
+                <label for="id_username" class="control-label" 
+                style="color: white; font-weight: 450; font-size-adjust: inherit;
+                margin-top: 20px; margin-bottom: 10px;">User name</label>
+                <div style="font-size: 18px;">
                     {{ form.username }}
                 </div>
                 <!-- <input type="text" id="fname" name="username" placeholder="Your name.."> -->
             </div>
             <div class="form-group">
-                <label for="id_password" class="control-label" name="password">Password</label>
-                <div >
+                <label for="id_password" class="control-label"
+                style="color: white; font-weight: 450; 
+                margin-top: 20px; margin-bottom: 10px;">Password</label>
+                <div style="font-size: 18px; ">
                     {{ form.password }}
                 </div>
                 <!-- <input type="text" id="fname" name="password" placeholder="Your name.."> -->
@@ -40,7 +43,10 @@
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="hidden" name="next" value="/menu" />
-                    <input type="submit" value="Log in" class="btn btn-default" />
+                    <input type="submit" value="Log in" 
+                    style="border-radius: 50px; margin-top: 20px; 
+                            height: 35px; margin-left: 30px;"
+                    class="btn-primary btn-md btn-block mx-auto" />
                 </div>
             </div>
             {% if form.errors %}
@@ -51,14 +57,8 @@
 </section>
 
 {% endblock %}
-
-
-
-
-{% load static %}
-<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="{% static 'app/content/Login.css' %}" />
-
-    
-{% block scripts %}
+    {% load static %}
+        <script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'app/content/Login.css' %}" />
+    {% block scripts %}
 {% endblock %}

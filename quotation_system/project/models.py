@@ -8,36 +8,32 @@ from django.contrib.auth.models import User
 
 #sharing entity
 class Salesman(models.Model):
-    salesman_id = models.CharField(primary_key=True, max_length=10)
-    salesman_password = models.CharField(max_length=25, null=True)
-    salesman_email = models.CharField(max_length=30, null=True)
+    salesman_id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return str(self.salesman_id)
 
 class Customer(models.Model):
-    customer_id = models.CharField(primary_key=True, max_length=10)
-    customer_name = models.CharField(max_length=20, null=True)
-    customer_email = models.CharField(max_length=30, null=True)
-    customer_password = models.CharField(max_length=50, null=True)
+    customer_id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+
     def __str__(self):
         return str(self.customer_id)
 
 class Manager(models.Model):
-    manager_id = models.CharField(primary_key=True, max_length=10)
-    manager_name = models.CharField(max_length=20, null=True)
-    manager_email = models.CharField(max_length=30, null=True)
+    manager_id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return str(self.manager_id)
 
 class FinanceOfficer(models.Model):
-    finance_officer_id = models.CharField(primary_key=True, max_length=10)
-    finance_officer_name = models.CharField(max_length=20, null=True)
-    finance_officer_email = models.CharField(max_length=30, null=True)
+    finance_officer_id = models.AutoField(primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return str(self.finance_officer)
+        return str(self.finance_officer_id)
 
 
 class PurchaseRequisition(models.Model):

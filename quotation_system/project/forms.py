@@ -18,3 +18,12 @@ class BootstrapAuthenticationForm(AuthenticationForm):
                                    'class': 'form-control',
                                    'style': 'width: 100%; padding: 12px 20px; margin: 8px 0; display: inline-block; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;',
                                    'placeholder':'Password'}))
+
+class UserTypeForm(forms.Form):
+    USER_TYPE_CHOICES = [
+        ('customer', 'Customer'),
+        ('salesman', 'Salesman'),
+        ('manager', 'Manager'),
+        ('finance_officer', 'FinanceOfficer'),
+    ]
+    user_type = forms.ChoiceField(choices=USER_TYPE_CHOICES)
