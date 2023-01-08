@@ -140,7 +140,7 @@
  
  <div id="sidebar">
    <!-- Sidebar content goes here -->
-   <a href="#">Home</a>
+   <a href="{% url 'index' %}">Home</a>
    <a href="{% url 'apr' %}">Add Purchase Requisition</a>
    <a href="{% url 'vspr' %}">View and Sort Purchase Requisition</a>
    <a href="{% url 'vq' %}">View Quotation</a>
@@ -169,7 +169,7 @@
 
         </div>
         <div class="col">
-            <h2>Password <input readonly type="Password" label="Password" placeholder="{{ user.password }} name="Password" style="margin-left:48px;" value="FakePSW"></h2>
+            <h2>Password <input readonly type="Password" label="Password" placeholder="{{ user.password }}" name="Password" style="margin-left:48px;" value="FakePSW"></h2>
             <h2>Account Type<input readonly type="text" label="AccType" name="AccType"></h2>
         </div>
     </div>

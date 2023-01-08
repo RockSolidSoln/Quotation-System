@@ -82,3 +82,6 @@ def vspr(request):
 
 def vq(request):
     return render(request, 'customer/VQ.html')
+
+def index(request):
+    return render(request, 'customer/index.html')

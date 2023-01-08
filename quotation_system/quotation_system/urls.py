@@ -34,4 +34,5 @@ urlpatterns = [
     re_path(r'^apr$', views.apr, name='apr'),
     re_path(r'^vspr$', views.vspr, name='vspr'),
     re_path(r'^vq$', views.vq, name='vq'),
+    re_path(r'^index$', views.index, name='index'),
 ]
