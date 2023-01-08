@@ -29,26 +29,26 @@
             /* Sidebar styling goes here */
             height:100%;
             border: none;
-			width:225px;
-			position: fixed;
-			z-index:1;
-			top:3;
-			left:0;
-			background: rgba(49, 112, 222, 0.9);
-			overflow-x: :hidden;
-			padding-top:20px;
+            width:225px;
+            position: fixed;
+            z-index:1;
+            top:3;
+            left:0;
+            background: rgba(49, 112, 222, 0.9);
+            overflow-x: :hidden;
+            padding-top:50px;
             display: none;
           }
           #sidebar-button i{
             color : #fff;
           }
           #sidebar a {
-			padding:6px 8px 6px 16px;
-			text-decoration: none;
-			font-size:15px;
-			color: #fff;
-            margin-top: 25px;
-			display:block;
+            padding:6px 8px 6px 16px;
+            text-decoration: none;
+            font-size:15px;
+            color: #fff;
+            margin-top: 35px;
+            display:block;
 		}
  
         #sidebar a:hover{
@@ -100,10 +100,29 @@
  
  <div id="sidebar">
    <!-- Sidebar content goes here -->
-   <a href="{% url 'index' %}">Home</a>
-   <a href="{% url 'apr' %}">Add Purchase Requisition</a>
-   <a href="{% url 'vspr' %}">View and Sort Purchase Requisition</a>
-   <a href="{% url 'vq' %}">View Quotation</a>
+   <a href="{% url 'index' %}">
+    <img src="{% static 'app/assets/Home.png' %}" alt="Home" width="25"
+    height="25" style="margin-right:10px;"> 
+    Home
+    </a>
+   
+    <a href="{% url 'apr' %}" style="right:10px; position:relative;">
+    <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
+    height="40" style=" margin-right:5px;">
+    Add Purchase Requisition
+    </a>
+   
+    <a href="{% url 'vspr' %}">
+    <img src="{% static 'app/assets/View.png' %}" alt="View" width="30"
+    height="30" style="margin-right:10px;">
+    View and Sort Purchase Requisition
+    </a>
+
+   <a href="{% url 'vq' %}">
+    <img src="{% static 'app/assets/ViewQ.png' %}" alt="ViewQ"  style="margin-right:15px;">
+    View Quotation
+    </a>
+
  </div>
 
   <div id="main">
