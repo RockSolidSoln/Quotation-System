@@ -6,8 +6,31 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
+from .forms import UserTypeForm
 
 from django.contrib.auth.decorators import login_required
+
+def create_user(request):
+    if request.method == 'POST':
+        form = UserTypeForm(request.POST)
+        if form.is_valid():
+            user_type = form.cleaned_data['user_type']
+            if user_type == 'customer':
+                customer = Customer(user=request.user)
+                customer.save()
+            elif user_type == 'salesman':
+                salesman = Salesman(user=request.user)
+                salesman.save()
+            elif user_type == 'manager':
+                manager = Manager(user=request.user)
+                manager.save()
+            elif user_type == 'finance_officer':
+                finance_officer = FinanceOfficer(user=request.user)
+                finance_officer.save()
+            return redirect('users_list')
+    else:
+        form = UserTypeForm()
+    return render(request, 'users/create.html', {'form': form})
 
 def home(request):
     """Renders the home page."""
