@@ -16,7 +16,7 @@
 			top:0;
 			left:0;
             background: linear-gradient(0deg, rgba(49, 112, 222, 0.33), rgba(49, 112, 222, 0.33)), linear-gradient(0deg, #BAD7E9, #BAD7E9), #BAD7E9;
-			overflow-x: :hidden;
+			overflow-x: hidden;
             border: none;
 			padding-top:50px;
           }
@@ -35,8 +35,8 @@
 			top:3;
 			left:0;
 			background: rgba(49, 112, 222, 0.9);
-			overflow-x: :hidden;
-			padding-top:50px;
+			overflow-x: hidden;
+			padding-top: 50px;
             display: none;
           }
           #sidebar-button i{
@@ -53,7 +53,7 @@
  
         #sidebar a:hover{
 			font-weight: bold;
-            text-decoration: underline:
+            text-decoration: underline;
 		}
         #main{
             position: relative;
@@ -141,7 +141,7 @@
  
  <div id="sidebar">
    <!-- Sidebar content goes here -->
-   <a href="{% url 'index' %}">
+   <a href="{% url 'menu' %}">
     <img src="{% static 'app/assets/Home.png' %}" alt="Home" width="25"
     height="25" style="margin-right:10px;"> 
     Home

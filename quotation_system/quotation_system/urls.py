@@ -34,5 +34,10 @@ urlpatterns = [
     re_path(r'^apr$', views.apr, name='apr'),
     re_path(r'^vspr$', views.vspr, name='vspr'),
     re_path(r'^vq$', views.vq, name='vq'),
-    re_path(r'^index$', views.index, name='index'),
+    # re_path(r'^index$', views.index, name='index'),
+    path('view-purchase-requisition/', views.view_purchase_requisition, name='view_purchase_requisition'),
+    path('view_quotation/', views.view_quotation, name='view_quotation'),
+    path('add_quotation/', views.add_quotation, name='add_quotation'),
+    path('view_one_quotation/', views.view_one_quotation, name='add_quotation'),
+    path('view_one_PR/', views.view_one_PR, name='add_quotation'),
 ]

@@ -6,6 +6,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
+
+
+from .models import Customer, FinanceOfficer, Manager, Salesman
 from .forms import UserTypeForm
 
 from django.contrib.auth.decorators import login_required
@@ -61,21 +64,16 @@ def about(request):
     )
 
 @login_required
+
 def menu(request):
     role = request.user.groups.get()
-
     print(role)
-    
     check_employee = request.user.groups.filter(name='Salesman').exists()
     
     context = {
-            # 'title':'Main Menu',
             'role': check_employee,
             'year':datetime.now().year,
         }
-
-    print(context)
-
     context['user'] = request.user
 
     if(request.user.groups.filter(name='Salesman').exists()):
@@ -106,5 +104,22 @@ def vspr(request):
 def vq(request):
     return render(request, 'customer/VQ.html')
 
-def index(request):
-    return render(request, 'customer/index.html')
+"""
+Salesman pages
+"""
+
+def add_quotation(request):
+    return render(request, 'salesman/addQuotation.html')
+
+def view_purchase_requisition(request):
+    return render(request, 'salesman/viewPR.html')
+
+def view_one_PR(request):
+    return render(request, 'salesman/viewOnePR.html')
+
+def view_quotation(request):
+    return render(request, 'salesman/viewQuotation.html')
+
+def view_one_quotation(request):
+    return render(request, 'salesman/viewOneQuotation.html')
+

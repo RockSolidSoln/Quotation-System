@@ -2,6 +2,11 @@
 
 {% block content %}
 
+{% load static %}
+<script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
+<link rel="stylesheet" href="{% static 'app/content/login.css' %}" />
+
+
 <section id="loginForm" class="row" 
     style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); margin-top: 50px;">
     <div class="column" style="background-color: #E9F6FE; 
@@ -57,8 +62,4 @@
 </section>
 
 {% endblock %}
-    {% load static %}
-        <script src="{% static 'app/scripts/jquery.validate.min.js' %}"></script>
-        <link rel="stylesheet" type="text/css" href="{% static 'app/content/Login.css' %}" />
-    {% block scripts %}
-{% endblock %}
+

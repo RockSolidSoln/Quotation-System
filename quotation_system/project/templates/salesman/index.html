@@ -1,48 +1,92 @@
 {% extends "../app/layout.html" %}
 
 {% block content %}
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/content/dashboard.css' %}">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
-<div>
-    <br />
-    <h2>Salesman Dashboard</h2>
+ <!-- HTML for the button and sidebar -->
+ <button id="sidebar-button">
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+ </button>
+ 
+ <div id="sidebar">
+   <!-- Sidebar content goes here -->
+   <a href="{% url 'menu' %}">
+    <img src="{% static 'app/assets/Home.png' %}" alt="Home" width="25"
+    height="25" style="margin-right:10px;"> 
+    Home
+    </a>
+   
+    <a href="{% url 'view_purchase_requisition' %}" style="right:10px; position:relative;">
+    <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
+    height="40" style=" margin-right:5px;">
+    Purchase Requisition
+    </a>
+   
+   <a href="{% url 'add_quotation' %}">
+    <img src="{% static 'app/assets/ViewQ.png' %}" alt="ViewQ"  style="margin-right:15px;">
+        Add Quotation
+    </a>
 
-    <br />
-    <table>
-    {% if is_employee %}
-        <tr><td>
-    <form class="margintop" action='additemform' method='GET'>
-        <button type="submit" class="btn btn-info">Add Item</button><br />
-    </form>
-            </td></tr>
+    <a href="{% url 'view_quotation' %}">
+        <img src="{% static 'app/assets/View.png' %}" alt="ViewQ" width="30"
+        height="30" style="margin-right:10px;">
+        View and Sort Quotation
+    </a>
+
+ </div>
+
+  <div id="main">
+    <br/>
+    <div id="header">
+        <h2>Profile</h2>
+    </div>
+    <br/>
+    <div id="form">
+        <div class="col">
             
-        <tr><td>
-    <form class="margintop" action='module2' method='GET'>
-        <button type="submit" class="btn btn-outline-info waves-effect">Module 2</button><br />
-    </form>
-        </td></tr>
+        <h2>
+            ID <input readonly type="text" label="Username" name="Username" style="margin-left: 40px;" placeholder="{{ user.id }}">
+        </h2>
 
-    {% elif is_manager %}            
-        <tr><td>
-    <form class="margintop" action='module3' method='GET'>
-        <button type="submit" class="btn btn-info">Module 3</button><br />
-    </form>
-        </td></tr>
-            
-        <tr><td>
-    <form class="margintop" action='module4' method='GET'>
-        <button type="submit" class="btn btn-outline-info waves-effect">Module 4</button><br />
-    </form>
-        </td></tr>
-                      
-    {% else %}            
+        <h2>
+            Name <input readonly type="text" label="Name" name="Name" placeholder="{{ user.username }}">
+        </h2>
 
-        <tr><td>
-            <p>Undefined User.</p>
-        </td></tr>
-            
-    {% endif %}            
-    </table>
+        <h2>
+            Email <input readonly type="email" label="Email" name="Email" placeholder="{{ user.email }}">
+        </h2>
+
+        </div>
+        <div class="col">
+            <h2>Password <input readonly type="Password" label="Password" placeholder="{{ user.password }}" name="Password" style="margin-left:48px;" value="FakePSW"></h2>
+            <h2>Account Type<input readonly type="text" label="AccType" name="AccType" placeholder="Salesman"></h2>
+        </div>
+    </div>
 </div>
 
-{% endblock %}
- 
+<script>
+    // JavaScript for toggling the sidebar on and off
+    var button = document.getElementById('sidebar-button');
+    var sidebar = document.getElementById('sidebar');
+    var main = document.getElementById('main');
+
+    button.addEventListener('click', function() {
+      if (sidebar.style.display === 'block') {
+        sidebar.style.display = 'none';
+        button.classList.remove('clicked');
+        main.style.marginLeft = '0px';
+        
+      } else {
+        sidebar.style.display = 'block';
+        button.classList.add('clicked');
+        main.style.marginLeft = '120px';
+        
+      }
+    });
+  </script>
+
+  {% endblock %}
