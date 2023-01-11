@@ -72,7 +72,9 @@ def dashboard(request):
     mydata= Salesman.objects.all().values()
 
     print(mydata)
-    if(request.user.groups.filter(name='Salesman').exists() == True):
+    is_salesman = request.user.groups.filter(name='Salesman').exists()
+    is_customer = request.user.groups.filter(name='Customer').exists()
+    if(is_salesman == True):
         mydata = Salesman.objects.values_list('salesman_id')
     if(request.user.groups.filter(name='Customer').exists() == True):
         mydata = Customer.objects.values_list('customer_id')
@@ -85,6 +87,8 @@ def dashboard(request):
 
     context = {
             'sys_id': mydata,
+            'salesman': is_salesman,
+            'customer': is_customer,
             'role': request.user.groups.get(),
             'year':datetime.now().year,
         }

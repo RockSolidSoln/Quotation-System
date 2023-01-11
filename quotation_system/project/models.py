@@ -66,7 +66,7 @@ class PurchaseRequisition(models.Model):
     date = models.DateField()
 
     def __str__(self):
-        return str(self.product_id)
+        return str(self.pr_id)
 
 class Quotation(models.Model):
     quotation_id = models.CharField(primary_key=True, max_length=10)
