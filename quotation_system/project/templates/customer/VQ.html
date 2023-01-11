@@ -5,91 +5,7 @@
 <html>
 <head>
    {% load static %}
-    <style type="">
-        
-        #sidebar-button {
-            /* Button styling goes here */
-            height:100%;
-			width:25px;
-			position: fixed;
-			z-index:1;
-			top:0;
-			left:0;
-            background: linear-gradient(0deg, rgba(49, 112, 222, 0.33), rgba(49, 112, 222, 0.33)), linear-gradient(0deg, #BAD7E9, #BAD7E9), #BAD7E9;
-			overflow-x: :hidden;
-            border: none;
-			padding-top:50px;
-          }
-          #sidebar-button.clicked {
-            /* Button styling when clicked goes here */
-            left: 225px;
-          }
-    
-          #sidebar {
-            /* Sidebar styling goes here */
-            height:100%;
-            border: none;
-            width:225px;
-            position: fixed;
-            z-index:1;
-            top:3;
-            left:0;
-            background: rgba(49, 112, 222, 0.9);
-            overflow-x: :hidden;
-            padding-top:50px;
-            display: none;
-          }
-          #sidebar-button i{
-            color : #fff;
-          }
-          #sidebar a {
-            padding:6px 8px 6px 16px;
-            text-decoration: none;
-            font-size:15px;
-            color: #fff;
-            margin-top: 35px;
-            display:block;
-		}
- 
-        #sidebar a:hover{
-			font-weight: bold;
-            text-decoration: underline:
-		}
-        #main{
-            position: relative;
-            width: 1030px;
-            height: 449px;
-            left: 5%;
-            top: 70px;
-            background: #FFFFFF;
-            border-radius: 30px;
-            margin-bottom: 160px;
-        }
-        #header{
-            position: absolute;
-            width: 1010px;
-            height: 45px;
-            align-items: center;
-            text-align: center;
-            background: #E9F6FE;
-            border-radius: 30px;
-            left: 10px;
-        }
-        #header  h2{
-            position: absolute;
-            width: 746px;
-            height: 45px;
-            font-family: 'Inknut Antiqua';
-            font-style: normal;
-            font-weight: 700;
-            font-size: 29px;
-            line-height: 10px;
-            color: #2D92E2;
-            left: 7%;
-            top:-3px;
-        }
-        
-    </style>
+    <link rel="stylesheet" href="{% static 'app/content/VQ.css' %}">
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -100,7 +16,7 @@
  
  <div id="sidebar">
    <!-- Sidebar content goes here -->
-   <a href="{% url 'index' %}">
+   <a href="{% url 'menu' %}">
     <img src="{% static 'app/assets/Home.png' %}" alt="Home" width="25"
     height="25" style="margin-right:10px;"> 
     Home
