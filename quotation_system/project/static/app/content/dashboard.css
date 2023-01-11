@@ -28,8 +28,11 @@
     background: rgba(49, 112, 222, 0.9);
     overflow-x: hidden;
     padding-top: 50px;
-    display: none;
+    /* display: none; */
   }
+  #sidebar.active{
+    display:block;
+    }
   #sidebar-button i{
     color : #fff;
   }

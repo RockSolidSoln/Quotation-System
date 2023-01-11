@@ -8,29 +8,53 @@ from django.contrib.auth.models import User
 
 #sharing entity
 class Salesman(models.Model):
-    salesman_id = models.AutoField(primary_key=True)
+    salesman_id = models.CharField(primary_key=True, max_length=15)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    
+    def save(self, *args, **kwargs):
+        if not self.salesman_id:
+            # generate a custom id here
+            self.salesman_id = "salesman{:02d}".format(self.pk)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return str(self.salesman_id)
 
 class Customer(models.Model):
-    customer_id = models.AutoField(primary_key=True)
+    customer_id = models.CharField(primary_key=True, max_length=15)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.customer_id:
+            # generate a custom id here
+            self.customer_id = "customer{:02d}".format(self.pk)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return str(self.customer_id)
 
 class Manager(models.Model):
-    manager_id = models.AutoField(primary_key=True)
+    manager_id = models.CharField(primary_key=True, max_length=15)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.manager_id:
+            # generate a custom id here
+            self.manager_id = "manager{:02d}".format(self.pk)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return str(self.manager_id)
 
 class FinanceOfficer(models.Model):
-    finance_officer_id = models.AutoField(primary_key=True)
+    finance_officer_id = models.CharField(primary_key=True, max_length=15)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+
+    def save(self, *args, **kwargs):
+        if not self.finance_officer_id:
+            # generate a custom id here
+            self.finance_officer_id = "finance_officer{:02d}".format(self.pk)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return str(self.finance_officer_id)
