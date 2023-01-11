@@ -8,11 +8,12 @@ button.addEventListener('click', function() {
     sidebar.style.display = 'none';
     button.classList.remove('clicked');
     main.style.marginLeft = '0px';
+    // main.style.width = '80%';
     
   } else {
     sidebar.style.display = 'block';
     button.classList.add('clicked');
     main.style.marginLeft = '120px';
-    
+    // main.style.width = '100%';
   }
 });

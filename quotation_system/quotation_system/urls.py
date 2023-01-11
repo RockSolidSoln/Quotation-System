@@ -15,6 +15,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, re_path
 from project import views, forms
+from addItem import views as additem_views
 import django.contrib.auth.views
 from django.contrib.auth.views import LoginView, LogoutView
 from datetime import datetime
@@ -36,7 +37,7 @@ urlpatterns = [
     re_path(r'^vq$', views.vq, name='vq'),
     path('view-purchase-requisition/', views.view_purchase_requisition, name='view_purchase_requisition'),
     path('view_quotation/', views.view_quotation, name='view_quotation'),
-    path('add_quotation/', views.add_quotation, name='add_quotation'),
+    path('add_quotation/', additem_views.add_quotation, name='add_quotation'),
     path('view_one_quotation/', views.view_one_quotation, name='view_one_quotation'),
     path('view_one_PR/', views.view_one_PR, name='view_one_PR'),
 ]

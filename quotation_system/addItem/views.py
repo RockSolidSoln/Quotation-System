@@ -1,36 +1,58 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from project.models import Item
+from project.models import PurchaseRequisition, PurchaseOrder, Quotation, PRItems, POItems, QuotationItems, Salesman
+from .forms import QuotationForm, QuotationItemsForm
 
 # Create your views here.
 
 @login_required
-def additemform(request):
+def add_quotation(request):
+    salesman_id = Salesman.objects.get(user=request.user).salesman_id
+
     context = {
-            'title':'Add Item Form',
+            'salesman_id': salesman_id,
             'year': datetime.now().year,
         }
     context['user'] = request.user
 
-    return render(request,'addItem/additemform.html',context)
+    return render(request,'addItem/addQuotation.html',context)
 
-def additemconfirmation(request):
+def add_quotation_form(request):
     
-    newitem_id = request.POST['item_id']
-    newitem_name= request.POST['item_name']
-    newitem_description = request.POST['item_description']
+    return render(request,'addItem/addQuotation.html',context)
 
-    newitem = Item(item_id = newitem_id,item_name = newitem_name, item_description = newitem_description)
-    newitem.save()
+def show_quotation(request):
+    new_quotation_id = request.POST['quotation_id']
+    new_pr_id= request.POST['pr_id']
+    new_salesman_id = request.POST['salesman_id']
+    new_customer_id = request.POST['customer_id']
+    new_manager_id = request.POST['manager_id']
+    new_price = request.POST['total_price']
+    new_date = request.POST['date']
+    new_status = request.POST['status']
+
+    salesman = Salesman.objects.get(pk=salesman_id)
+    manager = Manager.objects.get(pk=manager_id)
+    customer = Customer.objects.get(pk=customer_id)
+    pr = PurchaseRequistion.objects.get(pk=pr_id)
+    
+    newEntry = Quotation(quotation_id = new_quotation_id, pr_id = new_pr_id, 
+                salesman_id= new_salesman_id, customer_id = new_customer_id, 
+                manager_id = new_manager, total_price = new_price,
+                date = new_date, status = new_status)
+    newEntry.save()
 
     context = {
-            'item_id': newitem_id,
-            'item_name' : newitem_name,
-            'item_description' : newitem_description,
+        'quotation_id': new_quotation_id,
+        'pr_id': new_pr_id,
+        'salesman_id': newitem_description,
+        'customer_id': vendor,
+        'manager_id': newitem_quantity,
+        'total_price': newitem_price,
+        'date' : new_date,
+        'status' : new_status
     }
-   
-    return render(request,'addItem/additemconfirmation.html',context)
-
+    return render(request,'additem/addQuotation.html',context)
 
    
