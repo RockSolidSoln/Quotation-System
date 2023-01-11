@@ -26,23 +26,27 @@
                     height="40"></a>
             </div>
             <div class="navbar-collapse collapse">
+                {% if user.is_authenticated %}
+                {% else %}
                 <ul class="nav navbar-nav">
                     <li><a style="color: white;" href="{% url 'home' %}">Home</a></li>
                     <li><a style="color: white;" href="{% url 'about' %}">About</a></li>
                 </ul>
+                {% endif %}
                 {% include 'registration/loginpartial.html' %}
             </div>
         </div>
-        {% if user.is_authenticated %}
-
-        <ul class="breadcrumb" style="padding-left: 80px; border-radius:0px;" >
-            
-            <li><a style="color: black;" href="#">
-                <i class="fa fa-home" style="font-size:24px"></i>
-            </a></li>
-            <li><a style="color: black;" href="#">Pictures</a></li>
-          </ul>
-        {% endif %}
+        <div >
+            {% if user.is_authenticated %}
+            <ul class="breadcrumb" style="padding-left: 80px; border-radius:0px;" >
+                <li>    
+                    <a style="color: black;" href="/dashboard">
+                        <i class="fa fa-home" style="font-size:24px"></i>
+                    </a></li>
+                <li><a style="color: black;" href="#">Pictures</a></li>
+            </ul>
+            {% endif %}
+        </div>
     </div>
 
     <div class="container body-content">

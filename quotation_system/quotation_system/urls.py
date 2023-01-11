@@ -37,6 +37,6 @@ urlpatterns = [
     path('view-purchase-requisition/', views.view_purchase_requisition, name='view_purchase_requisition'),
     path('view_quotation/', views.view_quotation, name='view_quotation'),
     path('add_quotation/', views.add_quotation, name='add_quotation'),
-    path('view_one_quotation/', views.view_one_quotation, name='add_quotation'),
-    path('view_one_PR/', views.view_one_PR, name='add_quotation'),
+    path('view_one_quotation/', views.view_one_quotation, name='view_one_quotation'),
+    path('view_one_PR/', views.view_one_PR, name='view_one_PR'),
 ]

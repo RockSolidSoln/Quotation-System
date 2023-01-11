@@ -69,30 +69,30 @@ def dashboard(request):
     role = request.user.groups.get()
     print(role)
 
-    mydata= Salesman.objects.all().values()
-
-    print(mydata)
     is_salesman = request.user.groups.filter(name='Salesman').exists()
     is_customer = request.user.groups.filter(name='Customer').exists()
+    is_finance_officer = request.user.groups.filter(name='Finance Officer').exists()
+    is_manager = request.user.groups.filter(name='Manager').exists()
+
     if(is_salesman == True):
         mydata = Salesman.objects.values_list('salesman_id')
-    if(request.user.groups.filter(name='Customer').exists() == True):
+    if(is_customer == True):
         mydata = Customer.objects.values_list('customer_id')
-    if(request.user.groups.filter(name='Manager').exists() == True):
+    if(is_finance_officer == True):
         mydata = Manager.objects.values_list('manager_id')
-    if(request.user.groups.filter(name='FinanceOfficer').exists() == True):
+    if(is_finance_officer == True):
         mydata = FinanceOfficer.objects.values_list('finance_officer_id')  
     
     print(mydata)
-
     context = {
             'sys_id': mydata,
             'salesman': is_salesman,
             'customer': is_customer,
-            'role': request.user.groups.get(),
-            'year':datetime.now().year,
+            'finance_officer': is_finance_officer,
+            'manager': is_manager,
+            'role': role,
         }
-    context['user'] = request.user
+    # context['user'] = request.user
     print(context)
 
     return render(request,'app/dashboard.html',context)    
