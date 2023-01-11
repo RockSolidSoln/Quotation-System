@@ -68,29 +68,30 @@ def about(request):
 def dashboard(request):
     role = request.user.groups.get()
     print(role)
-    check_employee = request.user.groups.filter(name='Salesman').exists()
+
+    mydata= Salesman.objects.all().values()
+
+    print(mydata)
+    if(request.user.groups.filter(name='Salesman').exists() == True):
+        mydata = Salesman.objects.values_list('salesman_id')
+    if(request.user.groups.filter(name='Customer').exists() == True):
+        mydata = Customer.objects.values_list('customer_id')
+    if(request.user.groups.filter(name='Manager').exists() == True):
+        mydata = Manager.objects.values_list('manager_id')
+    if(request.user.groups.filter(name='FinanceOfficer').exists() == True):
+        mydata = FinanceOfficer.objects.values_list('finance_officer_id')  
     
+    print(mydata)
+
     context = {
-            'role': check_employee,
+            'sys_id': mydata,
+            'role': request.user.groups.get(),
             'year':datetime.now().year,
         }
     context['user'] = request.user
+    print(context)
 
-    if(request.user.groups.filter(name='Salesman').exists()):
-        return render(request,'app/dashboard.html',context)
-        # return render(request,'salesman/index.html',context)
-    
-    elif(request.user.groups.filter(name='Customer').exists()):
-        return render(request,'customer/index.html',context)
-    
-    elif(request.user.groups.filter(name='Manager').exists()):
-        return render(request,'manager/index.html',context)
-    
-    elif(request.user.groups.filter(name='Finance Officer').exists()):
-        return render(request,'finance officer/index.html',context)
-        
-    else:
-        return render(request,'app/menu.html',context)    
+    return render(request,'app/dashboard.html',context)    
 
 """
 Customer pages

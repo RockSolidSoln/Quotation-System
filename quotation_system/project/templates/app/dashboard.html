@@ -45,24 +45,29 @@
     </div>
     <br/>
     <div id="form">
-        <div class="col">
-            
+        <div class="col">   
         <h2>
-            ID <input readonly type="text" label="Username" name="Username" style="margin-left: 40px;" placeholder="{{ user.id }}">
+            ID <input readonly type="text" label="Username" name="Username" 
+            style="margin-left: 40px;" placeholder="{{ user.id }}">
         </h2>
 
         <h2>
-            Name <input readonly type="text" label="Name" name="Name" placeholder="{{ user.username }}">
+            Name <input readonly type="text" label="Name" name="Name" 
+            placeholder="{{ user.username }}">
         </h2>
 
         <h2>
-            Email <input readonly type="email" label="Email" name="Email" placeholder="{{ user.email }}">
+            Email <input readonly type="email" label="Email" name="Email" 
+            placeholder="{{ user.email }}">
         </h2>
 
         </div>
         <div class="col">
-            <h2>Password <input readonly type="Password" label="Password" placeholder="{{ user.password }}" name="Password" style="margin-left:48px;" value="FakePSW"></h2>
-            <h2>Account Type<input readonly type="text" label="AccType" name="AccType" placeholder="Salesman"></h2>
+            <h2>Password <input readonly type="Password" label="Password" 
+                placeholder="{{ user.password }}" name="Password" style="margin-left:48px;" value="FakePSW"></h2>
+            
+            <h2>Account Type<input readonly type="text" label="AccType" 
+                name="AccType" placeholder="{{ role }}"></h2>
         </div>
     </div>
 </div>
