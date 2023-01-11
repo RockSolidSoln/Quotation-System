@@ -1,7 +1,49 @@
 {% extends "../app/layout.html" %}
 
 {% block content %}
-    <div>
-        
+<head>
+   {% load static %}
+    <link rel="stylesheet" href="{% static 'app/content/quotation.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+  <div id="main">
+    <br/>
+    <div id="header">
+        <h2>Add Quotation</h2>
+        <form>
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Quotation ID">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Purchase Requisition ID">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Salesman ID">
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Manager ID">
+                </div>
+              </div>
+            <div>
+                <div class="col">
+                    <input type="date" class="form-control" placeholder="Salesman ID">
+                </div>
+            </div>
+        </form>
+
     </div>
+    <br/>
+   
+</div>
+<script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+<script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+<script src="{% static 'app/scripts/respond.js' %}"></script>
+
 {% endblock %}

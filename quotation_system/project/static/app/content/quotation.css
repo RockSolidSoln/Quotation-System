@@ -1,0 +1,80 @@
+#sidebar a:hover{
+    font-weight: bold;
+    text-decoration: underline;
+}
+#main{
+    position: relative;
+    width: 1030px;
+    height: 449px;
+    left: 5%;
+    top: 70px;
+    background: #FFFFFF;
+    border-radius: 30px;
+    margin-bottom: 160px;
+}
+#header{
+    position: absolute;
+    width: 1010px;
+    height: 45px;
+    align-items: center;
+    text-align: center;
+    background: #E9F6FE;
+    border-radius: 30px;
+    left: 10px;
+}
+#header  h2{
+    position: absolute;
+    width: 746px;
+    height: 45px;
+    font-family: 'Inknut Antiqua';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 29px;
+    line-height: 10px;
+    color: #2D92E2;
+    left: 7%;
+    top:-3px;
+}
+
+form {
+  width: 60%;
+  margin: 0 auto;
+  /* margin-top: 50px; */
+  
+}
+
+.form-row {
+  padding-top: 20px;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+}
+
+.col {
+  flex: 1;
+}
