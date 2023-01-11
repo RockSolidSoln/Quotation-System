@@ -39,7 +39,7 @@ def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
     if request.user.is_authenticated:
-        return(redirect('/menu'))
+        return(redirect('/dashboard'))
     else:
         return render(
             request,
@@ -65,7 +65,7 @@ def about(request):
 
 @login_required
 
-def menu(request):
+def dashboard(request):
     role = request.user.groups.get()
     print(role)
     check_employee = request.user.groups.filter(name='Salesman').exists()
@@ -77,7 +77,8 @@ def menu(request):
     context['user'] = request.user
 
     if(request.user.groups.filter(name='Salesman').exists()):
-        return render(request,'salesman/index.html',context)
+        return render(request,'app/dashboard.html',context)
+        # return render(request,'salesman/index.html',context)
     
     elif(request.user.groups.filter(name='Customer').exists()):
         return render(request,'customer/index.html',context)

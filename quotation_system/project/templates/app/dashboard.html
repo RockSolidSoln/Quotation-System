@@ -6,15 +6,14 @@
     <link rel="stylesheet" href="{% static 'app/content/dashboard.css' %}">
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
- <!-- HTML for the button and sidebar -->
+    <!-- HTML for the button and sidebar -->
  <button id="sidebar-button">
     <i class="fa fa-chevron-left" aria-hidden="true"></i>
  </button>
  
  <div id="sidebar">
    <!-- Sidebar content goes here -->
-   <a href="{% url 'menu' %}">
+   <a href="{% url 'dashboard' %}">
     <img src="{% static 'app/assets/Home.png' %}" alt="Home" width="25"
     height="25" style="margin-right:10px;"> 
     Home
@@ -67,26 +66,6 @@
         </div>
     </div>
 </div>
+<script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
 
-<script>
-    // JavaScript for toggling the sidebar on and off
-    var button = document.getElementById('sidebar-button');
-    var sidebar = document.getElementById('sidebar');
-    var main = document.getElementById('main');
-
-    button.addEventListener('click', function() {
-      if (sidebar.style.display === 'block') {
-        sidebar.style.display = 'none';
-        button.classList.remove('clicked');
-        main.style.marginLeft = '0px';
-        
-      } else {
-        sidebar.style.display = 'block';
-        button.classList.add('clicked');
-        main.style.marginLeft = '120px';
-        
-      }
-    });
-  </script>
-
-  {% endblock %}
+{% endblock %}
