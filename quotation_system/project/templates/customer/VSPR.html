@@ -48,10 +48,34 @@
      height="40"> <h2>Add Purchase Requisition</h2></a>
      
     </div>
-    <br/>
-   
-</div>
 
+    <table id="Purchase">
+      <tr class="Subheading">
+         <th>Purchase Requisition ID</th>
+         <th>Item Name</th>
+         <th>Item Quantity</th>
+         <th>Date</th>
+      </tr>
+
+    </table>
+
+    <br/>
+    
+</div>
+<ul style="">
+   {%for purchase in Pr%}
+      <li>{{ purchase.pr_id }}</li>
+      
+
+         {%for purchase_item in Pr_item%}
+         <li>{{ purchase_item.pr_item_id }}</li>
+         <li>{{ purchase_item.pr_item_name }}</li>
+         <li>{{ purchase_item.pr_item_quantity }}</li>
+         {% endfor %}
+
+         <li>{{ purchase.date }}</li>
+   {% endfor %}
+    </ul>
 <script>
     // JavaScript for toggling the sidebar on and off
     var button = document.getElementById('sidebar-button');

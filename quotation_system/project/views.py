@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
-
+from .models import PurchaseRequisition, PRItems
 
 from .models import Customer, FinanceOfficer, Manager, Salesman
 from .forms import UserTypeForm
@@ -105,7 +105,9 @@ def apr(request):
     return render(request, 'customer/APR.html')
 
 def vspr(request):
-    return render(request, 'customer/VSPR.html')
+    Pr = PurchaseRequisition.objects.all()
+    Pr_item = PRItems.objects.all()
+    return render(request, 'customer/VSPR.html', {'Pr' : Pr, 'Pr_item' : Pr_item})
 
 def vq(request):
     return render(request, 'customer/VQ.html')

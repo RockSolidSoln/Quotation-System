@@ -83,3 +83,8 @@
 #header a img{
     margin-left: 28px;
 }
+
+#Purchase{
+  position: absolute;
+  bottom: 20;
+}
