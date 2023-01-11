@@ -12,6 +12,6 @@ class QuotationForm(forms.ModelForm):
 class QuotationItemsForm(forms.ModelForm):
     class Meta:
         model = QuotationItems
-        fields = ['q_item_id','quotation_id',
+        fields = ['quotation_id',
                   'q_item_name','q_item_quantity'
                   ,'q_item_price']

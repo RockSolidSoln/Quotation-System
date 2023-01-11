@@ -1,12 +1,14 @@
 {% extends "../app/layout.html" %}
 
 {% block content %}
+
 <head>
    {% load static %}
     <link rel="stylesheet" href="{% static 'app/content/quotation.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
     <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -15,42 +17,66 @@
     <div id="header">
         <h2>Add Quotation</h2>
         <div class="form-container">
-            <form>
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
                 <div class="form-row">
                     <div class="col">
-                        <p class="p-tag">Quotation ID</p>
-                        <input type="text" class="form-control" placeholder="Quotation ID">
+                        <label class="p-tag">Quotation ID</label>
+                        <input type="text" class="form-control" 
+                        required name="quotation_id"
+                        placeholder="QUXXXX">
                     </div>
+
                     <div class="col">
-                        <p class="p-tag">Purchase Requisiton ID</p>
-                        <input type="text" class="form-control" placeholder="Purchase Requisition ID">
+                        <label class="p-tag">Purchase Requisiton ID</label>
+                        <select class="form-control" id="inputGroupSelect01" name="pr_id">
+                            <option selected>Choose...</option>
+                            {% for pr in pr_id %}
+                                <option value="{{ pr }}">{{ pr_id }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col">
-                        <p class="p-tag">Salesman ID</p>
-                      <input type="text" class="form-control" value="{{ salesman_id }}"  disabled>
+                        <label class="p-tag">Salesman ID</label>
+                      <input type="text" class="form-control" 
+                            required name="salesman_id" 
+                            value="{{ salesman_id }}" readonly>
                     </div>
                     <div class="col">
-                        <p class="p-tag">Manager ID</p>
-                      <input type="text" class="form-control" placeholder="Manager ID">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" 
+                            for="inputGroupSelect01">Manager ID</label>
+                          </div>
+                          
+                          <select class="form-control" id="inputGroupSelect01" name="manager_id">
+                            <option selected>Choose...</option>
+                            {% for manager in manager_id%}
+                                <option value="1">{{ manager_id}}</option>
+                            {% endfor %}
+                          </select>
                     </div>
                   </div>
                 <div class="form-row">
                     <div class="col">
-                        <p class="p-tag">Date</p>
-                        <input type="date" class="form-control" >
+                        <label class="p-tag">Date</label>
+                        <input type="date" class="form-control" name="date">
                     </div>
                     <div class="col">
-                        <p class="p-tag">Date</p>
-                        <input type="button" class="form-control" placeholder="Salesman ID">
+                        <label class="p-tag">Add Item</label>
+                        <input type="number" class="form-control add-field-input" >
                     </div>
                 </div>
+                <div class="items-container"></div>
+
                 <div class="col-md-offset-3 col-md-10 " >
                     <input type="submit" value="Submit" 
                     style="border-radius: 50px; margin-top: 20px; 
                             height: 35px; margin-left: 30px;"
-                    class="btn-primary btn-md btn-block mx-auto" />                </div>
+                    class="btn-primary btn-md btn-block mx-auto" />   
+                </div>
             </form>
         </div>
         
@@ -59,6 +85,31 @@
     <br/>
    
 </div>
+<script>
+    $('.add-field-input').on('change', function() {
+    var numberOfFields = $(this).val();
+    $('.items-container').empty();
+    for(var i = 0; i < numberOfFields; i++) {
+        $('.items-container').append(`
+            <tr class="item-field">
+                <td>
+                    <label>Item Name</label>
+                    <input type="text" name="q_item_name" class="form-control item-name">
+                </td>
+                <td>
+                    <label>Item Quantity</label>
+                    <input type="number" name="q_item_quantity" class="form-control item-quantity">
+                </td>
+                <td>
+                    <label>Item Price</label>
+                    <input type="number" name="q_item_price"class="form-control item-price">
+                </td>
+            </tr>
+        `);
+    }
+});
+
+</script>
 <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
 <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
 <script src="{% static 'app/scripts/respond.js' %}"></script>

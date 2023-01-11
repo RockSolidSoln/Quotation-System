@@ -5,7 +5,7 @@ Definition of models.
 from django.db import models
 
 from django.contrib.auth.models import User
-
+       
 #sharing entity
 class Salesman(models.Model):
     salesman_id = models.CharField(primary_key=True, max_length=15)
@@ -76,8 +76,10 @@ class Quotation(models.Model):
     manager_id = models.ForeignKey(Manager,default=None, on_delete=models.CASCADE)
     total_price = models.FloatField(default=None, null=True)
     date = models.DateField()
-    status = models.CharField(max_length=20)
+    status = models.CharField(max_length=20, default="unclear")
 
+    def price_display(self):
+        return "${:,.2f}".format(self.total_price)
     def __str__(self):
         return str(self.quotation_id)
 
@@ -89,12 +91,13 @@ class PurchaseOrder(models.Model):
     finance_officer_id = models.ForeignKey(FinanceOfficer,default=None, on_delete=models.CASCADE)
     total_price = models.FloatField(default=None, null=True)
     date = models.DateField()
-    
+    def price_display(self):
+        return "${:,.2f}".format(self.total_price)
     def __str__(self):
         return str(self.po_id)
 
 class PRItems(models.Model):
-    pr_item_id = models.CharField(primary_key=True, max_length=10)
+    pr_item_id = models.AutoField(primary_key=True)
     pr_id = models.ForeignKey(PurchaseRequisition, default=None, on_delete=models.CASCADE)
     pr_item_name = models.CharField(max_length=40, null=True)
     pr_item_quantity = models.PositiveIntegerField(default=None, null=True)
@@ -103,7 +106,7 @@ class PRItems(models.Model):
         return str(self.pr_item_id)
 
 class QuotationItems(models.Model):
-    q_item_id = models.CharField(primary_key=True, max_length=10)
+    q_item_id = models.AutoField(primary_key=True)
     quotation_id = models.ForeignKey(Quotation, default=None, on_delete=models.CASCADE)
     q_item_name = models.CharField(max_length=40, null=True)
     q_item_quantity = models.PositiveIntegerField(default=None, null=True)
@@ -113,7 +116,7 @@ class QuotationItems(models.Model):
         return str(self.q_item_id)
 
 class POItems(models.Model):
-    po_item_id = models.CharField(primary_key=True, max_length=10)
+    po_item_id = models.AutoField(primary_key=True)
     po_id = models.ForeignKey(PurchaseOrder,default=None, on_delete=models.CASCADE)
     po_item_name = models.CharField(max_length=40, null=True)
     po_item_quantity = models.PositiveIntegerField(default=None, null=True)
