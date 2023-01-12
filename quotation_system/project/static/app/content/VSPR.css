@@ -66,6 +66,7 @@
     background: #E9F6FE;
     border-radius: 30px;
     left: 10px;
+    margin-bottom: 20px;
 }
 #header a h2{
     position: absolute;
@@ -80,11 +81,34 @@
     left: 7%;
     top:-3px;
 }
+
 #header a img{
     margin-left: 28px;
+  }
+#PurTable{
+  position: relative;
+  margin-top: 60px;
+  
+}
+.Subheading{
+  position: absolute;
+  left: 20px;
+  background-color: #E9F6FE;
+  height: 34px;
+  width: 800px;
+  border-radius: 30px;
+ 
+}
+.Subheading th{
+
+  position: relative;
+  margin-left: 150px;
+  width: 200px;
+  top: 7px;
+  padding-left: 40px;
 }
 
-#Purchase{
-  position: absolute;
-  bottom: 20;
+.sortby{
+  background-color: #FFFFFF;
+  width: 50px;
 }
