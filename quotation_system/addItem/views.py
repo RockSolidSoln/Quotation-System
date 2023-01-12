@@ -28,10 +28,10 @@ def add_quotation(request):
             quotation = form.save()
             item_count = quotation.number_of_items
             for i in range(item_count):
-                q_item_name = request.POST.get(f'q_item_name-{i}')
+                q_item_name = request.POST.get(f'q_item_name')
                 print(q_item_name)
-                q_item_quantity = request.POST.get(f'q_item_quantity-{i}')
-                q_item_price = request.POST.get(f'q_item_price-{i}')
+                q_item_quantity = request.POST.get(f'q_item_quantity')
+                q_item_price = request.POST.get(f'q_item_price')
                 QuotationItems.objects.create(q_item_name=q_item_name, 
                                 q_item_quantity=q_item_quantity, 
                                 q_item_price=q_item_price, 
