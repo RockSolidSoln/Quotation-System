@@ -40,4 +40,5 @@ urlpatterns = [
     path('add_quotation/', additem_views.add_quotation, name='add_quotation'),
     path('view_one_quotation/', views.view_one_quotation, name='view_one_quotation'),
     path('view_one_PR/', views.view_one_PR, name='view_one_PR'),
+    path('get_customer_id/', additem_views.get_customer_id, name='get_customer_id'),
 ]

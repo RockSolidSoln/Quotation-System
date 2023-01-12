@@ -3,16 +3,16 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from project.models import PurchaseRequisition, PurchaseOrder, Quotation, PRItems, POItems, QuotationItems, Salesman, Manager, Customer, FinanceOfficer
 from .forms import QuotationForm, QuotationItemsForm
-
+from django.http import JsonResponse
+from django.forms.models import model_to_dict
 # Create your views here.
 
 @login_required
 def add_quotation(request):
     salesman_id = Salesman.objects.get(user=request.user).salesman_id
-    manager_id = Manager.objects.get().manager_id
-    pr_id = PurchaseRequisition.objects.get().pr_id
+    manager_id = list(Manager.objects.values_list('manager_id', flat=True))
+    pr_id = list(PurchaseRequisition.objects.values_list('pr_id', flat=True))
 
-    print(pr_id)
     context = {
             'manager_id': manager_id,
             'salesman_id': salesman_id,
@@ -26,18 +26,36 @@ def add_quotation(request):
 
         if form.is_valid():
             quotation = form.save()
-            item_count = int(request.POST.get('add-field-input'))
+            item_count = quotation.number_of_items
             for i in range(item_count):
-                item_name = request.POST.get(f'item-name-{i}')
-                item_quantity = request.POST.get(f'item-quantity-{i}')
-                item_price = request.POST.get(f'item-price-{i}')
-                QuotationItems.objects.create(q_item_name=item_name, q_item_quantity=item_quantity, q_item_price=item_price, quotation_id=quotation)
+                q_item_name = request.POST.get(f'q_item_name-{i}')
+                print(q_item_name)
+                q_item_quantity = request.POST.get(f'q_item_quantity-{i}')
+                q_item_price = request.POST.get(f'q_item_price-{i}')
+                QuotationItems.objects.create(q_item_name=q_item_name, 
+                                q_item_quantity=q_item_quantity, 
+                                q_item_price=q_item_price, 
+                                quotation_id=quotation)
                 print("Successfully created Quotation")
         else:
             print(form.errors)
             print("Error creating Quotation")
+            return render(request, 'addItem/addQuotation.html', context)
 
     return render(request,'addItem/addQuotation.html',context)
+
+def get_customer_id(request):
+    pr_id = request.GET.get('pr_id')
+    try:
+        pr = PurchaseRequisition.objects.get(pr_id=pr_id)
+        customer = pr.customer_id
+        print(customer)
+        customer_dict = model_to_dict(customer)
+        return JsonResponse(customer_dict, safe=False)
+    except PurchaseRequisition.DoesNotExist:
+        print("Error in getting Customer Id")
+        return JsonResponse({'error': 'Invalid Purchase Requisition ID'}, status=400)
+
 
 def show_quotation(request):
     new_quotation_id = request.POST['quotation_id']

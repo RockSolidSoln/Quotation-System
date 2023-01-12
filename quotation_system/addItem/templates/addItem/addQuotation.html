@@ -30,10 +30,11 @@
 
                     <div class="col">
                         <label class="p-tag">Purchase Requisiton ID</label>
-                        <select class="form-control" id="inputGroupSelect01" name="pr_id">
+                        <select class="form-control" id="inputGroupSelect01" 
+                        name="pr_id" onchange="updateCustomerId()">
                             <option selected>Choose...</option>
                             {% for pr in pr_id %}
-                                <option value="{{ pr }}">{{ pr_id }}</option>
+                                <option value="{{ pr }}">{{ pr }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -53,8 +54,8 @@
                           
                           <select class="form-control" id="inputGroupSelect01" name="manager_id">
                             <option selected>Choose...</option>
-                            {% for manager in manager_id%}
-                                <option value="1">{{ manager_id}}</option>
+                            {% for manager in manager_id %}
+                            <option value="{{ manager }}">{{ manager }}</option>
                             {% endfor %}
                           </select>
                     </div>
@@ -66,11 +67,26 @@
                     </div>
                     <div class="col">
                         <label class="p-tag">Add Item</label>
-                        <input type="number" class="form-control add-field-input" >
+                        <input type="number" class="form-control add-field-input" name="number_of_items"
+                        id="numberOfFields" value="" >
                     </div>
                 </div>
                 <div class="items-container"></div>
+                <div class="form-row">
+                    <div class="col">
+                        <label class="p-tag">Status</label>
+                        <input type="text" name="status" class="form-control" readonly value="Uncleared">
+                    </div>
+                    <div class="col">
+                        <label class="p-tag">Total Price</label>
+                        <input type="number" name="total_price" class="form-control total_price" readonly>
+                    </div>
+                    <div class="col">
+                        <label class="p-tag">Customer ID</label>
+                        <input type="text" class="form-control" required id="customer_id" name="customer_id" value="" readonly>
+                    </div>
 
+                </div>
                 <div class="col-md-offset-3 col-md-10 " >
                     <input type="submit" value="Submit" 
                     style="border-radius: 50px; margin-top: 20px; 
@@ -102,12 +118,39 @@
                 </td>
                 <td>
                     <label>Item Price</label>
-                    <input type="number" name="q_item_price"class="form-control item-price">
+                    <input type="number" name="q_item_price" class="form-control item-price">
                 </td>
             </tr>
         `);
     }
 });
+
+$(document).on('input', '.item-price', function() {
+    var totalPrice = 0;
+    $('.item-field').each(function() {
+        var itemPrice = parseFloat($(this).find('.item-price').val());
+        var itemQuantity = parseFloat($(this).find('.item-quantity').val());
+        totalPrice += itemPrice * itemQuantity;
+    });
+    $('.total_price').val(totalPrice);
+});
+document.getElementById("inputGroupSelect01").addEventListener("change", updateCustomerId);
+
+function updateCustomerId() {
+        var pr_id = document.getElementById("inputGroupSelect01").value;
+
+        $.ajax({
+          type: 'GET',
+          url: '/get_customer_id/',
+          data: {
+            'pr_id': pr_id
+          },
+          success: function (data) {
+            document.getElementById("customer_id").value = data.customer_id;
+        }
+        });
+    }
+
 
 </script>
 <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>

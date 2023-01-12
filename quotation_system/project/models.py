@@ -64,6 +64,7 @@ class PurchaseRequisition(models.Model):
     pr_id = models.CharField(primary_key=True, max_length=10)
     customer_id = models.ForeignKey(Customer,default=None, on_delete=models.CASCADE)
     date = models.DateField()
+    # number_of_items =  models.PositiveIntegerField(default=None, null=True)
 
     def __str__(self):
         return str(self.pr_id)
@@ -77,6 +78,7 @@ class Quotation(models.Model):
     total_price = models.FloatField(default=None, null=True)
     date = models.DateField()
     status = models.CharField(max_length=20, default="unclear")
+    number_of_items =  models.PositiveIntegerField(default=None, null=True)
 
     def price_display(self):
         return "${:,.2f}".format(self.total_price)
@@ -91,6 +93,8 @@ class PurchaseOrder(models.Model):
     finance_officer_id = models.ForeignKey(FinanceOfficer,default=None, on_delete=models.CASCADE)
     total_price = models.FloatField(default=None, null=True)
     date = models.DateField()
+    number_of_items =  models.PositiveIntegerField(default=None, null=True)
+
     def price_display(self):
         return "${:,.2f}".format(self.total_price)
     def __str__(self):
