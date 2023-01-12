@@ -49,13 +49,26 @@
     </div>
 
     <table id="PurTable">
+
       <tr class="Subheading">
          <th style="width: 330px;">Purchase Requisition ID</th>
          <th>Item Name</th>
          <th>Item Quantity</th>
          <th>Date</th>
-         <th class="sortby">Sort By</th>
+         <!--<th class="sortby">Sort By</th> -->
       </tr>
+
+   {%for purchase in Pr%}
+      {%for purchase_item in Pr_item%}
+      <tr class="content">
+
+         <th>{{ purchase.pr_id }}</th>
+         <th>{{ purchase_item.pr_item_name }}</th>
+         <th>{{ purchase_item.pr_item_quantity }}</th>
+         <th>{{ purchase.date}}</th> 
+      </tr>
+      {% endfor %}
+  {% endfor %}
 
     </table>
 
