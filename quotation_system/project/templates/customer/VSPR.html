@@ -46,31 +46,37 @@
     <div id="header">
       <a href="{% url 'apr' %}"><img src="{% static 'app/assets/AddButton.png' %}" alt="AddButton" width="40"
      height="40"> <h2>Add Purchase Requisition</h2></a>
+    </div> 
+
+    <div id="maincontent">
+
+         <div id="header2" >
+            <p>
+               <span>Purchase Requisition ID</span>
+               <span>Item Name</span>
+               <span>Item Quantity</span>
+               <span>Date</span>
+            </p>
+         </div>
+
+         {%for purchase in Pr%}
+         <div id="content">
+            <p>
+               <span>{{ purchase.pr_id }}</span>
+               <span style="position:relative; left: 460px;">{{ purchase.date }}</span>
+               {% endfor %}
+               {%for purchase_item in Pr_item%}
+               <span >{{ purchase_item.pr_item_name }}</span>
+               <span>{{ purchase_item.pr_item_quantity }}</span>
+               <br>
+               {% endfor %}
+            </p>
+           
+         </div>
+
+
     </div>
 
-    <table id="PurTable">
-
-      <tr class="Subheading">
-         <th style="width: 330px;">Purchase Requisition ID</th>
-         <th>Item Name</th>
-         <th>Item Quantity</th>
-         <th>Date</th>
-         <!--<th class="sortby">Sort By</th> -->
-      </tr>
-
-   {%for purchase in Pr%}
-      {%for purchase_item in Pr_item%}
-      <tr class="content">
-         <th>{{ purchase.pr_id }}</th>
-         <th>{{ purchase_item.pr_item_name }}</th>
-         <th>{{ purchase_item.pr_item_quantity }}</th>
-         <th>{{ purchase.date}}</th>
-      {% endfor %}
-   {% endfor %} 
-      </tr>
-
-    </table>
-    
 </div>
 <ul style="">
    {%for purchase in Pr%}
