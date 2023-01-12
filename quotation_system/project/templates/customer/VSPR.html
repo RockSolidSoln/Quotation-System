@@ -61,18 +61,15 @@
    {%for purchase in Pr%}
       {%for purchase_item in Pr_item%}
       <tr class="content">
-
          <th>{{ purchase.pr_id }}</th>
          <th>{{ purchase_item.pr_item_name }}</th>
          <th>{{ purchase_item.pr_item_quantity }}</th>
-         <th>{{ purchase.date}}</th> 
-      </tr>
+         <th>{{ purchase.date}}</th>
       {% endfor %}
-  {% endfor %}
+   {% endfor %} 
+      </tr>
 
     </table>
-
-   
     
 </div>
 <ul style="">

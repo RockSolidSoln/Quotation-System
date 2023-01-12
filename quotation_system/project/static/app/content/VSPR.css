@@ -130,3 +130,19 @@
   color: #BDBDBD;
   padding-top: 50px; 
 }
+.content2{
+  position: absolute;
+  left: 20px;
+  height: 34px;
+  width: 800px;
+  border-radius: 30px;
+} 
+
+.content2 th{
+  position: relative;
+  margin-left: 150px;
+  width: 200px;
+  padding-left: 40px;
+  color: #2D92E2;
+  margin-top: 50px; 
+}
