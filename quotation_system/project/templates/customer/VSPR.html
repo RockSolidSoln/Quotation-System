@@ -63,35 +63,21 @@
          <div id="content">
             <p>
                <span>{{ purchase.pr_id }}</span>
-               <span style="position:relative; left: 460px;">{{ purchase.date }}</span>
-               {% endfor %}
+               <span style="position:relative; left: 400px;">{{ purchase.date }}</span>
                {%for purchase_item in Pr_item%}
                <span >{{ purchase_item.pr_item_name }}</span>
                <span>{{ purchase_item.pr_item_quantity }}</span>
                <br>
                {% endfor %}
             </p>
-           
+         {% endfor %}
          </div>
 
 
     </div>
 
 </div>
-<ul style="">
-   {%for purchase in Pr%}
-      <li>{{ purchase.pr_id }}</li>
-      
 
-         {%for purchase_item in Pr_item%}
-         <li>{{ purchase_item.pr_item_id }}</li>
-         <li>{{ purchase_item.pr_item_name }}</li>
-         <li>{{ purchase_item.pr_item_quantity }}</li>
-         {% endfor %}
-
-         <li>{{ purchase.date }}</li>
-   {% endfor %}
-    </ul>
 <script>
     // JavaScript for toggling the sidebar on and off
     var button = document.getElementById('sidebar-button');
