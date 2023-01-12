@@ -39,7 +39,7 @@
 }
 
 form {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   align-items: center;
   /* margin-top: 50px; */
@@ -51,10 +51,6 @@ form {
   margin: 0 auto; 
   max-width: 800px;     
   text-align: center;
-}
-
-.form-row {
-  margin-bottom: 1rem;
 }
 
 .form-control {
@@ -69,17 +65,16 @@ form {
   left: 7%;
   top:-3px;
   padding: 0.375rem 0.75rem;
-  line-height: 1.5;
   background-color: rgb(184, 220, 255);
   background-clip: padding-box;
   border: 1px solid #448cd4;
-  border-radius: 0.25rem;
+  border-radius: 50%;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .form-control:focus {
   color: #495057;
-  background-color: #fff;
+  background-color: #E9F6FE;
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
@@ -88,28 +83,48 @@ form {
 .form-row {
   display: flex;
   align-items: center;
+  margin-bottom: 2rem;
+  justify-content: space-between;
 }
-
+select{
+    width: 300px; !important;
+}
 .col {
   position: relative;
-  flex: 1;
 }
 
-input {
-  padding-left: 70px;
+label{
+  color: #448cd4;
+  left: 10px;
+    float:left;
 }
 
 input[type=date]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     display: none;
 }
-table {
+.items-container {
+    padding: 20px;
   margin: 0 auto;
   flex: 1;
-  border: 1px solid #000; /* adjust as needed */
   width: 100%; 
   border-radius: 50%;
 }
+.items-container .item-field {
+    border: 2px solid #87CEFA;
+}
+.items-container .item-field td {
+    padding: 10px; /* Add some padding to cells */
+}
+
+.items-container .item-field label {
+    margin-bottom: 10px; /* Add some margin to labels */
+}
+.items-container .item-field input[type="text"] {
+    border: none;
+    border-bottom: 2px solid #87CEFA; /* Light blue color */
+}
+
 td {
   padding: 10px; /* adjust as needed */
 }
@@ -117,8 +132,15 @@ tr {
   background-color: rgb(226, 241, 255); /* adjust as needed */
 }
 tr:hover {
-  background-color: rgb(184, 220, 255); /* adjust as needed */
+  background-color: rgba(211, 255, 239, 0.67); /* adjust as needed */
 }
 .item-label, .item-input {
   text-align: center;
+}
+#button{
+    border-radius: 50px;
+    margin-top: 20px;
+    height: 35px;
+    margin-left: 30px;
+    margin-bottom: 30px;
 }

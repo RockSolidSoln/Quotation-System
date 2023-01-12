@@ -1,11 +1,10 @@
 {% extends "../app/layout.html" %}
 
 {% block content %}
-<!DOCTYPE html>
-<html>
 <head>
    {% load static %}
     <link rel="stylesheet" href="{% static 'app/content/VSPR.css' %}">
+       <link rel="stylesheet" href="{% static 'app/content/dashboard.css' %}">
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
@@ -44,60 +43,47 @@
   <div id="main">
     <br/>
     <div id="header">
-      <a href="{% url 'apr' %}"><img src="{% static 'app/assets/AddButton.png' %}" alt="AddButton" width="40"
-     height="40"> <h2>Add Purchase Requisition</h2></a>
+      <a href="{% url 'apr' %}">
+          <h2>Add Purchase Requisition</h2>
+      </a>
     </div> 
 
-    <div id="maincontent">
-
-         <div id="header2" >
-            <p>
-               <span>Purchase Requisition ID</span>
-               <span>Item Name</span>
-               <span>Item Quantity</span>
-               <span>Date</span>
-            </p>
-         </div>
-
-         {%for purchase in Pr%}
-         <div id="content">
-            <p>
-               <span>{{ purchase.pr_id }}</span>
-               <span style="position:relative; left: 400px;">{{ purchase.date }}</span>
-               {%for purchase_item in Pr_item%}
-               <span >{{ purchase_item.pr_item_name }}</span>
-               <span>{{ purchase_item.pr_item_quantity }}</span>
-               <br>
+    <div id="main_content">
+        <div id="header2" >
+              <table>
+                <tr>
+                  <th>Purchase Requisition ID</th>
+                  <th>Item Name</th>
+                  <th>Item Quantity</th>
+                  <th>Date</th>
+                </tr>
+        {% for purchase in Pr %}
+                <tr>
+                  <td>{{ purchase.pr_id }}</td>
+                  <td>
+                      <span class="inside-table">
+                      {% for purchase_item in Pr_item %}
+                          <span>{{ purchase_item.pr_item_name }}</span>
+                       {% endfor %}
+                      </span>
+                  </td>
+                <td>
+                      <span class="inside-table">
+                      {% for purchase_item in Pr_item %}
+                          <span>{{ purchase_item.pr_item_quantity }}</span>
+                       {% endfor %}
+                      </span>
+                  </td>
+                <td>{{ purchase.date }}</td>
+                </tr>
                {% endfor %}
-            </p>
-         {% endfor %}
-         </div>
+              </table>
+
+        </div>
 
 
     </div>
 
 </div>
-
-<script>
-    // JavaScript for toggling the sidebar on and off
-    var button = document.getElementById('sidebar-button');
-    var sidebar = document.getElementById('sidebar');
-    var main = document.getElementById('main');
-
-    button.addEventListener('click', function() {
-      if (sidebar.style.display === 'block') {
-        sidebar.style.display = 'none';
-        button.classList.remove('clicked');
-        main.style.marginLeft = '0px';
-        
-      } else {
-        sidebar.style.display = 'block';
-        button.classList.add('clicked');
-        main.style.marginLeft = '120px';
-        
-      }
-    });
-  </script>
-
+    <script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
   {% endblock %}
-</html>

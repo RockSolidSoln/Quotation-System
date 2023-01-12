@@ -10,11 +10,9 @@ from django.forms.models import model_to_dict
 @login_required
 def add_quotation(request):
     salesman_id = Salesman.objects.get(user=request.user).salesman_id
-    manager_id = list(Manager.objects.values_list('manager_id', flat=True))
     pr_id = list(PurchaseRequisition.objects.values_list('pr_id', flat=True))
 
     context = {
-            'manager_id': manager_id,
             'salesman_id': salesman_id,
             'pr_id': pr_id,
             'year': datetime.now().year,

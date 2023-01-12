@@ -24,7 +24,6 @@
     width:225px;
     position: fixed;
     z-index:1;
-    top:3;
     left:0;
     background: rgba(49, 112, 222, 0.9);
     overflow-x: hidden;
@@ -47,65 +46,28 @@
     font-weight: bold;
     text-decoration: underline;
 }
-#main{
-    position: relative;
-    width: 1030px;
-    height: 449px;
-    left: 5%;
-    top: 70px;
-    background: #FFFFFF;
-    border-radius: 30px;
-    margin-bottom: 160px;
-}
-#header{
-    position: absolute;
-    width: 1010px;
-    height: 45px;
-    align-items: left;
-    text-align: left;
-    background: #E9F6FE;
-    border-radius: 30px;
-    left: 10px;
-    margin-bottom: 20px;
-}
-#header a h2{
-    position: absolute;
-    width: 746px;
-    height: 45px;
-    font-family: 'Inknut Antiqua';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 29px;
-    line-height: 10px;
-    color: #2D92E2;
-    left: 7%;
-    top:-3px;
-}
 
 #header a img{
     margin-left: 28px;
   }
 
-  #maincontent{
+  #main_content{
     position: relative;
   }
-
   #header2{
     position: absolute;
     justify-content: space-between;
     margin-top: 60px;
-    margin-left: 10px;
     height: 34px;
     background-color: #E9F6FE;
     border-radius: 30px;
-    width: 750px;
+    width: 100%;
   }
-  #header2 p{
+  #header2 table{
     margin-top: 6px;
+    margin-bottom: 6px;
   }
-  #header2 p span{
-    margin-right: 20px;
-    padding-left: 60px;
+  #header2 table tr{
     font-family: 'Inknut Antiqua';
     font-style: normal;
     font-weight: 700;
@@ -113,22 +75,32 @@
     line-height: 15px;
     color: #2D92E2;
   }
-  #content{
-    position: absolute;
-    margin-top: 100px;
-    margin-left: 10px;
-  }
-  #content p{
-    margin-top: 6px;
-  }
+table {
+  width: 100%; /* set the width of the table to 100% of the parent container */
+  border-collapse: collapse; /* remove the space between cells */
+  margin-bottom: 20px; /* add margin to the bottom of the table */
+}
+tr{
+  height: 35px;
+  border-bottom: 1px solid #3166c1 ;
+}
+th{
+  padding: 8px; /* add padding to the cells */
+  text-align: center; /* center align the text in the cells */
+}
 
-  #content p span{
-    margin-right: 10px;
-    padding-left: 50px;
-    font-family: 'Inknut Antiqua';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 15px;
-    color: #BDBDBD;
-  }
+td {
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.inside-table{
+   display: flex;
+  flex-direction: column;
+}
+
+.inside-table span {
+  padding: 8px;
+  flex-direction: row;
+}

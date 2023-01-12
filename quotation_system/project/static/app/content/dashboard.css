@@ -21,13 +21,12 @@
     border: none;
     width:225px;
     position: fixed;
-    z-index:1;
-    top:3;
     left:0;
-    background: rgba(49, 112, 222, 0.9);
+    background: rgba(49, 112, 222);
     overflow-x: hidden;
     padding-top: 50px;
     display: none;
+      z-index: 2;
   }
   #sidebar.active{
     display:block;
@@ -45,13 +44,14 @@
 }
 
 #sidebar a:hover{
-    font-weight: bold;
     text-decoration: underline;
 }
 #main{
     position: relative;
     width: 1030px;
-    height: 449px;
+    height: 500px;
+    overflow: auto;
+    overflow-x: hidden;
     left: 5%;
     top: 70px;
     background: #FFFFFF;
@@ -78,7 +78,6 @@
     font-size: 29px;
     line-height: 10px;
     color: #2D92E2;
-    left: 15%;
 }
 #form{
     position: absolute;

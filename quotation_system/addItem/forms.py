@@ -3,6 +3,8 @@ from project.models import Quotation, QuotationItems
 
 class QuotationForm(forms.ModelForm):
     total_price = forms.FloatField(label='Total Price')
+    manager_id = forms.CharField(required=False)
+
     class Meta:
         model = Quotation
         fields = ['quotation_id', 

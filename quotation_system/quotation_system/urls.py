@@ -19,6 +19,7 @@ from addItem import views as additem_views
 import django.contrib.auth.views
 from django.contrib.auth.views import LoginView, LogoutView
 from datetime import datetime
+
 admin.autodiscover()
 
 urlpatterns = [
@@ -26,11 +27,11 @@ urlpatterns = [
     re_path(r'^$', views.home, name='home'),
     re_path(r'^about$', views.about, name='about'),
     re_path(r'^login/$',
-        LoginView.as_view(template_name = 'registration/login.html'),
-        name='login'),
+            LoginView.as_view(template_name='registration/login.html'),
+            name='login'),
     re_path(r'^logout$',
-        LogoutView.as_view(template_name = 'app/index.html'),
-        name='logout'),
+            LogoutView.as_view(template_name='app/index.html'),
+            name='logout'),
     re_path(r'^dashboard$', views.dashboard, name='dashboard'),
     re_path(r'^apr$', views.apr, name='apr'),
     re_path(r'^vspr$', views.vspr, name='vspr'),
