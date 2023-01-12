@@ -1,0 +1,160 @@
+{% extends "../app/layout.html" %}
+
+{% block content %}
+
+<head>
+   {% load static %}
+    <link rel="stylesheet" href="{% static 'app/content/quotation.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+  <div id="main">
+    <br/>
+    <div id="header">
+        <h2>Add Quotation</h2>
+        <div class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <div class="form-row">
+                    <div class="col">
+                        <label class="p-tag">Quotation ID</label>
+                        <input type="text" class="form-control" 
+                        required name="quotation_id"
+                        placeholder="QUXXXX">
+                    </div>
+
+                    <div class="col">
+                        <label class="p-tag">Purchase Requisiton ID</label>
+                        <select class="form-control" id="inputGroupSelect01" 
+                        name="pr_id" onchange="updateCustomerId()">
+                            <option selected>Choose...</option>
+                            {% for pr in pr_id %}
+                                <option value="{{ pr }}">{{ pr }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label class="p-tag">Salesman ID</label>
+                      <input type="text" class="form-control" 
+                            required name="salesman_id" 
+                            value="{{ salesman_id }}" readonly>
+                    </div>
+                    <div class="col">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" 
+                            for="inputGroupSelect01">Manager ID</label>
+                          </div>
+                          
+                          <select class="form-control" id="inputGroupSelect01" name="manager_id">
+                            <option selected>Choose...</option>
+                            {% for manager in manager_id %}
+                            <option value="{{ manager }}">{{ manager }}</option>
+                            {% endfor %}
+                          </select>
+                    </div>
+                  </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label class="p-tag">Date</label>
+                        <input type="date" class="form-control" name="date">
+                    </div>
+                    <div class="col">
+                        <label class="p-tag">Add Item</label>
+                        <input type="number" class="form-control add-field-input" name="number_of_items"
+                        id="numberOfFields" value="" >
+                    </div>
+                </div>
+                <div class="items-container"></div>
+                <div class="form-row">
+                    <div class="col">
+                        <label class="p-tag">Status</label>
+                        <input type="text" name="status" class="form-control" readonly value="Uncleared">
+                    </div>
+                    <div class="col">
+                        <label class="p-tag">Total Price</label>
+                        <input type="number" name="total_price" class="form-control total_price" readonly>
+                    </div>
+                    <div class="col">
+                        <label class="p-tag">Customer ID</label>
+                        <input type="text" class="form-control" required id="customer_id" name="customer_id" value="" readonly>
+                    </div>
+
+                </div>
+                <div class="col-md-offset-3 col-md-10 " >
+                    <input type="submit" value="Submit" 
+                    style="border-radius: 50px; margin-top: 20px; 
+                            height: 35px; margin-left: 30px;"
+                    class="btn-primary btn-md btn-block mx-auto" />   
+                </div>
+            </form>
+        </div>
+        
+
+    </div>
+    <br/>
+   
+</div>
+<script>
+    $('.add-field-input').on('change', function() {
+    var numberOfFields = $(this).val();
+    $('.items-container').empty();
+    for(var i = 0; i < numberOfFields; i++) {
+        $('.items-container').append(`
+            <tr class="item-field">
+                <td>
+                    <label>Item Name</label>
+                    <input type="text" name="q_item_name" class="form-control item-name">
+                </td>
+                <td>
+                    <label>Item Quantity</label>
+                    <input type="number" name="q_item_quantity" class="form-control item-quantity">
+                </td>
+                <td>
+                    <label>Item Price</label>
+                    <input type="number" name="q_item_price" class="form-control item-price">
+                </td>
+            </tr>
+        `);
+    }
+});
+
+$(document).on('input', '.item-price', function() {
+    var totalPrice = 0;
+    $('.item-field').each(function() {
+        var itemPrice = parseFloat($(this).find('.item-price').val());
+        var itemQuantity = parseFloat($(this).find('.item-quantity').val());
+        totalPrice += itemPrice * itemQuantity;
+    });
+    $('.total_price').val(totalPrice);
+});
+document.getElementById("inputGroupSelect01").addEventListener("change", updateCustomerId);
+
+function updateCustomerId() {
+        var pr_id = document.getElementById("inputGroupSelect01").value;
+
+        $.ajax({
+          type: 'GET',
+          url: '/get_customer_id/',
+          data: {
+            'pr_id': pr_id
+          },
+          success: function (data) {
+            document.getElementById("customer_id").value = data.customer_id;
+        }
+        });
+    }
+
+
+</script>
+<script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+<script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+<script src="{% static 'app/scripts/respond.js' %}"></script>
+
+{% endblock %}

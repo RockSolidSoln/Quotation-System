@@ -15,7 +15,6 @@
     /* Button styling when clicked goes here */
     left: 225px;
   }
-
   #sidebar {
     /* Sidebar styling goes here */
     height:100%;
@@ -28,7 +27,7 @@
     background: rgba(49, 112, 222, 0.9);
     overflow-x: hidden;
     padding-top: 50px;
-    /* display: none; */
+    display: none;
   }
   #sidebar.active{
     display:block;

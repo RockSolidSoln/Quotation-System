@@ -64,7 +64,6 @@ def about(request):
     )
 
 @login_required
-
 def dashboard(request):
     role = request.user.groups.get()
     print(role)
@@ -75,13 +74,13 @@ def dashboard(request):
     is_manager = request.user.groups.filter(name='Manager').exists()
 
     if(is_salesman == True):
-        mydata = Salesman.objects.values_list('salesman_id')
+        mydata = Salesman.objects.get(user=request.user).salesman_id
     if(is_customer == True):
-        mydata = Customer.objects.values_list('customer_id')
+        mydata = Customer.objects.get(user=request.user).customer_id
+    if(is_manager == True):
+        mydata = Manager.objects.get(user=request.user).manager_id
     if(is_finance_officer == True):
-        mydata = Manager.objects.values_list('manager_id')
-    if(is_finance_officer == True):
-        mydata = FinanceOfficer.objects.values_list('finance_officer_id')  
+        mydata = FinanceOfficer.objects.get(user=request.user).finance_officer_id  
     
     print(mydata)
     context = {
