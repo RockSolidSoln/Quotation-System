@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from datetime import datetime
 from project.models import PurchaseRequisition, PurchaseOrder, Quotation, PRItems, POItems, QuotationItems, Salesman, Manager, Customer, FinanceOfficer
 from .forms import QuotationForm, QuotationItemsForm
@@ -24,20 +25,25 @@ def add_quotation(request):
 
         if form.is_valid():
             quotation = form.save()
+            messages.success(request, 'Data was successfully entered in the database.')
             item_count = quotation.number_of_items
+            q_item_name_list = request.POST.getlist('q_item_name')
+            q_item_quantity_list = request.POST.getlist('q_item_quantity')
+            q_item_price_list = request.POST.getlist('q_item_price')
             for i in range(item_count):
-                q_item_name = request.POST.get(f'q_item_name')
+                q_item_name = q_item_name_list[i]
                 print(q_item_name)
-                q_item_quantity = request.POST.get(f'q_item_quantity')
-                q_item_price = request.POST.get(f'q_item_price')
+                q_item_quantity = q_item_quantity_list[i]
+                q_item_price = q_item_price_list[i]
                 QuotationItems.objects.create(q_item_name=q_item_name, 
                                 q_item_quantity=q_item_quantity, 
                                 q_item_price=q_item_price, 
                                 quotation_id=quotation)
                 print("Successfully created Quotation")
+            return redirect('/')
         else:
             print(form.errors)
-            print("Error creating Quotation")
+            messages.error(request, 'Data was not entered in the database')
             return render(request, 'addItem/addQuotation.html', context)
 
     return render(request,'addItem/addQuotation.html',context)

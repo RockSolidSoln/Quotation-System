@@ -6,10 +6,11 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
-from .models import PurchaseRequisition, PRItems
-
+from .models import PurchaseRequisition, PRItems, QuotationItems, Quotation
 from .models import Customer, FinanceOfficer, Manager, Salesman
 from .forms import UserTypeForm
+from django.views.generic import ListView
+from view_breadcrumbs import ListBreadcrumbMixin
 
 from django.contrib.auth.decorators import login_required
 
@@ -63,6 +64,7 @@ def about(request):
         }
     )
 
+
 @login_required
 def dashboard(request):
     role = request.user.groups.get()
@@ -115,17 +117,30 @@ def vq(request):
 Salesman pages
 """
 
-def add_quotation(request):
-    return render(request, 'salesman/addQuotation.html')
-
 def view_purchase_requisition(request):
-    return render(request, 'salesman/viewPR.html')
+    Pr = PurchaseRequisition.objects.all()
+    Pr_item = PRItems.objects.all()
+
+    context = {
+        'Pr': Pr,
+        'Pr_item': Pr_item
+    }
+    return render(request, 'salesman/viewPR.html', context)
 
 def view_one_PR(request):
+
     return render(request, 'salesman/viewOnePR.html')
 
 def view_quotation(request):
-    return render(request, 'salesman/viewQuotation.html')
+    Quotations = Quotation.objects.all()
+    Quotation_item = QuotationItems.objects.all()
+
+    context = {
+        'Quotations':  Quotations,
+        'Quotation_item':  Quotation_item
+    }
+
+    return render(request, 'salesman/viewQuotation.html', context)
 
 def view_one_quotation(request):
     return render(request, 'salesman/viewOneQuotation.html')

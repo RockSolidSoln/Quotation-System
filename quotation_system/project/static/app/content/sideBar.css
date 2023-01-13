@@ -1,0 +1,48 @@
+#sidebar-button {
+    /* Button styling goes here */
+    height:100%;
+    width:25px;
+    position: fixed;
+    z-index:1;
+    top:0;
+    left:0;
+    background: linear-gradient(0deg, rgba(49, 112, 222, 0.33), rgba(49, 112, 222, 0.33)), linear-gradient(0deg, #BAD7E9, #BAD7E9), #BAD7E9;
+    overflow-x: hidden;
+    border: none;
+    padding-top:50px;
+  }
+  #sidebar-button.clicked {
+    /* Button styling when clicked goes here */
+    left: 225px;
+  }
+  #sidebar {
+    /* Sidebar styling goes here */
+    height:100%;
+    border: none;
+    width:225px;
+    position: fixed;
+    left:0;
+    background: rgb(45, 104, 208);
+    overflow-x: hidden;
+    padding-top: 50px;
+    display: none;
+      z-index: 2;
+  }
+  #sidebar.active{
+    display:block;
+    }
+  #sidebar-button i{
+    color : #fff;
+  }
+  #sidebar a {
+    padding:6px 8px 6px 16px;
+    text-decoration: none;
+    font-size:15px;
+    color: #fff;
+    margin-top: 25px;
+    display:block;
+}
+
+#sidebar a:hover{
+    text-decoration: underline;
+}

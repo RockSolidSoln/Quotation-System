@@ -5,13 +5,41 @@
 <head>
    {% load static %}
     <link rel="stylesheet" href="{% static 'app/content/quotation.css' %}">
+    <link rel="stylesheet" href="{% static 'app/content/sideBar.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
     <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+ <button id="sidebar-button">
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+ </button>
 
+ <div id="sidebar">
+   <!-- Sidebar content goes here -->
+   <a href="{% url 'dashboard' %}">
+    <img src="{% static 'app/assets/Home.png' %}" alt="Home" width="25"
+    height="25" style="margin-right:10px;">
+        Home
+    </a>
+        <a href="{% url 'view_purchase_requisition' %}" >
+            <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
+            height="40">
+                Purchase Requisition
+        </a>
+
+        <a href="{% url 'add_quotation' %}">
+            <img src="{% static 'app/assets/ViewQ.png' %}" alt="ViewQ"  style="margin-right:15px;">
+                Add Quotation
+        </a>
+
+        <a href="{% url 'view_quotation' %}">
+            <img src="{% static 'app/assets/View.png' %}" alt="ViewQ" width="30"
+            height="30" style="margin-right:10px;">
+                View and Sort Quotation
+        </a>
+  </div>
   <div id="main">
     <br/>
     <div id="header">
@@ -81,72 +109,62 @@
 
                 </div>
                 <div class="col-md-offset-3 col-md-10 " >
-                    <input type="submit" value="Submit" id="button"
+                    <input type="submit" value="Submit" id="submit-button"
                     class="btn-primary btn-md btn-block mx-auto" />   
                 </div>
             </form>
         </div>
-        
+        <!-- Modal -->
+        <div class="modal" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>The form was successfully saved in the database.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
     </div>
     <br/>
-   
+   <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Form Submitted successfully!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/'">Redirect</button>
+      </div>
+    </div>
+  </div>
 </div>
-<script>
-    $('.add-field-input').on('change', function() {
-    var numberOfFields = $(this).val();
-    $('.items-container').empty();
-    for(var i = 0; i < numberOfFields; i++) {
-        $('.items-container').append(`
-            <tr class="item-field">
-                <td>
-                    <label>Item Name</label>
-                    <input type="text" name="q_item_name" class="form-control item-name">
-                </td>
-                <td>
-                    <label>Item Quantity</label>
-                    <input type="number" name="q_item_quantity" class="form-control item-quantity">
-                </td>
-                <td>
-                    <label>Item Price</label>
-                    <input type="number" name="q_item_price" class="form-control item-price">
-                </td>
-            </tr>
-        `);
-    }
-});
 
-$(document).on('input', '.item-price', function() {
-    let totalPrice = 0;
-    $('.item-field').each(function() {
-        const itemPrice = parseFloat($(this).find('.item-price').val());
-        var itemQuantity = parseFloat($(this).find('.item-quantity').val());
-        totalPrice += itemPrice * itemQuantity;
-    });
-    $('.total_price').val(totalPrice);
-});
-document.getElementById("inputGroupSelect01").addEventListener("change", updateCustomerId);
+</div>
 
-function updateCustomerId() {
-        var pr_id = document.getElementById("inputGroupSelect01").value;
-        console.log(pr_id);
-        $.ajax({
-          type: 'GET',
-          url: '/get_customer_id/',
-          data: {
-            'pr_id': pr_id
-          },
-          success: function (data) {
-            document.getElementById("customer_id").value = data.customer_id;
-        }
-        });
-        console.log("Data tried")
-    }
-
-
-</script>
+<script src="{% static 'app/scripts/custom/quotation.js' %}"> </script>
 <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
 <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
 <script src="{% static 'app/scripts/respond.js' %}"></script>
+<script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
 
 {% endblock %}

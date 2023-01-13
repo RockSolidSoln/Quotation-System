@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     'project',
     'addItem',
+    'view_breadcrumbs',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

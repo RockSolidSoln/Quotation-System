@@ -1,7 +1,4 @@
-#sidebar a:hover{
-    font-weight: bold;
-    text-decoration: underline;
-}
+
 #main{
     position: relative;
     width: 1030px;
@@ -137,7 +134,7 @@ tr:hover {
 .item-label, .item-input {
   text-align: center;
 }
-#button{
+#submit-button{
     border-radius: 50px;
     margin-top: 20px;
     height: 35px;
