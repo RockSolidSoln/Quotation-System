@@ -11,12 +11,12 @@
  <button id="sidebar-button">
     <i class="fa fa-chevron-left" aria-hidden="true"></i>
  </button>
- 
+
  <div id="sidebar">
    <!-- Sidebar content goes here -->
    <a href="{% url 'dashboard' %}">
     <img src="{% static 'app/assets/Home.png' %}" alt="Home" width="25"
-    height="25" style="margin-right:10px;"> 
+    height="25" style="margin-right:10px;">
         Home
     </a>
     {% if salesman %}
@@ -42,19 +42,45 @@
             height="40" style=" margin-right:5px;">
             Add Purchase Requisition
         </a>
-       
+
         <a href="{% url 'vspr' %}">
             <img src="{% static 'app/assets/View.png' %}" alt="View" width="30"
             height="30" style="margin-right:10px;">
             View and Sort Purchase Requisition
         </a>
-    
+
         <a href="{% url 'vq' %}">
             <img src="{% static 'app/assets/ViewQ.png' %}" alt="ViewQ"  style="margin-right:15px;">
             View Quotation
         </a>
+
+        {% elif finance_officer %}
+        <a href="{% url 'add_PO' %}" style="right:10px; position:relative;">
+            <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
+            height="40" style=" margin-right:5px;">
+            Add Purchase Order
+        </a>
+
+        <a href="{% url 'view_PO' %}">
+            <img src="{% static 'app/assets/View.png' %}" alt="View" width="30"
+            height="30" style="margin-right:10px;">
+            View and Sort Purchase Orders
+        </a>
+
+        {% elif manager %}
+        <a href="{% url 'add_PO' %}" style="right:10px; position:relative;">
+            <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
+            height="40" style=" margin-right:5px;">
+            Quotation
+        </a>
+
+        <a href="{% url 'view_PO' %}">
+            <img src="{% static 'app/assets/View.png' %}" alt="View" width="30"
+            height="30" style="margin-right:10px;">
+            History of Quotations
+        </a>
     {% endif %}
-    
+
  </div>
 
   <div id="main">

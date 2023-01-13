@@ -63,7 +63,7 @@
                   <td>
                       <span class="inside-table">
                       {% for Q_item in Quotation_item %}
-                          {% if Q.quotation_id == Q_item.quotation_id %}
+                          {% if Q_item.quotation_id_id == Q.quotation_id %}
                               <span>{{ Q_item.q_item_name }}</span>
                           {% endif %}
                        {% endfor %}
@@ -72,7 +72,7 @@
                 <td>
                       <span class="inside-table">
                       {% for Q_item in Quotation_item %}
-                           {% if Q.quotation_id == Q_item.quotation_id %}
+                          {% if Q_item.quotation_id_id  == Q.quotation_id %}
                                 <span>{{ Q_item.q_item_quantity }}</span>
                            {% endif %}
                        {% endfor %}
@@ -81,7 +81,9 @@
                 <td>
                       <span class="inside-table">
                       {% for Q_item in Quotation_item %}
-                          <span>{{ Q_item.q_item_price }}</span>
+                          {% if Q_item.quotation_id_id == Q.quotation_id %}
+                             <span>{{ Q_item.q_item_price }}</span>
+                          {% endif %}
                        {% endfor %}
                       </span>
                   </td>
@@ -89,7 +91,7 @@
                 <td>{{ Q.date }}</td>
                 <td>
                      <input type="submit" value="View Details" id="submit-button"
-                    style="height: 20px; width: 100px; border-radius: 50px;"
+                    style="height: 25px; width: 100px; border-radius: 50px;"
                     class="btn-primary btn-md btn-block mx-auto" onclick=""/>
                 </td>
                 </tr>

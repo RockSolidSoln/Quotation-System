@@ -1,5 +1,5 @@
 from django import forms
-from project.models import Quotation, QuotationItems
+from project.models import Quotation, PurchaseOrder
 
 class QuotationForm(forms.ModelForm):
     total_price = forms.FloatField(label='Total Price')
@@ -12,9 +12,12 @@ class QuotationForm(forms.ModelForm):
                 'manager_id', 'total_price',
                 'date', 'status', 'number_of_items']
 
-class QuotationItemsForm(forms.ModelForm):
+
+class POForm(forms.ModelForm):
+
     class Meta:
-        model = QuotationItems
-        fields = ['quotation_id',
-                  'q_item_name','q_item_quantity'
-                  ,'q_item_price']
+        model = PurchaseOrder
+        fields = ['po_id', 'quotation_id',
+                  'customer_id', 'salesman_id',
+                  'finance_officer_id', 'total_price'
+                  , 'date', 'number_of_items']

@@ -23,46 +23,41 @@
     height="25" style="margin-right:10px;">
         Home
     </a>
-        <a href="{% url 'view_purchase_requisition' %}" >
+        <a href="{% url 'add_PO' %}" style="right:10px; position:relative;">
             <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
-            height="40">
-                Purchase Requisition
+            height="40" style=" margin-right:5px;">
+            Add Purchase Order
         </a>
 
-        <a href="{% url 'add_quotation' %}">
-            <img src="{% static 'app/assets/ViewQ.png' %}" alt="ViewQ"  style="margin-right:15px;">
-                Add Quotation
-        </a>
-
-        <a href="{% url 'view_quotation' %}">
-            <img src="{% static 'app/assets/View.png' %}" alt="ViewQ" width="30"
+        <a href="{% url 'view_PO' %}">
+            <img src="{% static 'app/assets/View.png' %}" alt="View" width="30"
             height="30" style="margin-right:10px;">
-                View and Sort Quotation
+            View and Sort Purchase Orders
         </a>
   </div>
   <div id="main">
     <br/>
     <div id="header">
-        <h2>Add Quotations</h2>
+        <h2>Add Purchase Order</h2>
         <div class="form-container">
             <form method="post">
                 {% csrf_token %}
                 {{ form }}
                 <div class="form-row">
                     <div class="col">
-                        <label class="p-tag">Quotation ID</label>
+                        <label class="p-tag">Purchase order ID</label>
                         <input type="text" class="form-control" 
-                        required name="quotation_id"
-                        placeholder="QUXXXX">
+                        required name="po_id"
+                        placeholder="POXXXX">
                     </div>
 
                     <div class="col">
-                        <label class="p-tag" for="inputGroupSelect01">Purchase Requisition ID</label>
+                        <label class="p-tag" for="inputGroupSelect02">Quotation ID</label>
                         <select class="form-control" required  id="inputGroupSelect02"
-                        name="pr_id" onchange="updateCustomerId()" >
+                        name="quotation_id" onchange="updateId()" >
                             <option selected>Choose...</option>
-                            {% for pr in pr_id %}
-                                <option value="{{ pr }}">{{ pr }}</option>
+                            {% for q in quotation_id %}
+                                <option value="{{ q }}">{{ q }}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -70,15 +65,19 @@
 
                 <div class="form-row">
                     <div class="col">
-                        <label class="p-tag" for="salesman_id">Salesman ID</label>
+                        <label class="p-tag" for="finance_officer_id">Finance Officer ID</label>
                           <input type="text" class="form-control"
-                                 id="salesman_id"
-                                required name="salesman_id"
-                                value="{{ salesman_id }}" readonly>
+                                 id="finance_officer_id"
+                                required name="finance_officer_id"
+                                value="{{ finance_officer_id }}" readonly>
                     </div>
                     <div class="col">
                         <label for="customer_id">Customer ID</label>
                         <input type="text" class="form-control" required id="customer_id" name="customer_id" value="" readonly>
+                    </div>
+                    <div class="col">
+                        <label for="salesman_id">Salesman ID</label>
+                        <input type="text" class="form-control" required id="salesman_id" name="salesman_id" value="" readonly>
                     </div>
                   </div>
 
@@ -97,16 +96,10 @@
 
                 <div class="items-container"></div>
                 <div class="form-row">
-                    <div class="col" style="display: none;">
-                        <label class="p-tag" for="status">Status</label>
-                        <input type="text" id="status" name="status" class="form-control" readonly value="Uncleared">
-                    </div>
                     <div class="col">
                         <label class="p-tag" for="price">Total Price</label>
                         <input type="number" name="total_price" id="price" class="form-control total_price" readonly>
                     </div>
-
-
                 </div>
                 <div class="col-md-offset-3 col-md-10 " >
                     <input type="submit" value="Submit" id="submit-button"
@@ -161,7 +154,7 @@
 
 </div>
 
-<script src="{% static 'app/scripts/custom/quotation.js' %}"> </script>
+<script src="{% static 'app/scripts/custom/PurchaseOrder.js' %}"> </script>
 <script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
 <script src="{% static 'app/scripts/bootstrap.js' %}"></script>
 <script src="{% static 'app/scripts/respond.js' %}"></script>

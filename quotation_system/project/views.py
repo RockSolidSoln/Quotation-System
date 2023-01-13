@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from django.template import RequestContext
 from datetime import datetime
-from .models import PurchaseRequisition, PRItems, QuotationItems, Quotation
+
 from .models import Customer, FinanceOfficer, Manager, Salesman
 from .forms import UserTypeForm
 from django.views.generic import ListView
@@ -96,7 +96,7 @@ def dashboard(request):
     # context['user'] = request.user
     print(context)
 
-    return render(request,'app/dashboard.html',context)    
+    return render(request, 'app/dashboard.html',context)
 
 """
 Customer pages
@@ -112,36 +112,4 @@ def vspr(request):
 
 def vq(request):
     return render(request, 'customer/VQ.html')
-
-"""
-Salesman pages
-"""
-
-def view_purchase_requisition(request):
-    Pr = PurchaseRequisition.objects.all()
-    Pr_item = PRItems.objects.all()
-
-    context = {
-        'Pr': Pr,
-        'Pr_item': Pr_item
-    }
-    return render(request, 'salesman/viewPR.html', context)
-
-def view_one_PR(request):
-
-    return render(request, 'salesman/viewOnePR.html')
-
-def view_quotation(request):
-    Quotations = Quotation.objects.all()
-    Quotation_item = QuotationItems.objects.all()
-
-    context = {
-        'Quotations':  Quotations,
-        'Quotation_item':  Quotation_item
-    }
-
-    return render(request, 'salesman/viewQuotation.html', context)
-
-def view_one_quotation(request):
-    return render(request, 'salesman/viewOneQuotation.html')
 

@@ -1,8 +1,10 @@
 #main{
     position: relative;
     width: 1030px;
-    height: 449px;
+    height: 600px;
     left: 5%;
+    overflow: auto;
+    overflow-x: hidden;
     top: 70px;
     background: #FFFFFF;
     border-radius: 30px;
