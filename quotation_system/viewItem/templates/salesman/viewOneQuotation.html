@@ -46,27 +46,46 @@
     </div>
   <br/>
     <div id="form">
+        <div class="form-row">
+            <div class="col" >
+                <label for="customer-id">
+                    Customer ID
+                 </label>
+                <input readonly type="text" id="customer-id" style="margin-left: 40px;" placeholder="{{ selected_quotation.customer_id }}">
+            </div>
+            <div class="col" >
+                <label for="pr-id">
+                    Purchase requisition ID
+                </label>
+                <input readonly type="text"  id="pr-id"
+                placeholder="{{ selected_quotation.pr_id }}">
+            </div>
+            <div class="col" >
+                <label for="status">
+                    Status
+                </label>
+                <input readonly type="text" id="status"
+                placeholder="{{ selected_quotation.status }}">
+            </div>
+            </div>
+
+       <div class="form-row">
         <div class="col">
-            <label for="customer-id">
-                Customer ID
-             </label>
-            <input readonly type="text" id="customer-id" style="margin-left: 40px;" placeholder="{{ selected_quotation }}">
-
-            <label for="status">
-                Status
-            </label>
-            <input readonly type="text" id="status"
-            placeholder="{{ selected_quotation.status }}">
-
             <label for="date">
                 Date
             </label>
             <input readonly type="text"  id="date"
             placeholder="{{ selected_quotation.date }}">
         </div>
-        <br/>
+         <div class="col">
+            <label for="price">
+                Total Price
+             </label>
+            <input readonly type="text" id="price" style="margin-left: 40px;" placeholder="{{ selected_quotation.total_price }}">
+        </div>
+       </div>
     </div>
-        <div id="header2" style="width: 70%; padding-top: 100px; position: relative;" >
+        <div id="header2" style="width: 70%; padding-top: 200px; position: relative;" >
               <table >
                     <tr>
                           <th>Item Name</th>
@@ -89,14 +108,6 @@
               </table>
 
         </div>
-        <div class="col">
-            <label for="price">
-                Customer ID
-             </label>
-            <input readonly type="text" id="price" style="margin-left: 40px;" placeholder="{{ selected_quotation.total_price }}">
-        </div>
-
-
 
 </div>
     <script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
