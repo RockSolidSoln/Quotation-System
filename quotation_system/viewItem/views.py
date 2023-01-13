@@ -34,8 +34,18 @@ def view_quotation(request):
     return render(request, 'salesman/viewQuotation.html', context)
 
 
-def view_one_quotation(request):
-    return render(request, 'salesman/viewOneQuotation.html')
+def view_one_quotation(request, quotation_id):
+    salesman_id = Salesman.objects.get(user=request.user).salesman_id
+    select_q_id = Quotation.objects.get(quotation_id=quotation_id)
+
+    Quotation_item = QuotationItems.objects.filter(quotation_id=select_q_id)
+
+    print(Quotation_item)
+    context = {
+        'selected_quotation': select_q_id,
+        'Quotation_item': Quotation_item
+    }
+    return render(request, 'salesman/viewOneQuotation.html', context)
 
 
 def view_PO(request):

@@ -90,10 +90,9 @@
                 <td>{{ Q.total_price }}</td>
                 <td>{{ Q.date }}</td>
                 <td>
-                     <input type="submit" value="View Details" id="submit-button"
-                    style="height: 25px; width: 100px; border-radius: 50px;"
-                    class="btn-primary btn-md btn-block mx-auto" onclick=""/>
+                  <a href="{% url 'view_one_quotation' Q.quotation_id %}" class="btn-primary btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">View Details</a>
                 </td>
+
                 </tr>
                {% endfor %}
               </table>

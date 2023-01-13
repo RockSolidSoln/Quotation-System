@@ -44,6 +44,7 @@ urlpatterns = [
     path('view-purchase-requisition/', view_items.view_purchase_requisition, name='view_purchase_requisition'),
     path('view_quotation/', view_items.view_quotation, name='view_quotation'),
     path('view_one_quotation/', view_items.view_one_quotation, name='view_one_quotation'),
+    path('view_quotation/<str:quotation_id>/', view_items.view_one_quotation, name='view_one_quotation'),
 
     path('view_one_PO/', view_items.view_one_PO, name='view_one_PO'),
     path('view_PO/', view_items.view_PO, name='view_PO'),

@@ -1,5 +1,103 @@
 {% extends "../app/layout.html" %}
 
 {% block content %}
+<head>
+   {% load static %}
+    <link rel="stylesheet" href="{% static 'app/content/views.css' %}">
+    <link rel="stylesheet" href="{% static 'app/content/sideBar.css' %}">
+   <link rel="stylesheet" href="{% static 'app/content/dashboard.css' %}">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
 
-{% endblock %}
+ <!-- HTML for the button and sidebar -->
+ <button id="sidebar-button">
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+ </button>
+
+<div id="sidebar">
+   <!-- Sidebar content goes here -->
+   <a href="{% url 'dashboard' %}">
+    <img src="{% static 'app/assets/Home.png' %}" alt="Home" width="25"
+    height="25" style="margin-right:10px;">
+        Home
+    </a>
+        <a href="{% url 'view_purchase_requisition' %}" >
+            <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
+            height="40">
+                Purchase Requisition
+        </a>
+
+        <a href="{% url 'add_quotation' %}">
+            <img src="{% static 'app/assets/ViewQ.png' %}" alt="ViewQ"  style="margin-right:15px;">
+                Add Quotation
+        </a>
+
+        <a href="{% url 'view_quotation' %}">
+            <img src="{% static 'app/assets/View.png' %}" alt="ViewQ" width="30"
+            height="30" style="margin-right:10px;">
+                View and Sort Quotation
+        </a>
+  </div>
+
+  <div id="main">
+    <br/>
+    <div id="header">
+      <h2> View Quotation {{ selected_quotation }}</h2>
+    </div>
+  <br/>
+    <div id="form">
+        <div class="col">
+            <label for="customer-id">
+                Customer ID
+             </label>
+            <input readonly type="text" id="customer-id" style="margin-left: 40px;" placeholder="{{ selected_quotation }}">
+
+            <label for="status">
+                Status
+            </label>
+            <input readonly type="text" id="status"
+            placeholder="{{ selected_quotation.status }}">
+
+            <label for="date">
+                Date
+            </label>
+            <input readonly type="text"  id="date"
+            placeholder="{{ selected_quotation.date }}">
+        </div>
+        <br/>
+    </div>
+        <div id="header2" style="width: 70%; padding-top: 100px; position: relative;" >
+              <table >
+                    <tr>
+                          <th>Item Name</th>
+                          <th>Item Quantity</th>
+                         <th>Item Price</th>
+                    </tr>
+              {% for Q_item in Quotation_item %}
+                <tr>
+                  <td>
+                      {{ Q_item.q_item_name }}
+                  </td>
+                <td>
+                    {{ Q_item.q_item_quantity }}
+                  </td>
+                <td>
+                    {{ Q_item.q_item_price }}
+                  </td>
+                </tr>
+               {% endfor %}
+              </table>
+
+        </div>
+        <div class="col">
+            <label for="price">
+                Customer ID
+             </label>
+            <input readonly type="text" id="price" style="margin-left: 40px;" placeholder="{{ selected_quotation.total_price }}">
+        </div>
+
+
+
+</div>
+    <script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
+  {% endblock %}
