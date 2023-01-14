@@ -32,10 +32,8 @@ def add_PR(request):
                 pr_item_name = pr_item_name_list[i]
                 print(pr_item_name)
                 pr_item_quantity = pr_item_quantity_list[i]
-                pr_item_price = pr_item_price_list[i]
                 PRItems.objects.create(pr_item_name=pr_item_name,
                                        pr_item_quantity=pr_item_quantity,
-                                       pr_item_price=pr_item_price,
                                        pr_id=pr)
                 print("Successfully created Quotation")
         else:
