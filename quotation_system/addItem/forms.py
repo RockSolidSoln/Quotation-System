@@ -1,5 +1,14 @@
 from django import forms
-from project.models import Quotation, PurchaseOrder
+from project.models import Quotation, PurchaseOrder, PurchaseRequisition
+
+class PRForm(forms.ModelForm):
+
+    class Meta:
+        model = PurchaseRequisition
+        fields = ['pr_id',
+                  'customer_id',
+                  'date', 'number_of_items']
+
 
 class QuotationForm(forms.ModelForm):
     total_price = forms.FloatField(label='Total Price')

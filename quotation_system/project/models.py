@@ -39,7 +39,7 @@ class Customer(models.Model):
     def save(self, *args, **kwargs):
         if not self.customer_id:
             # generate a custom id here
-            self.customer_id = "PurchaseRequisitions{:02d}".format(self.pk)
+            self.customer_id = "PurchaseRequisition{:02d}".format(self.pk)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -78,8 +78,7 @@ class PurchaseRequisition(models.Model):
     pr_id = models.CharField(primary_key=True, max_length=10)
     customer_id = models.ForeignKey(Customer, default=None, on_delete=models.CASCADE)
     date = models.DateField()
-
-    # number_of_items =  models.PositiveIntegerField(default=None, null=True)
+    number_of_items = models.PositiveIntegerField(default=None, null=True)
 
     def __str__(self):
         return str(self.pr_id)

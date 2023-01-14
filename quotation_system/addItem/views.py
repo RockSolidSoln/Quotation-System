@@ -3,14 +3,47 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from datetime import datetime
 from project.models import PurchaseRequisition, PurchaseOrder, Quotation, PRItems, POItems, QuotationItems, Salesman,  Manager, Customer, FinanceOfficer
-from .forms import QuotationForm, POForm
+from .forms import QuotationForm, POForm, PRForm
 from django.http import JsonResponse
 from django.forms.models import model_to_dict
+
 
 # Create your views here.
 
 def add_PR(request):
-    return render(request, 'addItem/addPR.html')
+    customer_id = Customer.objects.get(user=request.user).customer_id
+
+    context = {'customer_id': customer_id, 'user': request.user}
+
+    if request.method == 'POST':
+        form = PRForm(request.POST)
+
+        if form.is_valid():
+            pr = form.save()
+            messages.success(request, 'Data was successfully entered in the database.')
+
+            item_count = pr.number_of_items
+
+            print(item_count)
+            pr_item_name_list = request.POST.getlist('pr_item_name')
+            pr_item_quantity_list = request.POST.getlist('pr_item_quantity')
+            pr_item_price_list = request.POST.getlist('pr_item_price')
+            for i in range(item_count):
+                pr_item_name = pr_item_name_list[i]
+                print(pr_item_name)
+                pr_item_quantity = pr_item_quantity_list[i]
+                pr_item_price = pr_item_price_list[i]
+                PRItems.objects.create(pr_item_name=pr_item_name,
+                                       pr_item_quantity=pr_item_quantity,
+                                       pr_item_price=pr_item_price,
+                                       pr_id=pr)
+                print("Successfully created Quotation")
+        else:
+            print(form.errors)
+            messages.error(request, 'Data was not entered in the database')
+            return render(request, 'addItem/addPR.html', context)
+
+    return render(request, 'addItem/addPR.html', context)
 
 
 def add_quotation(request):
@@ -39,7 +72,6 @@ def add_quotation(request):
                                               q_item_price=q_item_price,
                                               quotation_id=quotation)
                 print("Successfully created Quotation")
-            return redirect('/')
         else:
             print(form.errors)
             messages.error(request, 'Data was not entered in the database')
@@ -74,17 +106,17 @@ def add_PO(request):
                 po_item_quantity = po_item_quantity_list[i]
                 po_item_price = po_item_price_list[i]
                 POItems.objects.create(po_item_name=po_item_name,
-                                              po_item_quantity=po_item_quantity,
-                                              po_item_price=po_item_price,
-                                              po_id=PO)
+                                       po_item_quantity=po_item_quantity,
+                                       po_item_price=po_item_price,
+                                       po_id=PO)
                 print("Successfully created Quotation")
-            return redirect('/')
         else:
             print(form.errors)
             messages.error(request, 'Data was not entered in the database')
             return render(request, 'addItem/addPO.html', context)
 
     return render(request, 'addItem/addPO.html', context)
+
 
 def customer_id(request):
     quotation_id = request.GET.get('quotation_id')
@@ -101,6 +133,7 @@ def customer_id(request):
         print("Error in getting Customer Id")
         return JsonResponse({'error': 'Invalid Quotation ID'}, status=400)
 
+
 def salesman_id(request):
     quotation_id = request.GET.get('quotation_id')
 
@@ -109,7 +142,7 @@ def salesman_id(request):
         print(q)
         salesman = q.salesman_id
         print(salesman)
-        customer_dict = model_to_dict( salesman)
+        customer_dict = model_to_dict(salesman)
         return JsonResponse(customer_dict, safe=False)
 
     except Quotation.DoesNotExist:

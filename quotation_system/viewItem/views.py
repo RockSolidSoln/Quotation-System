@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from project.models import  QuotationItems, Quotation, Salesman, Customer, FinanceOfficer, PurchaseOrder, POItems, PurchaseRequisition, PRItems
+from project.models import QuotationItems, Quotation, Salesman, Customer, FinanceOfficer, PurchaseOrder, POItems, PurchaseRequisition, PRItems
 
 
 def view_purchase_requisition(request):

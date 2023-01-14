@@ -1,13 +1,15 @@
 {% extends "../app/layout.html" %}
 
 {% block content %}
-<!DOCTYPE html>
-<html>
 <head>
    {% load static %}
-    <link rel="stylesheet" href="{% static 'app/content/APR.css' %}">
-        <link rel="stylesheet" href="{% static 'app/content/sideBar.css' %}">
-    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'app/content/quotation.css' %}">
+    <link rel="stylesheet" href="{% static 'app/content/sideBar.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'app/content/site.css' %}" />
+    <script src="{% static 'app/scripts/modernizr-2.6.2.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
  <!-- HTML for the button and sidebar -->
@@ -42,36 +44,84 @@
 
  </div>
 
-  <div id="main">
+<div id="main">
     <br/>
     <div id="header">
-   <h2>Add Purchase Requisition</h2>
-     
+        <h2>Add Purchase Requisition</h2>
+        <div class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <div class="form-row">
+                    <div class="col">
+                        <label for="p-tag">Purchase Requisition ID</label>
+                        <input type="text" class="form-control"
+                        required name="pr_id" id="p-tag"
+                        placeholder="PUXXXX">
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                    <div class="col">
+                        <label class="p-tag" for="customer_id">Customer ID</label>
+                          <input type="text" class="form-control"
+                                 id="customer_id"
+                                required name="customer_id"
+                                value="{{ customer_id }}" readonly>
+                    </div>
+                  </div>
+
+                <div class="form-row">
+                    <div class="col">
+                        <label class="p-tag" for="date">Date</label>
+                        <input type="date" class="form-control" id="date" name="date">
+                    </div>
+                    <div class="col">
+                        <label for="numberOfFields">Add Item</label>
+                        <input type="number" class="form-control add-field-input"
+                               name="number_of_items"
+                               id="numberOfFields" value="" >
+                    </div>
+                </div>
+
+                <div class="items-container"></div>
+
+                <div class="col-md-offset-3 col-md-10 " >
+                    <input type="submit" value="Submit" id="submit-button"
+                    class="btn-primary btn-md btn-block mx-auto" />
+                </div>
+            </form>
+        </div>
     </div>
     <br/>
-   
+   <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Form Submitted successfully!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/'">Redirect</button>
+      </div>
+    </div>
+  </div>
 </div>
 
-<script>
-    // JavaScript for toggling the sidebar on and off
-    var button = document.getElementById('sidebar-button');
-    var sidebar = document.getElementById('sidebar');
-    var main = document.getElementById('main');
+</div>
 
-    button.addEventListener('click', function() {
-      if (sidebar.style.display === 'block') {
-        sidebar.style.display = 'none';
-        button.classList.remove('clicked');
-        main.style.marginLeft = '0px';
-        
-      } else {
-        sidebar.style.display = 'block';
-        button.classList.add('clicked');
-        main.style.marginLeft = '120px';
-        
-      }
-    });
-  </script>
+<script src="{% static 'app/scripts/custom/PurchaseRequisition.js' %}"> </script>
+<script src="{% static 'app/scripts/jquery-1.10.2.js' %}"></script>
+<script src="{% static 'app/scripts/bootstrap.js' %}"></script>
+<script src="{% static 'app/scripts/respond.js' %}"></script>
+<script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
 
-  {% endblock %}
-</html>
+{% endblock %}
