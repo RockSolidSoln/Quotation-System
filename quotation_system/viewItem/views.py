@@ -20,8 +20,8 @@ def view_PR(request):
 
     print(PR_item)
     context = {
-        'PR': PR,
-        'PR_item': PR_item
+        'Pr': PR,
+        'Pr_item': PR_item
     }
 
     return render(request, 'PurchaseRequisitions/viewCustomerPR.html', context)
@@ -29,12 +29,17 @@ def view_PR(request):
 def view_one_PR(request, pr_id):
     select_pr_id = PurchaseRequisition.objects.get(pr_id=pr_id)
 
+    is_salesman = request.user.groups.filter(name='Salesman').exists()
+    is_customer = request.user.groups.filter(name='Customer').exists()
+
     Pr_item = PRItems.objects.filter(pr_id=select_pr_id)
 
     print(Pr_item)
     context = {
         'selected_pr': select_pr_id,
-        'Pr_item': Pr_item
+        'Pr_item': Pr_item,
+        'salesman': is_salesman,
+        'customer': is_customer,
     }
     return render(request, 'PurchaseRequisitions/viewOnePR.html', context)
 
@@ -43,10 +48,15 @@ def view_all_quotation(request):
     Quotations = Quotation.objects.all().values()
     Quotation_item = QuotationItems.objects.all().values()
 
+    is_customer = request.user.groups.filter(name='Customer').exists()
+    is_manager = request.user.groups.filter(name='Manager').exists()
+
     print(Quotation_item)
     context = {
         'Quotations': Quotations,
-        'Quotation_item': Quotation_item
+        'Quotation_item': Quotation_item,
+        'customer': is_customer,
+        'manager': is_manager,
     }
 
     return render(request, 'Quotation/viewAllQuotation.html', context)
@@ -66,16 +76,34 @@ def view_quotation(request):
 
     return render(request, 'Quotation/viewSalesmanQuotation.html', context)
 
+def view_active_quotation(request):
+    Quotations = Quotation.objects.all().values()
+    Quotation_item = QuotationItems.objects.all().values()
+
+    print(Quotation_item)
+    context = {
+        'Quotations': Quotations,
+        'Quotation_item': Quotation_item
+    }
+
+    return render(request, 'Quotation/viewManagerQuotation.html', context)
 
 def view_one_quotation(request, quotation_id):
     select_q_id = Quotation.objects.get(quotation_id=quotation_id)
+
+    is_salesman = request.user.groups.filter(name='Salesman').exists()
+    is_customer = request.user.groups.filter(name='Customer').exists()
+    is_manager = request.user.groups.filter(name='Manager').exists()
 
     Quotation_item = QuotationItems.objects.filter(quotation_id=select_q_id)
 
     print(Quotation_item)
     context = {
         'selected_quotation': select_q_id,
-        'Quotation_item': Quotation_item
+        'Quotation_item': Quotation_item,
+        'salesman': is_salesman,
+        'customer': is_customer,
+        'manager': is_manager,
     }
     return render(request, 'Quotation/viewOneQuotation.html', context)
 

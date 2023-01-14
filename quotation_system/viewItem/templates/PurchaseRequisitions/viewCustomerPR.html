@@ -57,25 +57,33 @@
                   <th>Item Name</th>
                   <th>Item Quantity</th>
                   <th>Date</th>
+                    <th></th>
                 </tr>
         {% for purchase in Pr %}
                 <tr>
                   <td>{{ purchase.pr_id }}</td>
                   <td>
                       <span class="inside-table">
-                      {% for purchase_item in Pr_item %}
+                       {% for purchase_item in Pr_item %}
+                          {% if purchase_item.pr_id_id == purchase.pr_id %}
                           <span>{{ purchase_item.pr_item_name }}</span>
+                          {% endif %}
                        {% endfor %}
                       </span>
                   </td>
                 <td>
                       <span class="inside-table">
-                      {% for purchase_item in Pr_item %}
+                     {% for purchase_item in Pr_item %}
+                          {% if purchase_item.pr_id_id == purchase.pr_id %}
                           <span>{{ purchase_item.pr_item_quantity }}</span>
+                          {% endif %}
                        {% endfor %}
                       </span>
                   </td>
                 <td>{{ purchase.date }}</td>
+                <td>
+                  <a href="{% url 'view_one_PR' purchase.pr_id %}" class="btn-primary btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">View Details</a>
+                </td>
                 </tr>
                {% endfor %}
               </table>

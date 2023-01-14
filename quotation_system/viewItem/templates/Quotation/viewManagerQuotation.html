@@ -16,33 +16,12 @@
 
 <div id="sidebar">
    <!-- Sidebar content goes here -->
-{#    manager and customer#}
    <a href="{% url 'dashboard' %}">
     <img src="{% static 'app/assets/Home.png' %}" alt="Home" width="25"
     height="25" style="margin-right:10px;">
         Home
     </a>
-
-    {% if customer %}
-        <a href="{% url 'add_PR' %}" style="right:10px; position:relative;">
-            <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
-            height="40" style=" margin-right:5px;">
-            Add Purchase Requisition
-        </a>
-
-        <a href="{% url 'view_PR' %}">
-            <img src="{% static 'app/assets/View.png' %}" alt="View" width="30"
-            height="30" style="margin-right:10px;">
-            View and Sort Purchase Requisition
-        </a>
-
-        <a href="{% url 'view_all_quotation' %}">
-            <img src="{% static 'app/assets/ViewQ.png' %}" alt="ViewQ"  style="margin-right:15px;">
-            View Quotation
-        </a>
-
-        {% elif manager %}
-        <a href="{% url 'view_active_quotation' %}" style="right:10px; position:relative;">
+         <a href="{% url 'view_active_quotation' %}" style="right:10px; position:relative;">
             <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
             height="40" style=" margin-right:5px;">
             Quotation
@@ -53,13 +32,12 @@
             height="30" style="margin-right:10px;">
             History of Quotations
         </a>
-    {% endif %}
   </div>
 
   <div id="main">
     <br/>
     <div id="header">
-      <h2> View Quotations</h2>
+      <h2> Accept or Decline Quotations</h2>
     </div>
 
     <div id="main_content">
@@ -72,7 +50,7 @@
                          <th>Item Price</th>
                         <th>Total Price</th>
                           <th>Date</th>
-                          <th> Sort By</th>
+                          <th> </th>
                     </tr>
         {% for Q in Quotations %}
                 <tr>
@@ -107,7 +85,8 @@
                 <td>{{ Q.total_price }}</td>
                 <td>{{ Q.date }}</td>
                 <td>
-                  <a href="{% url 'view_one_quotation' Q.quotation_id %}" class="btn-primary btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">View Details</a>
+                  <button>Accept</button>
+                    <button>Decline</button>
                 </td>
 
                 </tr>

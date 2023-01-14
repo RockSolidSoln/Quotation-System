@@ -63,14 +63,18 @@
                   <td>
                       <span class="inside-table">
                       {% for purchase_item in Pr_item %}
+                          {% if purchase_item.pr_id_id == purchase.pr_id %}
                           <span>{{ purchase_item.pr_item_name }}</span>
+                          {% endif %}
                        {% endfor %}
                       </span>
                   </td>
                 <td>
                       <span class="inside-table">
                       {% for purchase_item in Pr_item %}
+                          {% if purchase_item.pr_id_id == purchase.pr_id %}
                           <span>{{ purchase_item.pr_item_quantity }}</span>
+                          {% endif %}
                        {% endfor %}
                       </span>
                   </td>

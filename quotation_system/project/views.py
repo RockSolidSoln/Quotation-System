@@ -87,8 +87,8 @@ def dashboard(request):
     print(mydata)
     context = {
             'sys_id': mydata,
-            'Quotation': is_salesman,
-            'PurchaseRequisitions': is_customer,
+            'salesman': is_salesman,
+            'customer': is_customer,
             'finance_officer': is_finance_officer,
             'manager': is_manager,
             'role': role,
