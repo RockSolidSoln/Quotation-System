@@ -3,7 +3,7 @@
 {% block content %}
 <head>
    {% load static %}
-    <link rel="stylesheet" href="{% static 'app/content/VSPR.css' %}">
+    <link rel="stylesheet" href="{% static 'app/content/views.css' %}">
     <link rel="stylesheet" href="{% static 'app/content/sideBar.css' %}">
    <link rel="stylesheet" href="{% static 'app/content/dashboard.css' %}">
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,12 +16,13 @@
 
 <div id="sidebar">
    <!-- Sidebar content goes here -->
+{#    customer, salesman#}
    <a href="{% url 'dashboard' %}">
     <img src="{% static 'app/assets/Home.png' %}" alt="Home" width="25"
     height="25" style="margin-right:10px;">
         Home
     </a>
-        <a href="{% url 'view_purchase_requisition' %}" >
+      <a href="{% url 'view_purchase_requisition' %}" >
             <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
             height="40">
                 Purchase Requisition
@@ -42,52 +43,55 @@
   <div id="main">
     <br/>
     <div id="header">
-      <h2> View Purchase Requisitions</h2>
+      <h2> View Purchase Requisition{{ selected_pr }}</h2>
     </div>
+  <br/>
+    <div id="form">
+        <div class="form-row">
+            <div class="col" >
+                <label for="customer-id">
+                    Customer ID
+                 </label>
+                <input readonly type="text" id="customer-id" style="margin-left: 40px;" placeholder="{{ selected_pr.customer_id }}">
+            </div>
+            <div class="col" >
+                <label for="pr-id">
+                    Purchase requisition ID
+                </label>
+                <input readonly type="text"  id="pr-id"
+                placeholder="{{ selected_pr.pr_id }}">
+            </div>
+            </div>
 
-    <div id="main_content">
-        <div id="header2" >
-              <table>
+       <div class="form-row">
+        <div class="col">
+            <label for="date">
+                Date
+            </label>
+            <input readonly type="text"  id="date"
+            placeholder="{{ selected_pr.date }}">
+        </div>
+       </div>
+    </div>
+        <div id="header2" style="width: 70%; padding-top: 200px; position: relative;" >
+              <table >
                     <tr>
-                          <th>Purchase Requisition ID</th>
-                          <th>Customer ID</th>
                           <th>Item Name</th>
                           <th>Item Quantity</th>
-                          <th>Date</th>
-                          <th></th>
                     </tr>
-        {% for purchase in Pr %}
+              {% for P in Pr_item %}
                 <tr>
-                  <td>{{ purchase.pr_id }}</td>
-                  <td>{{ purchase.customer_id }}</td>
                   <td>
-                      <span class="inside-table">
-                      {% for purchase_item in Pr_item %}
-                          <span>{{ purchase_item.pr_item_name }}</span>
-                       {% endfor %}
-                      </span>
+                      {{ P.pr_item_name }}
                   </td>
                 <td>
-                      <span class="inside-table">
-                      {% for purchase_item in Pr_item %}
-                          <span>{{ purchase_item.pr_item_quantity }}</span>
-                       {% endfor %}
-                      </span>
+                    {{ P.pr_item_quantity }}
                   </td>
-                <td>{{ purchase.date }}</td>
-                <td>
-                     <input type="submit" value="View Details" id="submit-button"
-                    style="height: 20px; width: 100px; border-radius: 50px;"
-                    class="btn-primary btn-md btn-block mx-auto" onclick=""/>
-                </td>
                 </tr>
                {% endfor %}
               </table>
 
         </div>
-
-
-    </div>
 
 </div>
     <script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>

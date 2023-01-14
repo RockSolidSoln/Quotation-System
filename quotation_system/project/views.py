@@ -19,10 +19,10 @@ def create_user(request):
         form = UserTypeForm(request.POST)
         if form.is_valid():
             user_type = form.cleaned_data['user_type']
-            if user_type == 'customer':
+            if user_type == 'PurchaseRequisitions':
                 customer = Customer(user=request.user)
                 customer.save()
-            elif user_type == 'salesman':
+            elif user_type == 'Quotation':
                 salesman = Salesman(user=request.user)
                 salesman.save()
             elif user_type == 'manager':
@@ -87,8 +87,8 @@ def dashboard(request):
     print(mydata)
     context = {
             'sys_id': mydata,
-            'salesman': is_salesman,
-            'customer': is_customer,
+            'Quotation': is_salesman,
+            'PurchaseRequisitions': is_customer,
             'finance_officer': is_finance_officer,
             'manager': is_manager,
             'role': role,
@@ -97,19 +97,3 @@ def dashboard(request):
     print(context)
 
     return render(request, 'app/dashboard.html',context)
-
-"""
-Customer pages
-"""
-
-def apr(request):
-    return render(request, 'customer/APR.html')
-
-def vspr(request):
-    Pr = PurchaseRequisition.objects.all()
-    Pr_item = PRItems.objects.all()
-    return render(request, 'customer/VSPR.html', {'Pr' : Pr, 'Pr_item' : Pr_item})
-
-def vq(request):
-    return render(request, 'customer/VQ.html')
-

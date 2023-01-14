@@ -11,12 +11,12 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='customer',
+            model_name='PurchaseRequisitions',
             name='customer_id',
             field=models.CharField(max_length=15, primary_key=True, serialize=False),
         ),
         migrations.AlterField(
-            model_name='salesman',
+            model_name='Quotation',
             name='salesman_id',
             field=models.CharField(max_length=15, primary_key=True, serialize=False),
         ),

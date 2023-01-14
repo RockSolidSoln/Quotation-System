@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AlterField(
-            model_name='customer',
+            model_name='PurchaseRequisitions',
             name='customer_email',
             field=models.CharField(max_length=30, null=True),
         ),
@@ -26,12 +26,12 @@ class Migration(migrations.Migration):
             field=models.CharField(max_length=30, null=True),
         ),
         migrations.AlterField(
-            model_name='salesman',
+            model_name='Quotation',
             name='salesman_email',
             field=models.CharField(max_length=30, null=True),
         ),
         migrations.AlterField(
-            model_name='salesman',
+            model_name='Quotation',
             name='salesman_password',
             field=models.CharField(max_length=25, null=True),
         ),

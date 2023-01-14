@@ -1,8 +1,6 @@
 from django.shortcuts import render
-from project.models import PurchaseRequisition, PRItems, QuotationItems, Quotation, Salesman
+from project.models import  QuotationItems, Quotation, Salesman, Customer, FinanceOfficer, PurchaseOrder, POItems, PurchaseRequisition, PRItems
 
-
-# Create your views here.
 
 def view_purchase_requisition(request):
     Pr = PurchaseRequisition.objects.all()
@@ -12,11 +10,46 @@ def view_purchase_requisition(request):
         'Pr': Pr,
         'Pr_item': Pr_item
     }
-    return render(request, 'salesman/viewPR.html', context)
+    return render(request, 'PurchaseRequisitions/viewAllPR.html', context)
 
+def view_PR(request):
+    customer_id = Customer.objects.get(user=request.user).customer_id
 
-def view_one_PR(request):
-    return render(request, 'salesman/viewOnePR.html')
+    PR = PurchaseRequisition.objects.filter(customer_id=customer_id)
+    PR_item = PRItems.objects.all().values()
+
+    print(PR_item)
+    context = {
+        'PR': PR,
+        'PR_item': PR_item
+    }
+
+    return render(request, 'PurchaseRequisitions/viewCustomerPR.html', context)
+
+def view_one_PR(request, pr_id):
+    select_pr_id = PurchaseRequisition.objects.get(pr_id=pr_id)
+
+    Pr_item = PRItems.objects.filter(pr_id=select_pr_id)
+
+    print(Pr_item)
+    context = {
+        'selected_pr': select_pr_id,
+        'Pr_item': Pr_item
+    }
+    return render(request, 'PurchaseRequisitions/viewOnePR.html', context)
+
+def view_all_quotation(request):
+
+    Quotations = Quotation.objects.all().values()
+    Quotation_item = QuotationItems.objects.all().values()
+
+    print(Quotation_item)
+    context = {
+        'Quotations': Quotations,
+        'Quotation_item': Quotation_item
+    }
+
+    return render(request, 'Quotation/viewAllQuotation.html', context)
 
 
 def view_quotation(request):
@@ -31,11 +64,10 @@ def view_quotation(request):
         'Quotation_item': Quotation_item
     }
 
-    return render(request, 'salesman/viewQuotation.html', context)
+    return render(request, 'Quotation/viewSalesmanQuotation.html', context)
 
 
 def view_one_quotation(request, quotation_id):
-    salesman_id = Salesman.objects.get(user=request.user).salesman_id
     select_q_id = Quotation.objects.get(quotation_id=quotation_id)
 
     Quotation_item = QuotationItems.objects.filter(quotation_id=select_q_id)
@@ -45,12 +77,33 @@ def view_one_quotation(request, quotation_id):
         'selected_quotation': select_q_id,
         'Quotation_item': Quotation_item
     }
-    return render(request, 'salesman/viewOneQuotation.html', context)
+    return render(request, 'Quotation/viewOneQuotation.html', context)
 
 
 def view_PO(request):
-    return render(request, 'finance officer/viewPO.html')
+    fo_id = FinanceOfficer.objects.get(user=request.user).finance_officer_id
+
+    PO = PurchaseOrder.objects.filter(finance_officer_id=fo_id)
+    Po_item = POItems.objects.all().values()
+
+    print(Po_item)
+    context = {
+        'PO': PO,
+        'PO_item':Po_item
+    }
+
+    return render(request, 'PurchaseOrder/viewPO.html', context)
 
 
-def view_one_PO(request):
-    return render(request, 'finance officer/viewOnePO.html')
+def view_one_PO(request, po_id):
+    select_po_id = PurchaseOrder.objects.get(po_id=po_id)
+
+    PO_item = POItems.objects.filter(po_id=select_po_id)
+
+    print(PO_item)
+    context = {
+        'selected_po': select_po_id,
+        'PO_item': PO_item
+    }
+    return render(request, 'PurchaseOrder/viewOnePO.html', context)
+

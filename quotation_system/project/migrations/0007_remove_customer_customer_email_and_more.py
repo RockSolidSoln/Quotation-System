@@ -14,42 +14,42 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RemoveField(
-            model_name='customer',
+            model_name='PurchaseRequisitions',
             name='customer_email',
         ),
         migrations.RemoveField(
-            model_name='customer',
+            model_name='PurchaseRequisitions',
             name='customer_name',
         ),
         migrations.RemoveField(
-            model_name='customer',
+            model_name='PurchaseRequisitions',
             name='customer_password',
         ),
         migrations.RemoveField(
-            model_name='salesman',
+            model_name='Quotation',
             name='salesman_email',
         ),
         migrations.RemoveField(
-            model_name='salesman',
+            model_name='Quotation',
             name='salesman_password',
         ),
         migrations.AddField(
-            model_name='customer',
+            model_name='PurchaseRequisitions',
             name='user',
             field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
-            model_name='salesman',
+            model_name='Quotation',
             name='user',
             field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
         ),
         migrations.AlterField(
-            model_name='customer',
+            model_name='PurchaseRequisitions',
             name='customer_id',
             field=models.AutoField(primary_key=True, serialize=False),
         ),
         migrations.AlterField(
-            model_name='salesman',
+            model_name='Quotation',
             name='salesman_id',
             field=models.AutoField(primary_key=True, serialize=False),
         ),

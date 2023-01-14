@@ -23,8 +23,8 @@ class BootstrapAuthenticationForm(AuthenticationForm):
 
 class UserTypeForm(forms.Form):
     USER_TYPE_CHOICES = [
-        ('customer', 'Customer'),
-        ('salesman', 'Salesman'),
+        ('PurchaseRequisitions', 'Customer'),
+        ('Quotation', 'Salesman'),
         ('manager', 'Manager'),
         ('finance_officer', 'FinanceOfficer'),
     ]

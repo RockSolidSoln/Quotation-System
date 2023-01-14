@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
                 ('po_id', models.CharField(max_length=10, primary_key=True, serialize=False)),
                 ('total_price', models.FloatField(default=None, null=True)),
                 ('date', models.DateField()),
-                ('customer_id', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='project.customer')),
+                ('customer_id', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='project.PurchaseRequisitions')),
                 ('finance_officer_id', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='project.financeofficer')),
             ],
         ),
@@ -67,7 +67,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('pr_id', models.CharField(max_length=10, primary_key=True, serialize=False)),
                 ('date', models.DateField()),
-                ('customer_id', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='project.customer')),
+                ('customer_id', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='project.PurchaseRequisitions')),
             ],
         ),
         migrations.CreateModel(
@@ -77,7 +77,7 @@ class Migration(migrations.Migration):
                 ('total_price', models.FloatField(default=None, null=True)),
                 ('date', models.DateField()),
                 ('status', models.CharField(max_length=20)),
-                ('customer_id', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='project.customer')),
+                ('customer_id', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='project.PurchaseRequisitions')),
                 ('manager_id', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='project.manager')),
                 ('pr_id', models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='project.purchaserequisition')),
             ],
@@ -106,7 +106,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='quotation',
             name='salesman_id',
-            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='project.salesman'),
+            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='project.Quotation'),
         ),
         migrations.AddField(
             model_name='purchaseorder',
@@ -116,7 +116,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='purchaseorder',
             name='salesman_id',
-            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='project.salesman'),
+            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.CASCADE, to='project.Quotation'),
         ),
         migrations.AddField(
             model_name='pritems',

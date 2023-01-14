@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{% static 'app/content/VSPR.css' %}">
     <link rel="stylesheet" href="{% static 'app/content/sideBar.css' %}">
    <link rel="stylesheet" href="{% static 'app/content/dashboard.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
  <!-- HTML for the button and sidebar -->
@@ -16,26 +16,22 @@
 
 <div id="sidebar">
    <!-- Sidebar content goes here -->
+{#    manager and customer#}
    <a href="{% url 'dashboard' %}">
     <img src="{% static 'app/assets/Home.png' %}" alt="Home" width="25"
     height="25" style="margin-right:10px;">
         Home
     </a>
-        <a href="{% url 'view_purchase_requisition' %}" >
+    <a href="{% url 'view_quotation' %}" style="right:10px; position:relative;">
             <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
-            height="40">
-                Purchase Requisition
+            height="40" style=" margin-right:5px;">
+            Quotation
         </a>
 
-        <a href="{% url 'add_quotation' %}">
-            <img src="{% static 'app/assets/ViewQ.png' %}" alt="ViewQ"  style="margin-right:15px;">
-                Add Quotation
-        </a>
-
-        <a href="{% url 'view_quotation' %}">
-            <img src="{% static 'app/assets/View.png' %}" alt="ViewQ" width="30"
+        <a href="{% url 'view_all_quotation' %}">
+            <img src="{% static 'app/assets/View.png' %}" alt="View" width="30"
             height="30" style="margin-right:10px;">
-                View and Sort Quotation
+            History of Quotations
         </a>
   </div>
 
@@ -63,7 +59,7 @@
                   <td>
                       <span class="inside-table">
                       {% for Q_item in Quotation_item %}
-                          {% if Q_item.quotation_id == Q.quotation_id %}
+                          {% if Q_item.quotation_id_id == Q.quotation_id %}
                               <span>{{ Q_item.q_item_name }}</span>
                           {% endif %}
                        {% endfor %}
@@ -72,7 +68,7 @@
                 <td>
                       <span class="inside-table">
                       {% for Q_item in Quotation_item %}
-                           {% if Q.quotation_id and Q_item.quotation_id %}
+                          {% if Q_item.quotation_id_id  == Q.quotation_id %}
                                 <span>{{ Q_item.q_item_quantity }}</span>
                            {% endif %}
                        {% endfor %}
@@ -81,19 +77,18 @@
                 <td>
                       <span class="inside-table">
                       {% for Q_item in Quotation_item %}
-{#                          {% if Q.quotation_id == Q_item.quotation_id %}#}
+                          {% if Q_item.quotation_id_id == Q.quotation_id %}
                              <span>{{ Q_item.q_item_price }}</span>
-{#                          {% endif %}#}
+                          {% endif %}
                        {% endfor %}
                       </span>
                   </td>
                 <td>{{ Q.total_price }}</td>
                 <td>{{ Q.date }}</td>
                 <td>
-                     <input type="submit" value="View Details" id="submit-button"
-                    style="height: 25px; width: 100px; border-radius: 50px;"
-                    class="btn-primary btn-md btn-block mx-auto" onclick=""/>
+                  <a href="{% url 'view_one_quotation' Q.quotation_id %}" class="btn-primary btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">View Details</a>
                 </td>
+
                 </tr>
                {% endfor %}
               </table>

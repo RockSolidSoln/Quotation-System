@@ -25,7 +25,7 @@ class Salesman(models.Model):
     def save(self, *args, **kwargs):
         if not self.salesman_id:
             # generate a custom id here
-            self.salesman_id = "salesman{:02d}".format(self.pk)
+            self.salesman_id = "Quotation{:02d}".format(self.pk)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -39,7 +39,7 @@ class Customer(models.Model):
     def save(self, *args, **kwargs):
         if not self.customer_id:
             # generate a custom id here
-            self.customer_id = "customer{:02d}".format(self.pk)
+            self.customer_id = "PurchaseRequisitions{:02d}".format(self.pk)
         super().save(*args, **kwargs)
 
     def __str__(self):

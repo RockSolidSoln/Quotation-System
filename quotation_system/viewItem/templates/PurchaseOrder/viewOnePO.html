@@ -1,0 +1,109 @@
+{% extends "../app/layout.html" %}
+
+{% block content %}
+<head>
+   {% load static %}
+    <link rel="stylesheet" href="{% static 'app/content/views.css' %}">
+    <link rel="stylesheet" href="{% static 'app/content/sideBar.css' %}">
+   <link rel="stylesheet" href="{% static 'app/content/dashboard.css' %}">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+ <!-- HTML for the button and sidebar -->
+ <button id="sidebar-button">
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+ </button>
+
+<div id="sidebar">
+   <!-- Sidebar content goes here -->
+   <a href="{% url 'dashboard' %}">
+    <img src="{% static 'app/assets/Home.png' %}" alt="Home" width="25"
+    height="25" style="margin-right:10px;">
+        Home
+    </a>
+       <a href="{% url 'add_PO' %}" style="right:10px; position:relative;">
+            <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
+            height="40" style=" margin-right:5px;">
+            Add Purchase Order
+        </a>
+
+        <a href="{% url 'view_PO' %}">
+            <img src="{% static 'app/assets/View.png' %}" alt="View" width="30"
+            height="30" style="margin-right:10px;">
+            View and Sort Purchase Orders
+        </a>
+  </div>
+
+  <div id="main">
+    <br/>
+    <div id="header">
+      <h2> View Purchase Order {{ selected_po }}</h2>
+    </div>
+  <br/>
+    <div id="form">
+        <div class="form-row">
+            <div class="col" >
+                <label for="customer-id">
+                    Customer ID
+                 </label>
+                <input readonly type="text" id="customer-id" style="margin-left: 40px;" placeholder="{{ selected_po.customer_id }}">
+            </div>
+             <div class="col" >
+                <label for="s-id">
+                    Salesman ID
+                 </label>
+                <input readonly type="text" id="s-id" style="margin-left: 40px;" placeholder="{{ selected_po.salesman_id }}">
+            </div>
+            <div class="col" >
+                <label for="pr-id">
+                    Quotation ID
+                </label>
+                <input readonly type="text"  id="pr-id"
+                placeholder="{{ selected_po.quotation_id }}">
+            </div>
+            </div>
+
+       <div class="form-row">
+        <div class="col">
+            <label for="date">
+                Date
+            </label>
+            <input readonly type="text"  id="date"
+            placeholder="{{ selected_po.date }}">
+            <div class="col" >
+                <label for="price-id">
+                    Total Price
+                </label>
+                <input readonly type="text"  id="price-id"
+                placeholder="{{ selected_po.total_price }}">
+            </div>
+        </div>
+       </div>
+    </div>
+        <div id="header2" style="width: 70%; padding-top: 200px; position: relative;" >
+              <table >
+                    <tr>
+                          <th>Item Name</th>
+                          <th>Item Quantity</th>
+                        <th>Item Price</th>
+                    </tr>
+              {% for P in PO_item %}
+                <tr>
+                  <td>
+                      {{ P.po_item_name }}
+                  </td>
+                <td>
+                    {{ P.po_item_quantity }}
+                  </td>
+                <td>
+                    {{ P.po_item_price }}
+                  </td>
+                </tr>
+               {% endfor %}
+              </table>
+
+        </div>
+
+</div>
+    <script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
+  {% endblock %}

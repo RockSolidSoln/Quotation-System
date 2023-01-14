@@ -36,23 +36,28 @@ urlpatterns = [
             LogoutView.as_view(template_name='app/index.html'),
             name='logout'),
     re_path(r'^dashboard$', views.dashboard, name='dashboard'),
-    re_path(r'^apr$', views.apr, name='apr'),
-    re_path(r'^vspr$', views.vspr, name='vspr'),
-    re_path(r'^vq$', views.vq, name='vq'),
 
     # View urls
-    path('view-purchase-requisition/', view_items.view_purchase_requisition, name='view_purchase_requisition'),
+    path('view_purchase_requisition/', view_items.view_purchase_requisition, name='view_purchase_requisition'),
+    path('view_PR/', view_items.view_PR, name='view_PR'),
+    path('view_one_PR/', view_items.view_one_PR, name='view_one_PR'),
+    path('view_one_PR/<str:pr_id>/', view_items.view_one_PR, name='view_one_PR'),
+
     path('view_quotation/', view_items.view_quotation, name='view_quotation'),
     path('view_one_quotation/', view_items.view_one_quotation, name='view_one_quotation'),
     path('view_quotation/<str:quotation_id>/', view_items.view_one_quotation, name='view_one_quotation'),
+    path('view_all_quotation/', view_items.view_all_quotation, name='view_all_quotation'),
 
-    path('view_one_PO/', view_items.view_one_PO, name='view_one_PO'),
     path('view_PO/', view_items.view_PO, name='view_PO'),
+    path('view_one_PO/', view_items.view_one_PO, name='view_one_PO'),
+    path('view_one_PO/<str:po_id>', view_items.view_one_PO, name='view_one_PO'),
 
 
     # Add Item urls
     path('add_quotation/', additem_views.add_quotation, name='add_quotation'),
     path('add_PO/', additem_views.add_PO, name='add_PO'),
+    path('add_PR/', additem_views.add_PR, name='add_PR'),
+
     path('customer_id/', additem_views.customer_id, name='customer_id'),
     path('salesman_id/', additem_views.salesman_id, name='salesman_id'),
     path('get_customer_id/', additem_views.get_customer_id, name='get_customer_id'),

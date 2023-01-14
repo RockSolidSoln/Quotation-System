@@ -9,6 +9,10 @@ from django.forms.models import model_to_dict
 
 # Create your views here.
 
+def add_PR(request):
+    return render(request, 'addItem/addPR.html')
+
+
 def add_quotation(request):
     salesman_id = Salesman.objects.get(user=request.user).salesman_id
     pr_id = list(PurchaseRequisition.objects.values_list('pr_id', flat=True))
