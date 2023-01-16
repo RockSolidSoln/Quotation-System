@@ -1,3 +1,9 @@
+  #header2{
+    width: 70%; 
+    margin-top: 155px; 
+    position: absolute; 
+    left: 15%;
+  }
   #header2 table{
     margin-top: 6px;
     margin-bottom: 6px;
@@ -34,14 +40,35 @@ td {
   text-align: center;
   vertical-align: middle;
 }
+
+#form div div label{
+  font-family: 'Inknut Antiqua';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 15px;
+  margin-left: 50px;
+  color: #2D92E2;
+}
+
 #form .col input{
     height: 35px;
     left: 273px;
+    margin-top: 20px;
     margin-left: 20px;
     padding-left: 25px;
     padding-right: 25px;
     top: 229px;
     border: none;
-    background: #E9F6FE;
-    border-radius: 50px;
+    background: rgba(233, 246, 254, 0.7);
+border-radius: 50px;
+}
+
+#form .col input::placeholder{
+  font-family: 'Inknut Antiqua';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: #2C9BE5;
 }

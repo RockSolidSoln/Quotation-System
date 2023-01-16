@@ -47,41 +47,57 @@
 <div id="main">
     <br/>
     <div id="header">
-        <h2>Add Purchase Requisition</h2>
-        <div class="form-container">
+        <h2 style="left: 14%;">Add Purchase Requisition</h2>
+        <div class="form-container" style="margin-top:25px;">
             <form method="post">
                 {% csrf_token %}
                 {{ form }}
                 <div class="form-row">
                     <div class="col">
-                        <label for="p-tag">Purchase Requisition ID</label>
+                        <label for="p-tag" style=" font-family: 'Inknut Antiqua';
+                        font-style: normal;font-weight: 700;
+                        font-size: 17px;line-height: 15px;">Purchase Requisition ID</label>
                         <input type="text" class="form-control"
                         required name="pr_id" id="p-tag"
-                        placeholder="PUXXXX">
+                        placeholder="PUXXXX"
+                        style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border:none;">
                     </div>
 
                 </div>
 
                 <div class="form-row">
                     <div class="col">
-                        <label class="p-tag" for="customer_id">Customer ID</label>
+                        <label class="p-tag" for="customer_id"style=" font-family: 'Inknut Antiqua';
+                        font-style: normal;font-weight: 700;
+                        font-size: 17px;line-height: 15px;">Customer ID</label>
                           <input type="text" class="form-control"
                                  id="customer_id"
                                 required name="customer_id"
-                                value="{{ customer_id }}" readonly>
+                                value="{{ customer_id }}" readonly
+                                style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border:none;">
                     </div>
                   </div>
 
                 <div class="form-row">
                     <div class="col">
-                        <label class="p-tag" for="date">Date</label>
-                        <input type="date" class="form-control" id="date" name="date">
+                        <label class="p-tag" for="date"style=" font-family: 'Inknut Antiqua';
+                        font-style: normal;font-weight: 700;
+                        font-size: 17px;line-height: 15px;">Date</label>
+                        <input type="date" class="form-control" id="date" name="date"
+                        style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border:none;">
                     </div>
                     <div class="col">
-                        <label for="numberOfFields">Add Item</label>
+                        <label for="numberOfFields"style=" font-family: 'Inknut Antiqua';
+                        font-style: normal;font-weight: 700;
+                        font-size: 17px;line-height: 15px;">Add Item</label>
                         <input type="number" class="form-control add-field-input"
                                name="number_of_items"
-                               id="numberOfFields" value="" >
+                               id="numberOfFields" value="" 
+                               style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border:none;">
                     </div>
                 </div>
 

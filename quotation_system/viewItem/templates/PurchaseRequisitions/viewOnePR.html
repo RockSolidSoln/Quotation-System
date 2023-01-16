@@ -23,22 +23,23 @@
         Home
     </a>
       {% if salesman %}
-        <a href="{% url 'view_purchase_requisition' %}" >
-            <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
-            height="40">
-                Purchase Requisition
-        </a>
+      <a href="{% url 'view_purchase_requisition' %}" >
+        <img src="{% static 'app/assets/ViewQ.png' %}" alt="AddButton2" style="margin-right:15px;">
+            Purchase Requisition 
+    </a>
 
-        <a href="{% url 'add_quotation' %}">
-            <img src="{% static 'app/assets/ViewQ.png' %}" alt="ViewQ"  style="margin-right:15px;">
-                Add Quotation
-        </a>
+    <a href="{% url 'add_quotation' %}">
+        <img src="{% static 'app/assets/AddButton2.png' %}" alt="ViewQ" 
+         width="55"  height="50">
+            Add Quotation
+    </a>
 
-        <a href="{% url 'view_quotation' %}">
-            <img src="{% static 'app/assets/View.png' %}" alt="ViewQ" width="30"
-            height="30" style="margin-right:10px;">
-                View and Sort Quotation
-        </a>
+    <a href="{% url 'view_quotation' %}">
+        <img src="{% static 'app/assets/View.png' %}" alt="ViewQ" width="30"
+        height="30" style="margin-right:10px;">
+            View and Sort Quotation
+    </a>
+    
     {% elif customer %}
         <a href="{% url 'add_PR' %}" style="right:10px; position:relative;">
             <img src="{% static 'app/assets/AddButton2.png' %}" alt="AddButton2" width="45"
@@ -59,20 +60,25 @@
     {% endif %}
   </div>
 
-  <div id="main">
+  <div id="main" style="width:1000px;">
     <br/>
-    <div id="header">
-      <h2> View Purchase Requisition {{ selected_pr }}</h2>
+    <div id="header" style="width:982px;">
+      <h2 style="left:140px;"> View Purchase Requisition {{ selected_pr }}</h2>
     </div>
   <br/>
     <div id="form">
         <div class="form-row">
-            <div class="col" >
-                <label for="customer-id">
-                    Customer ID
-                 </label>
-                <input readonly type="text" id="customer-id" style="margin-left: 40px;" placeholder="{{ selected_pr.customer_id }}">
-            </div>
+
+            {% if salesman %}
+                <div class="col">
+                    <label for="customer-id">
+                        Customer ID
+                    </label>
+                    <input readonly type="text"  id="customer-id"
+                    placeholder="{{ selected_pr.customer_id }}" >
+                </div>
+        {% endif %}
+
             <div class="col" >
                 <label for="pr-id">
                     Purchase requisition ID
@@ -80,8 +86,9 @@
                 <input readonly type="text"  id="pr-id"
                 placeholder="{{ selected_pr.pr_id }}">
             </div>
-            </div>
 
+            </div>
+        
        <div class="form-row">
         <div class="col">
             <label for="date">
@@ -92,7 +99,7 @@
         </div>
        </div>
     </div>
-        <div id="header2" style="width: 70%; padding-top: 200px; position: relative;" >
+        <div id="header2" style="margin-top: 155px;">
               <table >
                     <tr>
                           <th>Item Name</th>

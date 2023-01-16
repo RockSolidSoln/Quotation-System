@@ -65,7 +65,7 @@ form {
   background-color: rgb(184, 220, 255);
   background-clip: padding-box;
   border: 1px solid #448cd4;
-  border-radius: 50%;
+  border-radius: 50px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -84,7 +84,7 @@ form {
   justify-content: space-between;
 }
 select{
-    width: 300px; !important;
+    width: 300px; 
 }
 .col {
   position: relative;
