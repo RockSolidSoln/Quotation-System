@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{% static 'app/content/views.css' %}">
     <link rel="stylesheet" href="{% static 'app/content/sideBar.css' %}">
    <link rel="stylesheet" href="{% static 'app/content/dashboard.css' %}">
-    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
  <!-- HTML for the button and sidebar -->
@@ -93,6 +93,7 @@
                 <input readonly type="text"  id="pr-id"
                 placeholder="{{ selected_quotation.pr_id }}">
             </div>
+
             <div class="col" >
                 <label for="status">
                     Status
@@ -144,9 +145,12 @@
                     {% if customer %}
                <button id="submit-button" class="btn-success btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">Accept</button>
                 <button id="decline-button" class="btn-danger btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">Reject</button>
-        {% endif %}
+                {% endif %}
         </div>
-
+              <div class="col" style="display: none;">
+                <input readonly type="text" id="quotation_id" name="quotation_id"
+                placeholder="{{ selected_quotation.quotation_id }}">
+            </div>
         </div>
 
 </div>
@@ -192,19 +196,23 @@
     <script>
         document.getElementById("submit-button").addEventListener("click", function() {
     $('#exampleModal').modal('show');
-
 });
 function updateStatus(){
-    quotation_id = {{ selected_quotation }}
-
+    const quotation_id = document.getElementById("quotation_id").value;
+    console.log(quotation_id)
     $.ajax({
-              type: 'POST',
+              type: 'GET',
               url: '/update_quotation/',
-              data: {
-                'quotation_id': quotation_id
-              },
-              success: function (data) {
-
+            data: {
+                "quotation_id": quotation_id,
+                },
+            dataType: "json",
+            success: function (data) {
+                // any process in data
+                alert("successfull")
+            },
+            failure: function () {
+                alert("failure");
             }
             });
     }
@@ -213,4 +221,4 @@ document.getElementById("decline-button").addEventListener("click", function() {
     $('#exampleModal1').modal('show');
 });
 </script>
-  {% endblock %}
+{% endblock %}

@@ -75,7 +75,6 @@ LOGOUT_URL = 'logout'
 
 WSGI_APPLICATION = 'quotation_system.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 

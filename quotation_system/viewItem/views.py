@@ -1,7 +1,9 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from project.models import QuotationItems, Quotation, Salesman, Customer, FinanceOfficer, PurchaseOrder, POItems, \
     PurchaseRequisition, PRItems
-
+from addItem.forms import QuotationForm
+from django.views.decorators.csrf import csrf_exempt
 
 def view_purchase_requisition(request):
     Pr = PurchaseRequisition.objects.all()
@@ -119,19 +121,17 @@ def view_one_quotation(request, quotation_id):
     }
     return render(request, 'Quotation/viewOneQuotation.html', context)
 
+@csrf_exempt
+def update_quotation(request):
+    quotation_id = request.GET.get('quotation_id')
+    print(quotation_id)
 
-def update_quotation(request, quotation_id):
-    select_q_id = Quotation.objects.get(quotation_id=quotation_id)
+    if request.method == 'GET':
+        form = QuotationForm(request.POST)
+        Quotation.objects.filter(quotation_id).update(status='Accepted')
+        print(form)
 
-    print("I'm here"+select_q_id)
-    context = {
-        'quotation_id': select_q_id,
-    }
-
-    status = "approved"
-    select_q_id.status = status
-    select_q_id.save()
-
+    return JsonResponse("Status saved", safe=False)
 
 def view_PO(request):
     fo_id = FinanceOfficer.objects.get(user=request.user).finance_officer_id

@@ -76,7 +76,7 @@ class FinanceOfficer(models.Model):
 
 class PurchaseRequisition(models.Model):
     pr_id = models.CharField(primary_key=True, max_length=10)
-    customer_id = models.ForeignKey(Customer, default=None, on_delete=models.CASCADE)
+    customer_id = models.ForeignKey(Customer, default=None, on_delete=models.PROTECT)
     date = models.DateField()
     number_of_items = models.PositiveIntegerField(default=None, null=True)
 
@@ -85,14 +85,21 @@ class PurchaseRequisition(models.Model):
 
 
 class Quotation(models.Model):
+    status_option = (
+        ('Uncleared', 'Uncleared'),
+        ('Approved', 'Approved'),
+        ('Rejected', 'Rejected'),
+        ('Accepted', 'Accepted'),
+        ('Declined', 'Declined'),
+    )
     quotation_id = models.CharField(primary_key=True, max_length=10)
     pr_id = models.ForeignKey(PurchaseRequisition, default=None, on_delete=models.CASCADE)
-    salesman_id = models.ForeignKey(Salesman, default=None, on_delete=models.CASCADE)
-    customer_id = models.ForeignKey(Customer, default=None, on_delete=models.CASCADE)
-    manager_id = models.ForeignKey(Manager, default="MAN0001", on_delete=models.CASCADE)
+    salesman_id = models.ForeignKey(Salesman, default=None, on_delete=models.PROTECT)
+    customer_id = models.ForeignKey(Customer, default=None, on_delete=models.PROTECT)
+    manager_id = models.ForeignKey(Manager, default="MAN0001", on_delete=models.PROTECT)
     total_price = models.FloatField(default=None, null=True)
     date = models.DateField()
-    status = models.CharField(max_length=20, default="unclear")
+    status = models.CharField(max_length=20, choices=status_option, default='Uncleared')
     number_of_items = models.PositiveIntegerField(default=None, null=True)
 
     def price_display(self):
@@ -101,13 +108,20 @@ class Quotation(models.Model):
     def __str__(self):
         return str(self.quotation_id)
 
+    def update_status(self):
+        if self.status == 'Approved':
+            self.status = 'Approved'
+        elif self.status == 'Declined':
+            self.status = 'Declined'
+        self.save()
+
 
 class PurchaseOrder(models.Model):
     po_id = models.CharField(primary_key=True, max_length=10)
     quotation_id = models.ForeignKey(Quotation, default=None, on_delete=models.CASCADE)
-    customer_id = models.ForeignKey(Customer, default=None, on_delete=models.CASCADE)
-    salesman_id = models.ForeignKey(Salesman, default=None, on_delete=models.CASCADE)
-    finance_officer_id = models.ForeignKey(FinanceOfficer, default=None, on_delete=models.CASCADE)
+    customer_id = models.ForeignKey(Customer, default=None, on_delete=models.PROTECT)
+    salesman_id = models.ForeignKey(Salesman, default=None, on_delete=models.PROTECT)
+    finance_officer_id = models.ForeignKey(FinanceOfficer, default=None, on_delete=models.PROTECT)
     total_price = models.FloatField(default=None, null=True)
     date = models.DateField()
     number_of_items = models.PositiveIntegerField(default=None, null=True)
