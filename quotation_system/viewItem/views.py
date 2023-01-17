@@ -57,6 +57,7 @@ def view_all_quotation(request):
         Quotations = Quotation.objects.all().values()
         Quotation_item = QuotationItems.objects.all().values()
     elif(is_customer):
+       #only cleared status should be here
         Quotations = Quotation.objects.all().values()
         Quotation_item = QuotationItems.objects.all().values()
 

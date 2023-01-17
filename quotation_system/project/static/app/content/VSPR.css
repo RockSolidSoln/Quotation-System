@@ -98,3 +98,10 @@ td {
   text-decoration: none;
   cursor: pointer;
 }
+button{
+    border-radius: 50px;
+    margin-top: 20px;
+    height: 35px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
