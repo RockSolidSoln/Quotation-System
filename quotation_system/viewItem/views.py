@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from project.models import QuotationItems, Quotation, Salesman, Customer, FinanceOfficer, PurchaseOrder, POItems, PurchaseRequisition, PRItems
+from project.models import QuotationItems, Quotation, Salesman, Customer, FinanceOfficer, PurchaseOrder, POItems, \
+    PurchaseRequisition, PRItems
 
 
 def view_purchase_requisition(request):
@@ -11,6 +12,7 @@ def view_purchase_requisition(request):
         'Pr_item': Pr_item
     }
     return render(request, 'PurchaseRequisitions/viewAllPR.html', context)
+
 
 def view_PR(request):
     customer_id = Customer.objects.get(user=request.user).customer_id
@@ -25,6 +27,7 @@ def view_PR(request):
     }
 
     return render(request, 'PurchaseRequisitions/viewCustomerPR.html', context)
+
 
 def view_one_PR(request, pr_id):
     select_pr_id = PurchaseRequisition.objects.get(pr_id=pr_id)
@@ -43,13 +46,19 @@ def view_one_PR(request, pr_id):
     }
     return render(request, 'PurchaseRequisitions/viewOnePR.html', context)
 
-def view_all_quotation(request):
 
+def view_all_quotation(request):
     Quotations = Quotation.objects.all().values()
     Quotation_item = QuotationItems.objects.all().values()
 
     is_customer = request.user.groups.filter(name='Customer').exists()
     is_manager = request.user.groups.filter(name='Manager').exists()
+    if(is_manager):
+        Quotations = Quotation.objects.all().values()
+        Quotation_item = QuotationItems.objects.all().values()
+    elif(is_customer):
+        Quotations = Quotation.objects.all().values()
+        Quotation_item = QuotationItems.objects.all().values()
 
     print(Quotation_item)
     context = {
@@ -76,6 +85,7 @@ def view_quotation(request):
 
     return render(request, 'Quotation/viewSalesmanQuotation.html', context)
 
+
 def view_active_quotation(request):
     Quotations = Quotation.objects.all().values()
     Quotation_item = QuotationItems.objects.all().values()
@@ -87,6 +97,7 @@ def view_active_quotation(request):
     }
 
     return render(request, 'Quotation/viewManagerQuotation.html', context)
+
 
 def view_one_quotation(request, quotation_id):
     select_q_id = Quotation.objects.get(quotation_id=quotation_id)
@@ -108,6 +119,19 @@ def view_one_quotation(request, quotation_id):
     return render(request, 'Quotation/viewOneQuotation.html', context)
 
 
+def update_quotation(request, quotation_id):
+    select_q_id = Quotation.objects.get(quotation_id=quotation_id)
+
+    print("I'm here"+select_q_id)
+    context = {
+        'quotation_id': select_q_id,
+    }
+
+    status = "approved"
+    select_q_id.status = status
+    select_q_id.save()
+
+
 def view_PO(request):
     fo_id = FinanceOfficer.objects.get(user=request.user).finance_officer_id
 
@@ -117,7 +141,7 @@ def view_PO(request):
     print(Po_item)
     context = {
         'PO': PO,
-        'PO_item':Po_item
+        'PO_item': Po_item
     }
 
     return render(request, 'PurchaseOrder/viewPO.html', context)
@@ -134,4 +158,3 @@ def view_one_PO(request, po_id):
         'PO_item': PO_item
     }
     return render(request, 'PurchaseOrder/viewOnePO.html', context)
-

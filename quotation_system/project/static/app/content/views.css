@@ -46,6 +46,8 @@ td {
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
+    overflow: auto;
+    overflow-x: hidden;
   line-height: 15px;
   margin-left: 50px;
   color: #2D92E2;
