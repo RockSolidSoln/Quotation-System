@@ -43,9 +43,9 @@
   <div id="main">
     <br/>
     <div id="header">
-        <h2>Add Quotations</h2>
+        <h2 style="left:15%;">Add Quotations</h2>
         <div class="form-container">
-            <form method="post">
+            <form method="post" id="form">
                 {% csrf_token %}
                 {{ form }}
                 <div class="form-row">
@@ -53,13 +53,17 @@
                         <label class="p-tag">Quotation ID</label>
                         <input type="text" class="form-control" 
                         required name="quotation_id"
-                        placeholder="QUXXXX">
+                        placeholder="QUXXXX"
+                        style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                     </div>
 
                     <div class="col">
                         <label class="p-tag" for="inputGroupSelect01">Purchase Requisition ID</label>
                         <select class="form-control" required  id="inputGroupSelect02"
-                        name="pr_id" onchange="updateCustomerId()" >
+                        name="pr_id" onchange="updateCustomerId()" 
+                        style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                             <option selected>Choose...</option>
                             {% for pr in pr_id %}
                                 <option value="{{ pr }}">{{ pr }}</option>
@@ -74,24 +78,33 @@
                           <input type="text" class="form-control"
                                  id="salesman_id"
                                 required name="salesman_id"
-                                value="{{ salesman_id }}" readonly>
+                                value="{{ salesman_id }}" readonly
+                                style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                     </div>
                     <div class="col">
                         <label for="customer_id">Customer ID</label>
-                        <input type="text" class="form-control" required id="customer_id" name="customer_id" value="" readonly>
+                        <input type="text" class="form-control" required id="customer_id" 
+                        name="customer_id" value="" readonly
+                        style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                     </div>
                   </div>
 
                 <div class="form-row">
                     <div class="col">
                         <label class="p-tag" for="date">Date</label>
-                        <input type="date" class="form-control" id="date" name="date">
+                        <input type="date" class="form-control" id="date" name="date"
+                        style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                     </div>
-                    <div class="col">
+                    <div class="col" style="right:20px;">
                         <label for="numberOfFields">Add Item</label>
                         <input type="number" class="form-control add-field-input"
                                name="number_of_items"
-                               id="numberOfFields" value="" >
+                               id="numberOfFields" value="" 
+                               style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                     </div>
                 </div>
 
@@ -103,7 +116,9 @@
                     </div>
                     <div class="col">
                         <label class="p-tag" for="price">Total Price</label>
-                        <input type="number" name="total_price" id="price" class="form-control total_price" readonly>
+                        <input type="number" name="total_price" id="price" class="form-control total_price" readonly
+                        style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                     </div>
 
 

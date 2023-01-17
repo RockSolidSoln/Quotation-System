@@ -38,7 +38,7 @@
   <div id="main">
     <br/>
     <div id="header">
-        <h2>Add Purchase Order</h2>
+        <h2 style="left:15%;">Add Purchase Order</h2>
         <div class="form-container">
             <form method="post">
                 {% csrf_token %}
@@ -48,13 +48,17 @@
                         <label class="p-tag">Purchase order ID</label>
                         <input type="text" class="form-control" 
                         required name="po_id"
-                        placeholder="POXXXX">
+                        placeholder="POXXXX"
+                        style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                     </div>
 
                     <div class="col">
                         <label class="p-tag" for="inputGroupSelect02">Quotation ID</label>
                         <select class="form-control" required  id="inputGroupSelect02"
-                        name="quotation_id" onchange="updateId()" >
+                        name="quotation_id" onchange="updateId()" 
+                        style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                             <option selected>Choose...</option>
                             {% for q in quotation_id %}
                                 <option value="{{ q }}">{{ q }}</option>
@@ -69,28 +73,40 @@
                           <input type="text" class="form-control"
                                  id="finance_officer_id"
                                 required name="finance_officer_id"
-                                value="{{ finance_officer_id }}" readonly>
+                                value="{{ finance_officer_id }}" readonly
+                                style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                     </div>
                     <div class="col">
                         <label for="customer_id">Customer ID</label>
-                        <input type="text" class="form-control" required id="customer_id" name="customer_id" value="" readonly>
+                        <input type="text" class="form-control" required id="customer_id"
+                         name="customer_id" value="" readonly
+                         style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                     </div>
                     <div class="col">
                         <label for="salesman_id">Salesman ID</label>
-                        <input type="text" class="form-control" required id="salesman_id" name="salesman_id" value="" readonly>
+                        <input type="text" class="form-control" required id="salesman_id" 
+                        name="salesman_id" value="" readonly
+                        style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                     </div>
                   </div>
 
                 <div class="form-row">
                     <div class="col">
                         <label class="p-tag" for="date">Date</label>
-                        <input type="date" class="form-control" id="date" name="date">
+                        <input type="date" class="form-control" id="date" name="date"
+                        style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                     </div>
                     <div class="col">
                         <label for="numberOfFields">Add Item</label>
                         <input type="number" class="form-control add-field-input"
                                name="number_of_items"
-                               id="numberOfFields" value="" >
+                               id="numberOfFields" value="" 
+                               style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                     </div>
                 </div>
 
@@ -98,12 +114,16 @@
                 <div class="form-row">
                     <div class="col">
                         <label class="p-tag" for="price">Total Price</label>
-                        <input type="number" name="total_price" id="price" class="form-control total_price" readonly>
+                        <input type="number" name="total_price" id="price" 
+                        class="form-control total_price" readonly
+                        style="background: rgba(233, 246, 254, 0.7);
+                        border-radius: 50px; border: none;">
                     </div>
                 </div>
                 <div class="col-md-offset-3 col-md-10 " >
                     <input type="submit" value="Submit" id="submit-button"
-                    class="btn-primary btn-md btn-block mx-auto" />   
+                    class="btn-primary btn-md btn-block mx-auto" 
+                    />   
                 </div>
             </form>
         </div>
