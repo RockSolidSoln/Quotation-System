@@ -150,6 +150,7 @@ def salesman_id(request):
 
 def get_customer_id(request):
     pr_id = request.GET.get('pr_id')
+    print(pr_id)
     try:
         pr = PurchaseRequisition.objects.get(pr_id=pr_id)
         customer = pr.customer_id

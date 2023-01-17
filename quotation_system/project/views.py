@@ -19,10 +19,10 @@ def create_user(request):
         form = UserTypeForm(request.POST)
         if form.is_valid():
             user_type = form.cleaned_data['user_type']
-            if user_type == 'PurchaseRequisitions':
+            if user_type == 'Customer':
                 customer = Customer(user=request.user)
                 customer.save()
-            elif user_type == 'Quotation':
+            elif user_type == 'Salesman':
                 salesman = Salesman(user=request.user)
                 salesman.save()
             elif user_type == 'manager':
