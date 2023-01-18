@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{% static 'app/content/VSPR.css' %}">
     <link rel="stylesheet" href="{% static 'app/content/sideBar.css' %}">
    <link rel="stylesheet" href="{% static 'app/content/dashboard.css' %}">
-    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
  <!-- HTML for the button and sidebar -->
@@ -97,8 +97,6 @@
 
 
     </div>
-
-</div>
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -137,7 +135,9 @@
     </div>
   </div>
 </div>
-    <script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
+
+</div>
+
 <script>
 function updateStatus(el,status_type){
     const quotation_id =el.closest("tr").getAttribute("data-id");
@@ -164,5 +164,5 @@ function updateStatus(el,status_type){
     });
     }
 </script>
-
-  {% endblock %}
+   <script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
+{% endblock %}
