@@ -120,7 +120,7 @@
        </div>
 
     </div>
-        <div id="header2" style="width: 70%; padding-top: 100px; position: relative;" >
+        <div id="header2" style="width: 70%; padding-top: 130px; position: relative;" >
               <table >
                     <tr>
                           <th>Item Name</th>
@@ -141,21 +141,15 @@
                 </tr>
                {% endfor %}
               </table>
-        <div>
+        <div style="padding-top: 10px; width: 70%;">
             {% if customer %}
                 {% if is_approved %}
-               <button id="submit-button" class="btn-success btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">Accept</button>
+                <button id="submit-button" class="btn-success btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">Accept</button>
                 <button id="decline-button" class="btn-danger btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">Reject</button>
                 {% endif %}
             {% endif %}
         </div>
-              <div class="col" style="display: none;">
-                <input readonly type="text" id="inputGroupSelect01"
-                placeholder="{{ selected_quotation.quotation_id }}">
-            </div>
-        </div>
 
-</div>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -200,7 +194,6 @@
     $('#exampleModal').modal('show');
 });
 function updateStatus(status_type, quotation_id){
-    {#const quotation_id =  document.getElementById("inputGroupSelect01").value;#}
     console.log(status_type, quotation_id)
 
     $.ajax({
