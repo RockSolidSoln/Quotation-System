@@ -142,13 +142,15 @@
                {% endfor %}
               </table>
         <div>
-                    {% if customer %}
+            {% if customer %}
+                {% if is_approved %}
                <button id="submit-button" class="btn-success btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">Accept</button>
                 <button id="decline-button" class="btn-danger btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">Reject</button>
                 {% endif %}
+            {% endif %}
         </div>
               <div class="col" style="display: none;">
-                <input readonly type="text" id="quotation_id" name="quotation_id"
+                <input readonly type="text" id="inputGroupSelect01"
                 placeholder="{{ selected_quotation.quotation_id }}">
             </div>
         </div>
@@ -164,16 +166,16 @@
         </button>
       </div>
       <div class="modal-body">
-        Are you sure you want to Accept the  {{ selected_quotation }} selected quotation?
+        Are you sure you want to Accept the  {{ selected_quotation.quotation_id }} selected quotation?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="updateStatus()">Yes</button>
+        <button type="button" class="btn btn-primary" onclick="updateStatus('Accepted', '{{ selected_quotation.quotation_id }}')">Yes</button>
       </div>
     </div>
   </div>
 </div>
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -183,11 +185,11 @@
         </button>
       </div>
       <div class="modal-body">
-        Are you sure you want to Reject the {{ selected_quotation }} quotation?
+        Are you sure you want to Reject the {{ selected_quotation.quotation_id }} quotation?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="updateStatus()">Yes</button>
+        <button type="button" class="btn btn-primary" onclick="updateStatus('Rejected', '{{ selected_quotation.quotation_id }}')">Yes</button>
       </div>
     </div>
   </div>
@@ -197,25 +199,27 @@
         document.getElementById("submit-button").addEventListener("click", function() {
     $('#exampleModal').modal('show');
 });
-function updateStatus(){
-    const quotation_id = document.getElementById("quotation_id").value;
-    console.log(quotation_id)
+function updateStatus(status_type, quotation_id){
+    {#const quotation_id =  document.getElementById("inputGroupSelect01").value;#}
+    console.log(status_type, quotation_id)
+
     $.ajax({
-              type: 'GET',
+              type: 'POST',
               url: '/update_quotation/',
             data: {
                 "quotation_id": quotation_id,
+                "status_type": status_type
                 },
             dataType: "json",
             success: function (data) {
-                // any process in data
-                alert("successfull")
+                window.location.href = '/view_all_quotation';
             },
             failure: function () {
                 alert("failure");
             }
             });
     }
+
 
 document.getElementById("decline-button").addEventListener("click", function() {
     $('#exampleModal1').modal('show');

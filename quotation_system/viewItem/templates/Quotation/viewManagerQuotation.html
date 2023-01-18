@@ -53,7 +53,7 @@
                           <th> </th>
                     </tr>
         {% for Q in Quotations %}
-                <tr>
+                <tr data-id="{{ Q.quotation_id }}">
                   <td>{{ Q.quotation_id }}</td>
                   <td>
                       <span class="inside-table">
@@ -85,9 +85,10 @@
                 <td>{{ Q.total_price }}</td>
                 <td>{{ Q.date }}</td>
                 <td>
-                    <button id="submit-button" class="btn-success btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">Approve</button>
-                    <button id="decline-button" class="btn-danger btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">Decline</button>
+                    <button id="submit-button" class="btn-success btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;" onclick="updateStatus(this,'Approved')">Approve</button>
+                    <button id="decline-button" class="btn-danger btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;" onclick="updateStatus(this,'Rejected')">Decline</button>
                 </td>
+
 
                 </tr>
                {% endfor %}
@@ -108,16 +109,16 @@
         </button>
       </div>
       <div class="modal-body">
-        Are you sure you want to Accept the selected quotation?
+        The quotation have been approved
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="updateStatus(this)">Yes</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/'">Okay</button>
       </div>
     </div>
   </div>
 </div>
-    <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -127,37 +128,41 @@
         </button>
       </div>
       <div class="modal-body">
-        Are you sure you want to Decline the selected quotation?
+        The quotation have been Rejected
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="updateStatus(this)">Yes</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/'">Okay</button>
       </div>
     </div>
   </div>
 </div>
     <script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
 <script>
-        document.getElementById("submit-button").addEventListener("click", function() {
-    $('#exampleModal').modal('show');
-
-});
-function updateStatus(){
-
+function updateStatus(el,status_type){
+    const quotation_id =el.closest("tr").getAttribute("data-id");
+    console.log(status_type, quotation_id)
     $.ajax({
-              type: 'POST',
-              url: '/update_quotation/',
-              data: {
-                'quotation_id': quotation_id
-              },
-              success: function (data) {
+        type: 'POST',
+        url: '/update_quotation/',
+        data: {
+        "quotation_id": quotation_id,
+        "status_type": status_type
+        },
+        dataType: "json",
+        success: function (data) {
+            if(status_type === 'Approved'){
+            $('#exampleModal').modal('show')
+            }else{
+            $('#exampleModal1').modal('show')
             }
-            });
-    }
 
-document.getElementById("decline-button").addEventListener("click", function() {
-    $('#exampleModal1').modal('show');
-});
+        },
+        failure: function () {
+        alert("failure");
+        }
+    });
+    }
 </script>
 
   {% endblock %}
