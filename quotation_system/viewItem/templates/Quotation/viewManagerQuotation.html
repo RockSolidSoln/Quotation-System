@@ -97,7 +97,8 @@
 
 
     </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+</div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -107,11 +108,11 @@
         </button>
       </div>
       <div class="modal-body">
-        The quotation have been approved
+        The quotation have been Approved
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="location.href='/'">Okay</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/'">Yes</button>
       </div>
     </div>
   </div>
@@ -134,8 +135,6 @@
       </div>
     </div>
   </div>
-</div>
-
 </div>
 
 <script>
@@ -164,5 +163,5 @@ function updateStatus(el,status_type){
     });
     }
 </script>
-   <script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
+<script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
 {% endblock %}
