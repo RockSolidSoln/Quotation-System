@@ -1,7 +1,6 @@
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.shortcuts import render
-from project.models import QuotationItems, Quotation, Salesman, Customer, FinanceOfficer, PurchaseOrder, POItems, \
-    PurchaseRequisition, PRItems
+from project.models import QuotationItems, Quotation, Salesman, Customer, FinanceOfficer, PurchaseOrder, POItems, PurchaseRequisition, PRItems
 from addItem.forms import QuotationForm
 from django.views.decorators.csrf import csrf_exempt
 

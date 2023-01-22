@@ -80,7 +80,8 @@ def add_quotation(request):
 
 def add_PO(request):
     finance_officer_id = FinanceOfficer.objects.get(user=request.user).finance_officer_id
-    quotation_id = list(Quotation.objects.values_list('quotation_id', flat=True))
+    quotation_id = list(Quotation.objects.values_list('quotation_id', flat=True).filter(status__in=["Accepted"]))
+    # Quotations = Quotation.objects.filter(status__in=['Uncleared', 'Rejected', 'Approved']).values()
 
     context = {
         'finance_officer_id': finance_officer_id,
