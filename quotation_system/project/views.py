@@ -9,8 +9,6 @@ from datetime import datetime
 
 from .models import Customer, FinanceOfficer, Manager, Salesman
 from .forms import UserTypeForm
-from django.views.generic import ListView
-from view_breadcrumbs import ListBreadcrumbMixin
 
 from django.contrib.auth.decorators import login_required
 

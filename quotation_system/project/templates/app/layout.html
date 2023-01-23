@@ -1,4 +1,3 @@
-{% load view_breadcrumbs %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,11 +38,6 @@
             </div>
         </div>
         <div >
-            {% block breadcrumbs %}
-            <main>
-                {% render_breadcrumbs %}
-            </main>
-            {% endblock %}
             {% if user.is_authenticated %}
             <div class="breadcrumb" style="padding-left: 80px; border-radius:0px;" >
                 <li>
