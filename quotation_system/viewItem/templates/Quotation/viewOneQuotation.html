@@ -101,6 +101,7 @@
                 <input readonly type="text" id="status"
                 placeholder="{{ selected_quotation.status }}">
             </div>
+
             </div>
 
        <div class="form-row">
@@ -117,10 +118,19 @@
              </label>
             <input readonly type="text" id="price" style="margin-left: 40px;" placeholder="{{ selected_quotation.total_price }}">
         </div>
+           {% if customer or manager %}
+        <div class="col" >
+            <label for="pr-id">
+                Salesman ID
+            </label>
+            <input readonly type="text"  id="salesman-id"
+            placeholder="{{ selected_quotation.salesman_id }}">
+        </div>
+           {% endif %}
        </div>
 
     </div>
-        <div id="header2" style="width: 70%; padding-top: 130px; position: relative;" >
+        <div id="header2" style="width: 70%; padding-top: 140px; position: relative;" >
               <table >
                     <tr>
                           <th>Item Name</th>

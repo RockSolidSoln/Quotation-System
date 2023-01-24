@@ -48,18 +48,31 @@
     <div id="main_content">
         <div id="header2" >
               <table>
-                    <tr style="position: relative; top:-6px;">
-                          <th>Quotation ID</th>
-                          <th>Item Name</th>
-                          <th>Item Quantity</th>
-                         <th>Item Price</th>
+                    <tr style="position: relative; top:-6px; height: 45px;">
+                        <th>Quotation ID</th>
+                        <th>Customer ID</th>
+                        <th>Item Name</th>
+                        <th>Item Quantity</th>
+                        <th>Item Price</th>
                         <th>Total Price</th>
-                          <th>Date</th>
-                          <th> Sort By</th>
+                        <th>Date</th>
+                        <th>
+                          <select class="btn-primary btn-md btn-block mx-auto" style="height: 30px; width: 130px; border-radius: 50px;" onchange="sortTable(this.value)">
+                            <option value="" disabled selected>Sort by</option>
+                            <option value="total_price">Total Price (Ascending)</option>
+                            <option value="-total_price">Total Price (Descending)</option>
+                            <option value="date">Date (Ascending)</option>
+                            <option value="-date">Date (Descending)</option>
+                            <option value="customer_id">Customer Id (Ascending)</option>
+                            <option value="-customer_id">Customer Id (Descending)</option>
+                          </select>
+                        </th>
+
                     </tr>
         {% for Q in Quotations %}
                 <tr>
                   <td>{{ Q.quotation_id }}</td>
+                  <td>{{ Q.customer_id }}</td>
                   <td>
                       <span class="inside-table">
                       {% for Q_item in Quotation_item %}
@@ -104,4 +117,13 @@
 
 </div>
     <script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
+    <script>
+    function sortTable(sortBy) {
+        window.location.href = '/view_quotation/' + sortBy;
+    }
+   $("#sort-select").change(function(){
+    sortTable(this.value);
+    });
+
+    </script>
   {% endblock %}

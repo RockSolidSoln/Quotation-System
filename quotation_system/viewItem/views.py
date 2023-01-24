@@ -49,9 +49,32 @@ def view_one_PR(request, pr_id):
     return render(request, 'PurchaseRequisitions/viewOnePR.html', context)
 
 
+def purchase_requisition_view_sort(request, sort_by=None):
+    Pr = PurchaseRequisition.objects.all()
+    Pr_item = PRItems.objects.all()
+    if sort_by:
+        if sort_by == 'number_of_items':
+            Pr = Pr.order_by('number_of_items')
+        elif sort_by == '-number_of_items':
+            Pr = Pr.order_by('-number_of_items')
+        elif sort_by == 'date':
+            Pr = Pr.order_by('date')
+        elif sort_by == '-date':
+            Pr = Pr.order_by('-date')
+
+    context = {
+        'Pr': Pr,
+        'Pr_item': Pr_item
+    }
+    return render(request, 'PurchaseRequisitions/viewCustomerPR.html', context)
+
+
+# manager can view all the quotation
+# customer only the active one
 def view_all_quotation(request):
     is_customer = request.user.groups.filter(name='Customer').exists()
     is_manager = request.user.groups.filter(name='Manager').exists()
+
     if (is_customer):
         Quotations = Quotation.objects.filter(status__in=['Accepted', 'Rejected', 'Approved']).values()
     else:
@@ -59,7 +82,7 @@ def view_all_quotation(request):
 
     Quotation_item = QuotationItems.objects.all().values()
 
-    print(Quotation_item)
+    print(Quotation)
     context = {
         'Quotations': Quotations,
         'Quotation_item': Quotation_item,
@@ -69,14 +92,13 @@ def view_all_quotation(request):
 
     return render(request, 'Quotation/viewAllQuotation.html', context)
 
-
+# salesman view quotation for himself only
 def view_quotation(request):
     salesman_id = Salesman.objects.get(user=request.user).salesman_id
 
     Quotations = Quotation.objects.filter(salesman_id=salesman_id)
     Quotation_item = QuotationItems.objects.all().values()
 
-    print(Quotation_item)
     context = {
         'Quotations': Quotations,
         'Quotation_item': Quotation_item
@@ -84,7 +106,40 @@ def view_quotation(request):
 
     return render(request, 'Quotation/viewSalesmanQuotation.html', context)
 
+def quotations_view_sort(request,sort_by=None):
+    Quotations = Quotation.objects.all()
+    Quotation_item = QuotationItems.objects.all().values()
 
+    if sort_by:
+        if sort_by == 'total_price':
+            Quotations = Quotations.order_by('total_price')
+        elif sort_by == '-total_price':
+            Quotations = Quotations.order_by('-total_price')
+        elif sort_by == 'date':
+            Quotations = Quotations.order_by('date')
+        elif sort_by == '-date':
+            Quotations = Quotations.order_by('-date')
+        elif sort_by == 'customer_id':
+            Quotations = Quotations.order_by('customer_id')
+        elif sort_by == '-customer_id':
+            Quotations = Quotations.order_by('-customer_id')
+        elif sort_by == 'salesman_id':
+            Quotations = Quotations.order_by('salesman_id')
+        elif sort_by == '-salesman_id':
+            Quotations = Quotations.order_by('-salesman_id')
+
+    is_manager = request.user.groups.filter(name='Manager').exists()
+    context = {
+        'Quotations': Quotations,
+        'Quotation_item': Quotation_item,
+        'manager': is_manager
+    }
+    if(request.user.groups.filter(name='Salesman').exists()):
+        return render(request, 'Quotation/viewSalesmanQuotation.html', context)
+    else:
+        return render(request, 'Quotation/viewAllQuotation.html', context)
+
+# function for manager to view and update quotation
 def view_active_quotation(request):
     Quotations = Quotation.objects.all().values()
     Quotation_item = QuotationItems.objects.all().values()
@@ -99,7 +154,7 @@ def view_active_quotation(request):
 
     return render(request, 'Quotation/viewManagerQuotation.html', context)
 
-
+# function to view one quotation
 def view_one_quotation(request, quotation_id):
     select_q_id = Quotation.objects.get(quotation_id=quotation_id)
 
@@ -174,3 +229,28 @@ def view_one_PO(request, po_id):
         'PO_item': PO_item
     }
     return render(request, 'PurchaseOrder/viewOnePO.html', context)
+
+
+def purchase_order_view_sort(request, sort_by=None):
+    PO = PurchaseOrder.objects.all()
+    PO_item = POItems.objects.all()
+
+    if sort_by:
+        if sort_by == 'total_price':
+            PO = PO.order_by('total_price')
+        elif sort_by == '-total_price':
+            PO = PO.order_by('-total_price')
+        elif sort_by == 'date':
+            PO = PO.order_by('date')
+        elif sort_by == '-date':
+            PO = PO.order_by('-date')
+        elif sort_by == 'salesman_id':
+            PO = PO.order_by('salesman_id')
+        elif sort_by == '-salesman_id':
+            PO = PO.order_by('-salesman_id')
+
+    context = {
+        'PO': PO,
+        'PO_item': PO_item
+    }
+    return render(request, 'PurchaseOrder/viewPO.html', context)

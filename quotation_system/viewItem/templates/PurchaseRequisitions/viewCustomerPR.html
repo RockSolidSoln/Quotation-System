@@ -44,7 +44,7 @@
   <div id="main">
     <br/>
     <div id="header">
-      <a href="{% url 'add_PR' %}" style="top: -15px;  left: 50px; position: absolute;">
+      <a href="{% url 'add_PR' %}" style="top: -10px;  left: 50px; position: absolute;">
           <h2> <img src="{% static 'app/assets/AddButton.png' %}" alt="AddButton2" width="45"
             height="40" style="margin-right: 15px; top: -10px;">
             Add Purchase Requisition
@@ -60,7 +60,15 @@
                   <th>Item Name</th>
                   <th>Item Quantity</th>
                   <th>Date</th>
-                    <th></th>
+                    <th>
+                          <select class="btn-primary btn-md btn-block mx-auto" style="height: 30px; width: 130px; border-radius: 50px;" onchange="sortTable(this.value)">
+                            <option value="" disabled selected>Sort by</option>
+                            <option value="number_of_items">Items (Ascending)</option>
+                            <option value="-number_of_items">Items (Descending)</option>
+                            <option value="date">Date (Ascending)</option>
+                            <option value="-date">Date (Descending)</option>
+                          </select>
+                    </th>
                 </tr>
         {% for purchase in Pr %}
                 <tr>
@@ -98,4 +106,13 @@
 
 </div>
     <script src="{% static 'app/scripts/custom/sideBar.js' %}"></script>
+    <script>
+    function sortTable(sortBy) {
+        window.location.href = '/view_PR/' + sortBy;
+    }
+   $("#sort-select").change(function(){
+    sortTable(this.value);
+    });
+    </script>
+
   {% endblock %}

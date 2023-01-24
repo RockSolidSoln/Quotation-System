@@ -40,17 +40,21 @@ urlpatterns = [
     # View urls
     path('view_purchase_requisition/', view_items.view_purchase_requisition, name='view_purchase_requisition'),
     path('view_PR/', view_items.view_PR, name='view_PR'),
+    path('view_PR/<str:sort_by>', view_items.purchase_requisition_view_sort, name='purchase_requisition_view_sort'),
     path('view_one_PR/', view_items.view_one_PR, name='view_one_PR'),
     path('view_one_PR/<str:pr_id>/', view_items.view_one_PR, name='view_one_PR'),
 
     path('view_quotation/', view_items.view_quotation, name='view_quotation'),
+    path('view_quotation/<str:sort_by>', view_items.quotations_view_sort, name='quotations_view_sort'),
     path('view_active_quotation/', view_items.view_active_quotation, name='view_active_quotation'),
     path('update_quotation/', view_items.update_quotation, name='update_quotation'),
     path('view_one_quotation/', view_items.view_one_quotation, name='view_one_quotation'),
     path('view_quotation/<str:quotation_id>/', view_items.view_one_quotation, name='view_one_quotation'),
     path('view_all_quotation/', view_items.view_all_quotation, name='view_all_quotation'),
+    path('view_all_quotation/<str:sort_by>', view_items.quotations_view_sort, name='quotations_view_sort'),
 
     path('view_PO/', view_items.view_PO, name='view_PO'),
+    path('view_PO/<str:sort_by>', view_items.purchase_order_view_sort, name='purchase_order_view_sort'),
     path('view_one_PO/', view_items.view_one_PO, name='view_one_PO'),
     path('view_one_PO/<str:po_id>', view_items.view_one_PO, name='view_one_PO'),
 
