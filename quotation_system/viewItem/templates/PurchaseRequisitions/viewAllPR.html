@@ -5,6 +5,7 @@
    {% load static %}
     <link rel="stylesheet" href="{% static 'app/content/VSPR.css' %}">
     <link rel="stylesheet" href="{% static 'app/content/sideBar.css' %}">
+    <link rel="stylesheet" href="{% static 'app/content/sideBar2.css' %}">
    <link rel="stylesheet" href="{% static 'app/content/dashboard.css' %}">
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -80,7 +81,8 @@
                   </td>
                 <td>{{ purchase.date }}</td>
                 <td>
-                   <a href="{% url 'view_one_PR' purchase.pr_id %}" class="btn-primary btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">View Details</a>
+                   <a href="{% url 'view_one_PR' purchase.pr_id %}" class="btn-primary btn-md btn-block mx-auto" style="height: 25px;
+                    width: 100px; border-radius: 50px; background-color: #2D92E2;">View Details</a>
                 </td>
                 </tr>
                {% endfor %}

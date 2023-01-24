@@ -1,0 +1,9 @@
+#sidebar-button {
+
+    left:-30px;
+  
+  }
+  #sidebar-button.clicked {
+    /* Button styling when clicked goes here */
+    left: 195px;
+  }

@@ -5,6 +5,7 @@
    {% load static %}
     <link rel="stylesheet" href="{% static 'app/content/VSPR.css' %}">
     <link rel="stylesheet" href="{% static 'app/content/sideBar.css' %}">
+    <link rel="stylesheet" href="{% static 'app/content/sideBar2.css' %}">
    <link rel="stylesheet" href="{% static 'app/content/dashboard.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -43,7 +44,7 @@
     <div id="main_content">
         <div id="header2" >
               <table>
-                    <tr>
+                    <tr style="position: relative; top:-15px;">
                           <th>Purchase Order ID</th>
                         <th>Salesman ID</th>
                           <th>Item Name</th>
@@ -52,7 +53,11 @@
                         <th>Total Price</th>
                           <th>Date</th>
                           <th>
-                          <select class="btn-primary btn-md btn-block mx-auto" style="height: 30px; width: 130px; border-radius: 50px;" onchange="sortTable(this.value)">
+                          <select class="btn-primary btn-md btn-block mx-auto" 
+                          style="color:#2D92E2 ; width: 130px;
+                          height: 34px; border: none; border-radius: 50px;background: #E9F6FE;
+                          font-weight: 700;" onchange="sortTable(this.value)"
+                          onchange="sortTable(this.value)">
                             <option value="" disabled selected>Sort by</option>
                             <option value="total_price">Total Price (Ascending)</option>
                             <option value="-total_price">Total Price (Descending)</option>
@@ -97,7 +102,8 @@
                 <td>{{ Pur.total_price }}</td>
                 <td>{{ Pur.date }}</td>
                 <td>
-                          <a href="{% url 'view_one_PO' Pur.po_id %}" class="btn-primary btn-md btn-block mx-auto" style="height: 25px; width: 100px; border-radius: 50px;">View Details</a>
+                          <a href="{% url 'view_one_PO' Pur.po_id %}" class="btn-primary btn-md btn-block mx-auto" 
+                          style="height: 25px; width: 100px; border-radius: 50px; background-color: #2D92E2;">View Details</a>
                 </td>
                 </tr>
                {% endfor %}
