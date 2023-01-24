@@ -27,7 +27,7 @@ def add_PR(request):
             print(item_count)
             pr_item_name_list = request.POST.getlist('pr_item_name')
             pr_item_quantity_list = request.POST.getlist('pr_item_quantity')
-            pr_item_price_list = request.POST.getlist('pr_item_price')
+
             for i in range(item_count):
                 pr_item_name = pr_item_name_list[i]
                 print(pr_item_name)

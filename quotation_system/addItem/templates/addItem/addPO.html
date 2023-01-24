@@ -48,6 +48,7 @@
                         <label class="p-tag">Purchase order ID</label>
                         <input type="text" class="form-control" 
                         required name="po_id"
+                       pattern="^PO[A-Za-z0-9]{4}$"
                         placeholder="POXXXX"
                         style="background: rgba(233, 246, 254, 0.7);
                         border-radius: 50px; border: none;">
@@ -144,7 +145,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="location.href='/'">Redirect</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/view_PO'">Redirect</button>
       </div>
     </div>
   </div>

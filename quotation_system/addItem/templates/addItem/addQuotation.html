@@ -51,7 +51,8 @@
                 <div class="form-row">
                     <div class="col">
                         <label class="p-tag">Quotation ID</label>
-                        <input type="text" class="form-control" 
+                        <input type="text" class="form-control"
+                        pattern="^QU[A-Za-z0-9]{4}$"
                         required name="quotation_id"
                         placeholder="QUXXXX"
                         style="background: rgba(233, 246, 254, 0.7);
@@ -127,13 +128,13 @@
                     <input type="submit" value="Submit" id="submit-button"
                     class="btn-primary btn-md btn-block mx-auto" />   
                 </div>
+
+            <div class="invalid-feedback" id="error-message"></div>
             </form>
         </div>
     </div>
-    <br/>
-   <!-- Modal -->
-
 </div>
+          <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -148,7 +149,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="location.href='/'">Redirect</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/view_quotation'">Redirect</button>
       </div>
     </div>
   </div>

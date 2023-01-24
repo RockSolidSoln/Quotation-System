@@ -16,3 +16,7 @@
         `);
     }
 });
+
+document.getElementById("input-element").addEventListener("invalid", function() {
+    document.getElementById("error-message").innerHTML = "Error: Please enter a valid value for this field.";
+});

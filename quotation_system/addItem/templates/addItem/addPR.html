@@ -49,7 +49,7 @@
     <div id="header">
         <h2 style="left: 14%;">Add Purchase Requisition</h2>
         <div class="form-container" style="margin-top:25px;">
-            <form method="post">
+            <form method="post" id="form">
                 {% csrf_token %}
                 {{ form }}
                 <div class="form-row">
@@ -59,7 +59,8 @@
                         font-size: 17px;line-height: 15px;">Purchase Requisition ID</label>
                         <input type="text" class="form-control"
                         required name="pr_id" id="p-tag"
-                        placeholder="PUXXXX"
+                        pattern="^PR[A-Za-z0-9]{4}$"
+                        placeholder="PRXXXX"
                         style="background: rgba(233, 246, 254, 0.7);
                         border-radius: 50px; border:none;">
                     </div>
@@ -107,6 +108,8 @@
                     <input type="submit" value="Submit" id="submit-button"
                     class="btn-primary btn-md btn-block mx-auto" />
                 </div>
+
+                <div class="invalid-feedback" id="error-message"></div>
             </form>
         </div>
     </div>
@@ -128,7 +131,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="location.href='/'">Redirect</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/view_PR'">Redirect</button>
       </div>
     </div>
   </div>
