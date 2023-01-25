@@ -49,19 +49,11 @@ function updateCustomerId() {
     }
 document.getElementById("submit-button").addEventListener("click", function(event) {
     event.preventDefault();
-    const form = document.getElementById("form");
-    let isValid = true;
-    for (let i = 0; i < form.elements.length; i++) {
-        if(!form.elements[i].validity.valid){
-            isValid = false;
-            break;
-        }
-    }
-    if(isValid){
+    var form = document.getElementById("form");
+    if(form.checkValidity()){
         $('#exampleModal').modal('show');
+    } else {
+        $('#errorModal').modal('show');
     }
 });
-document.getElementById("form").addEventListener("invalid", function() {
-    $('#errorModal').modal('show');
-}, true);
 

@@ -58,6 +58,13 @@ function updateId() {
         console.log("Data tried")
     }
 
-document.getElementById("submit-button").addEventListener("click", function() {
-    $('#exampleModal').modal('show');
+document.getElementById("submit-button").addEventListener("click", function(event) {
+    event.preventDefault();
+    var form = document.getElementById("form");
+    if(form.checkValidity()){
+        $('#exampleModal').modal('show');
+    } else {
+        $('#errorModal').modal('show');
+    }
 });
+

@@ -16,7 +16,13 @@
         `);
     }
 });
-
-document.getElementById("input-element").addEventListener("invalid", function() {
-    document.getElementById("error-message").innerHTML = "Error: Please enter a valid value for this field.";
+document.getElementById("submit-button").addEventListener("click", function(event) {
+    event.preventDefault();
+    var form = document.getElementById("form");
+    if(form.checkValidity()){
+        $('#exampleModal').modal('show');
+    } else {
+        $('#errorModal').modal('show');
+    }
 });
+

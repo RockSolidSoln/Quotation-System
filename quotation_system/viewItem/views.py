@@ -106,6 +106,7 @@ def view_quotation(request):
 
     return render(request, 'Quotation/viewSalesmanQuotation.html', context)
 
+# function to sort the quotations
 def quotations_view_sort(request,sort_by=None):
     Quotations = Quotation.objects.all()
     Quotation_item = QuotationItems.objects.all().values()
