@@ -38,12 +38,14 @@ urlpatterns = [
     re_path(r'^dashboard$', views.dashboard, name='dashboard'),
 
     # View urls
+    # All the urls for Purchase requisition
     path('view_purchase_requisition/', view_items.view_purchase_requisition, name='view_purchase_requisition'),
     path('view_PR/', view_items.view_PR, name='view_PR'),
     path('view_PR/<str:sort_by>', view_items.purchase_requisition_view_sort, name='purchase_requisition_view_sort'),
     path('view_one_PR/', view_items.view_one_PR, name='view_one_PR'),
     path('view_one_PR/<str:pr_id>/', view_items.view_one_PR, name='view_one_PR'),
 
+    # All the urls for quotation
     path('view_quotation/', view_items.view_quotation, name='view_quotation'),
     path('view_quotation/<str:sort_by>', view_items.quotations_view_sort, name='quotations_view_sort'),
     path('view_active_quotation/', view_items.view_active_quotation, name='view_active_quotation'),
@@ -53,6 +55,7 @@ urlpatterns = [
     path('view_all_quotation/', view_items.view_all_quotation, name='view_all_quotation'),
     path('view_all_quotation/<str:sort_by>', view_items.quotations_view_sort, name='quotations_view_sort'),
 
+    # All the urls for Purchase Order
     path('view_PO/', view_items.view_PO, name='view_PO'),
     path('view_PO/<str:sort_by>', view_items.purchase_order_view_sort, name='purchase_order_view_sort'),
     path('view_one_PO/', view_items.view_one_PO, name='view_one_PO'),
@@ -63,7 +66,7 @@ urlpatterns = [
     path('add_quotation/', additem_views.add_quotation, name='add_quotation'),
     path('add_PO/', additem_views.add_PO, name='add_PO'),
     path('add_PR/', additem_views.add_PR, name='add_PR'),
-
+    # urls to get the data automatically in the fields
     path('customer_id/', additem_views.customer_id, name='customer_id'),
     path('salesman_id/', additem_views.salesman_id, name='salesman_id'),
     path('get_customer_id/', additem_views.get_customer_id, name='get_customer_id'),

@@ -12,7 +12,6 @@ from django.forms.models import model_to_dict
 
 def add_PR(request):
     customer_id = Customer.objects.get(user=request.user).customer_id
-
     context = {'customer_id': customer_id, 'user': request.user}
 
     if request.method == 'POST':
