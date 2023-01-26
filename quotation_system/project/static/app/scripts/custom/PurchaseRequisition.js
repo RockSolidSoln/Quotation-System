@@ -11,7 +11,7 @@
                 <td>
                     <label>Item Quantity</label>
                     <input type="number" name="pr_item_quantity" class="form-control item-quantity">
-                </td>a
+                </td>
             </tr>
         `);
     }
