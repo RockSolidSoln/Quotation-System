@@ -59,7 +59,6 @@ function updateId() {
     }
 
 document.getElementById("submit-button").addEventListener("click", function(event) {
-    event.preventDefault();
     var form = document.getElementById("form");
     if(form.checkValidity()){
         $('#exampleModal').modal('show');
