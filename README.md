@@ -1,4 +1,4 @@
-# Software-Engineering-Project
+# Quotation System
 
 ## Requirements to be installed
 
